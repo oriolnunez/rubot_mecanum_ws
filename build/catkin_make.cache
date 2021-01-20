@@ -1,0 +1,2 @@
+nexus_4wd_mecanum_description:nexus_4wd_mecanum_gazebo
+-DCATKIN_DEVEL_PREFIX=/home/mpuig/rubot_mecanum_ws/devel -DCMAKE_INSTALL_PREFIX=/home/mpuig/rubot_mecanum_ws/install -G Unix Makefiles
