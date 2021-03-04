@@ -7,4 +7,5 @@
 # new environment variables
 
 # modified environment variables
-export PWD='/home/mpuig/rubot_mecanum_ws/build'
+export PWD='/home/manel/rubot_mecanum_ws/build'
+export ROS_PACKAGE_PATH='/home/manel/rubot_mecanum_ws/src:/opt/ros/melodic/share'

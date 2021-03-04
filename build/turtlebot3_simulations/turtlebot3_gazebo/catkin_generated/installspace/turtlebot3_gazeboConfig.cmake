@@ -67,14 +67,14 @@ set(turtlebot3_gazebo_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(turtlebot3_gazebo_SOURCE_PREFIX /home/mpuig/rubot_mecanum_ws/src/turtlebot3_simulations/turtlebot3_gazebo)
-  set(turtlebot3_gazebo_DEVEL_PREFIX /home/mpuig/rubot_mecanum_ws/devel)
+  set(turtlebot3_gazebo_SOURCE_PREFIX /home/manel/rubot_mecanum_ws/src/turtlebot3_simulations/turtlebot3_gazebo)
+  set(turtlebot3_gazebo_DEVEL_PREFIX /home/manel/rubot_mecanum_ws/devel)
   set(turtlebot3_gazebo_INSTALL_PREFIX "")
   set(turtlebot3_gazebo_PREFIX ${turtlebot3_gazebo_DEVEL_PREFIX})
 else()
   set(turtlebot3_gazebo_SOURCE_PREFIX "")
   set(turtlebot3_gazebo_DEVEL_PREFIX "")
-  set(turtlebot3_gazebo_INSTALL_PREFIX /home/mpuig/rubot_mecanum_ws/install)
+  set(turtlebot3_gazebo_INSTALL_PREFIX /home/manel/rubot_mecanum_ws/install)
   set(turtlebot3_gazebo_PREFIX ${turtlebot3_gazebo_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/mpuig/rubot_mecanum_ws/install/lib;/home/mpuig/rubot_mecanum_ws/devel/lib;/home/mpuig/ur5arm_ws/devel/lib;/home/mpuig/gopigo_pc_ws/devel/lib;/home/mpuig/rUBotCoop_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/manel/rubot_mecanum_ws/install/lib;/home/manel/rubot_mecanum_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

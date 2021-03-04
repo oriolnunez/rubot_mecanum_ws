@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/src/nexus_ros_force_based_move.cpp" "/home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o"
+  "/home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/src/nexus_ros_force_based_move.cpp" "/home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -19,7 +19,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/include"
+  "/home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/include"
   "/opt/ros/melodic/include"
   "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/include/gazebo-9"

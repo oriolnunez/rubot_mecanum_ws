@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/turtlebot3_drive.dir/src/turtlebot3_drive.cpp.o"
-  "/home/mpuig/rubot_mecanum_ws/devel/lib/turtlebot3_gazebo/turtlebot3_drive.pdb"
-  "/home/mpuig/rubot_mecanum_ws/devel/lib/turtlebot3_gazebo/turtlebot3_drive"
+  "/home/manel/rubot_mecanum_ws/devel/lib/turtlebot3_gazebo/turtlebot3_drive.pdb"
+  "/home/manel/rubot_mecanum_ws/devel/lib/turtlebot3_gazebo/turtlebot3_drive"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mpuig/rubot_mecanum_ws/src
+CMAKE_SOURCE_DIR = /home/manel/rubot_mecanum_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mpuig/rubot_mecanum_ws/build
+CMAKE_BINARY_DIR = /home/manel/rubot_mecanum_ws/build
 
 # Utility rule file for tests.
 
@@ -67,6 +67,6 @@ CMakeFiles/tests.dir/clean:
 .PHONY : CMakeFiles/tests.dir/clean
 
 CMakeFiles/tests.dir/depend:
-	cd /home/mpuig/rubot_mecanum_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mpuig/rubot_mecanum_ws/src /home/mpuig/rubot_mecanum_ws/src /home/mpuig/rubot_mecanum_ws/build /home/mpuig/rubot_mecanum_ws/build /home/mpuig/rubot_mecanum_ws/build/CMakeFiles/tests.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/manel/rubot_mecanum_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/manel/rubot_mecanum_ws/src /home/manel/rubot_mecanum_ws/src /home/manel/rubot_mecanum_ws/build /home/manel/rubot_mecanum_ws/build /home/manel/rubot_mecanum_ws/build/CMakeFiles/tests.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/tests.dir/depend
 

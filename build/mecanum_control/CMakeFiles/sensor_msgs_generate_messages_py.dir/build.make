@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mpuig/rubot_mecanum_ws/src
+CMAKE_SOURCE_DIR = /home/manel/rubot_mecanum_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mpuig/rubot_mecanum_ws/build
+CMAKE_BINARY_DIR = /home/manel/rubot_mecanum_ws/build
 
 # Utility rule file for sensor_msgs_generate_messages_py.
 
@@ -63,10 +63,10 @@ mecanum_control/CMakeFiles/sensor_msgs_generate_messages_py.dir/build: sensor_ms
 .PHONY : mecanum_control/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
 
 mecanum_control/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean:
-	cd /home/mpuig/rubot_mecanum_ws/build/mecanum_control && $(CMAKE_COMMAND) -P CMakeFiles/sensor_msgs_generate_messages_py.dir/cmake_clean.cmake
+	cd /home/manel/rubot_mecanum_ws/build/mecanum_control && $(CMAKE_COMMAND) -P CMakeFiles/sensor_msgs_generate_messages_py.dir/cmake_clean.cmake
 .PHONY : mecanum_control/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
 
 mecanum_control/CMakeFiles/sensor_msgs_generate_messages_py.dir/depend:
-	cd /home/mpuig/rubot_mecanum_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mpuig/rubot_mecanum_ws/src /home/mpuig/rubot_mecanum_ws/src/mecanum_control /home/mpuig/rubot_mecanum_ws/build /home/mpuig/rubot_mecanum_ws/build/mecanum_control /home/mpuig/rubot_mecanum_ws/build/mecanum_control/CMakeFiles/sensor_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/manel/rubot_mecanum_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/manel/rubot_mecanum_ws/src /home/manel/rubot_mecanum_ws/src/mecanum_control /home/manel/rubot_mecanum_ws/build /home/manel/rubot_mecanum_ws/build/mecanum_control /home/manel/rubot_mecanum_ws/build/mecanum_control/CMakeFiles/sensor_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : mecanum_control/CMakeFiles/sensor_msgs_generate_messages_py.dir/depend
 
