@@ -14,10 +14,13 @@ def odom_callback(data):
     global robot_f
     robot_x=data.pose.pose.position.x
     robot_y=data.pose.pose.position.y
-    robot_f=[data.pose.pose.orientation.x,data.pose.pose.orientation.y,data.pose.pose.orientation.z,data.pose.pose.orientation.w]
+    q=[data.pose.pose.orientation.x,data.pose.pose.orientation.y,data.pose.pose.orientation.z,data.pose.pose.orientation.w]
+    (roll, pitch, yaw)=euler_from_quaternion(q)
     rospy.loginfo("Robot Odometry x= %f\n",robot_x)
     rospy.loginfo("Robot Odometry y= %f\n",robot_y)
-    #rospy.loginfo("Robot Odometry f= %f\n",robot_f)
+    rospy.loginfo("Robot Odometry roll= %.0f\n",math.degrees(roll))
+    rospy.loginfo("Robot Odometry pitch= %.0f\n",math.degrees(pitch))
+    rospy.loginfo("Robot Odometry yaw= %.0f\n",math.degrees(yaw))
 	
 def move_rubot(lin_velx,lin_vely,ang_vel,distance):
     global robot_x
