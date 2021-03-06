@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o"
-  "/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.pdb"
-  "/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so"
+  "/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.pdb"
+  "/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so"
 )
 
 # Per-language clean rules from dependency scanning.

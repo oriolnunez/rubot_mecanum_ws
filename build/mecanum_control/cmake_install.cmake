@@ -1,8 +1,8 @@
-# Install script for directory: /home/manel/rubot_mecanum_ws/src/mecanum_control
+# Install script for directory: /home/mpuig/rubot_mecanum_ws/src/mecanum_control
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/manel/rubot_mecanum_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/mpuig/rubot_mecanum_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/manel/rubot_mecanum_ws/build/mecanum_control/catkin_generated/installspace/mecanum_control.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/mpuig/rubot_mecanum_ws/build/mecanum_control/catkin_generated/installspace/mecanum_control.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mecanum_control/cmake" TYPE FILE FILES
-    "/home/manel/rubot_mecanum_ws/build/mecanum_control/catkin_generated/installspace/mecanum_controlConfig.cmake"
-    "/home/manel/rubot_mecanum_ws/build/mecanum_control/catkin_generated/installspace/mecanum_controlConfig-version.cmake"
+    "/home/mpuig/rubot_mecanum_ws/build/mecanum_control/catkin_generated/installspace/mecanum_controlConfig.cmake"
+    "/home/mpuig/rubot_mecanum_ws/build/mecanum_control/catkin_generated/installspace/mecanum_controlConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mecanum_control" TYPE FILE FILES "/home/manel/rubot_mecanum_ws/src/mecanum_control/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mecanum_control" TYPE FILE FILES "/home/mpuig/rubot_mecanum_ws/src/mecanum_control/package.xml")
 endif()
 

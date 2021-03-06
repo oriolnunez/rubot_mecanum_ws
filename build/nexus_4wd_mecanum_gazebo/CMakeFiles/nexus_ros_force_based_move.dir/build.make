@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/manel/rubot_mecanum_ws/src
+CMAKE_SOURCE_DIR = /home/mpuig/rubot_mecanum_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/manel/rubot_mecanum_ws/build
+CMAKE_BINARY_DIR = /home/mpuig/rubot_mecanum_ws/build
 
 # Include any dependencies generated for this target.
 include nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/depend.make
@@ -58,17 +58,17 @@ include nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/progr
 include nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/flags.make
 
 nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o: nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/flags.make
-nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o: /home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/src/nexus_ros_force_based_move.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/manel/rubot_mecanum_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o"
-	cd /home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o -c /home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/src/nexus_ros_force_based_move.cpp
+nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o: /home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/src/nexus_ros_force_based_move.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mpuig/rubot_mecanum_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o"
+	cd /home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o -c /home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/src/nexus_ros_force_based_move.cpp
 
 nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.i"
-	cd /home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/src/nexus_ros_force_based_move.cpp > CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.i
+	cd /home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/src/nexus_ros_force_based_move.cpp > CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.i
 
 nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.s"
-	cd /home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/src/nexus_ros_force_based_move.cpp -o CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.s
+	cd /home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/src/nexus_ros_force_based_move.cpp -o CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.s
 
 nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o.requires:
 
@@ -88,148 +88,148 @@ nexus_ros_force_based_move_OBJECTS = \
 # External object files for target nexus_ros_force_based_move
 nexus_ros_force_based_move_EXTERNAL_OBJECTS =
 
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/build.make
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKsimbody.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKmath.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKcommon.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libblas.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/liblapack.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libblas.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_client.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_gui.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_sensors.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_rendering.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_physics.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_ode.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_transport.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_msgs.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_util.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_common.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_gimpact.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_opcode.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_opende_ou.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_signals.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libignition-transport4.so.4.0.0
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libignition-msgs1.so.1.0.0
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libignition-common1.so.1.0.1
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libignition-fuel_tools1.so.1.0.0
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf2_ros.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libactionlib.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libmessage_filters.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libroscpp.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libxmlrpcpp.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf2.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libroscpp_serialization.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole_log4cxx.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole_backend_interface.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librostime.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libcpp_common.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKsimbody.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKmath.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKcommon.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libblas.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/liblapack.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_client.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_gui.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_sensors.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_rendering.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_physics.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_ode.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_transport.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_msgs.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_util.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_common.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_gimpact.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_opcode.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_opende_ou.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_signals.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf2_ros.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libactionlib.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libmessage_filters.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libroscpp.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libxmlrpcpp.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf2.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libroscpp_serialization.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole_log4cxx.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole_backend_interface.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librostime.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libcpp_common.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libignition-math4.so.4.0.0
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libuuid.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libuuid.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libswscale.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libswscale.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavdevice.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavdevice.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavformat.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavformat.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavcodec.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavcodec.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavutil.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavutil.so
-/home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/manel/rubot_mecanum_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library /home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so"
-	cd /home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/nexus_ros_force_based_move.dir/link.txt --verbose=$(VERBOSE)
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/src/nexus_ros_force_based_move.cpp.o
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/build.make
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKsimbody.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKmath.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKcommon.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libblas.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/liblapack.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libblas.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_client.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_gui.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_sensors.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_rendering.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_physics.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_ode.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_transport.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_msgs.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_util.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_common.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_gimpact.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_opcode.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_opende_ou.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_signals.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libignition-transport4.so.4.0.0
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libignition-msgs1.so.1.0.0
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libignition-common1.so.1.0.1
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libignition-fuel_tools1.so.1.0.0
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf2_ros.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libactionlib.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libmessage_filters.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libroscpp.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libxmlrpcpp.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf2.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libroscpp_serialization.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole_log4cxx.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole_backend_interface.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librostime.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libcpp_common.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKsimbody.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKmath.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libSimTKcommon.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libblas.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/liblapack.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_client.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_gui.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_sensors.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_rendering.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_physics.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_ode.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_transport.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_msgs.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_util.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_common.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_gimpact.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_opcode.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libgazebo_opende_ou.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_signals.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf2_ros.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libactionlib.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libmessage_filters.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libroscpp.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libxmlrpcpp.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libtf2.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libroscpp_serialization.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole_log4cxx.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librosconsole_backend_interface.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/librostime.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /opt/ros/melodic/lib/libcpp_common.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libignition-math4.so.4.0.0
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libuuid.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libuuid.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libswscale.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libswscale.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavdevice.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavdevice.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavformat.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavformat.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavcodec.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavcodec.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavutil.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: /usr/lib/x86_64-linux-gnu/libavutil.so
+/home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so: nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mpuig/rubot_mecanum_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library /home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so"
+	cd /home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/nexus_ros_force_based_move.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/build: /home/manel/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so
+nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/build: /home/mpuig/rubot_mecanum_ws/devel/lib/libnexus_ros_force_based_move.so
 
 .PHONY : nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/build
 
@@ -238,10 +238,10 @@ nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/requires: nex
 .PHONY : nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/requires
 
 nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/clean:
-	cd /home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && $(CMAKE_COMMAND) -P CMakeFiles/nexus_ros_force_based_move.dir/cmake_clean.cmake
+	cd /home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && $(CMAKE_COMMAND) -P CMakeFiles/nexus_ros_force_based_move.dir/cmake_clean.cmake
 .PHONY : nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/clean
 
 nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/depend:
-	cd /home/manel/rubot_mecanum_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/manel/rubot_mecanum_ws/src /home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo /home/manel/rubot_mecanum_ws/build /home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo /home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/mpuig/rubot_mecanum_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mpuig/rubot_mecanum_ws/src /home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo /home/mpuig/rubot_mecanum_ws/build /home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo /home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : nexus_4wd_mecanum_gazebo/CMakeFiles/nexus_ros_force_based_move.dir/depend
 

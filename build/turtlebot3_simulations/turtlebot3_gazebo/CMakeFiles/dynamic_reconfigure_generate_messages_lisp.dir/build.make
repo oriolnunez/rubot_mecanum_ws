@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/manel/rubot_mecanum_ws/src
+CMAKE_SOURCE_DIR = /home/mpuig/rubot_mecanum_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/manel/rubot_mecanum_ws/build
+CMAKE_BINARY_DIR = /home/mpuig/rubot_mecanum_ws/build
 
 # Utility rule file for dynamic_reconfigure_generate_messages_lisp.
 
@@ -63,10 +63,10 @@ turtlebot3_simulations/turtlebot3_gazebo/CMakeFiles/dynamic_reconfigure_generate
 .PHONY : turtlebot3_simulations/turtlebot3_gazebo/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build
 
 turtlebot3_simulations/turtlebot3_gazebo/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/clean:
-	cd /home/manel/rubot_mecanum_ws/build/turtlebot3_simulations/turtlebot3_gazebo && $(CMAKE_COMMAND) -P CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/cmake_clean.cmake
+	cd /home/mpuig/rubot_mecanum_ws/build/turtlebot3_simulations/turtlebot3_gazebo && $(CMAKE_COMMAND) -P CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/cmake_clean.cmake
 .PHONY : turtlebot3_simulations/turtlebot3_gazebo/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/clean
 
 turtlebot3_simulations/turtlebot3_gazebo/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/depend:
-	cd /home/manel/rubot_mecanum_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/manel/rubot_mecanum_ws/src /home/manel/rubot_mecanum_ws/src/turtlebot3_simulations/turtlebot3_gazebo /home/manel/rubot_mecanum_ws/build /home/manel/rubot_mecanum_ws/build/turtlebot3_simulations/turtlebot3_gazebo /home/manel/rubot_mecanum_ws/build/turtlebot3_simulations/turtlebot3_gazebo/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/mpuig/rubot_mecanum_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mpuig/rubot_mecanum_ws/src /home/mpuig/rubot_mecanum_ws/src/turtlebot3_simulations/turtlebot3_gazebo /home/mpuig/rubot_mecanum_ws/build /home/mpuig/rubot_mecanum_ws/build/turtlebot3_simulations/turtlebot3_gazebo /home/mpuig/rubot_mecanum_ws/build/turtlebot3_simulations/turtlebot3_gazebo/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : turtlebot3_simulations/turtlebot3_gazebo/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/depend
 

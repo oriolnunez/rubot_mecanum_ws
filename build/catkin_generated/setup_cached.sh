@@ -7,5 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export PWD='/home/manel/rubot_mecanum_ws/build'
-export ROS_PACKAGE_PATH='/home/manel/rubot_mecanum_ws/src:/opt/ros/melodic/share'
+export LD_LIBRARY_PATH='/opt/ros/melodic/lib'
+export PKG_CONFIG_PATH='/opt/ros/melodic/lib/pkgconfig'
+export PWD='/home/mpuig/rubot_mecanum_ws/build'
+export ROS_PACKAGE_PATH='/home/mpuig/rubot_mecanum_ws/src:/opt/ros/melodic/share'

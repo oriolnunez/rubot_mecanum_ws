@@ -1,8 +1,8 @@
-# Install script for directory: /home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_description
+# Install script for directory: /home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/manel/rubot_mecanum_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/mpuig/rubot_mecanum_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_description/catkin_generated/installspace/nexus_4wd_mecanum_description.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_description/catkin_generated/installspace/nexus_4wd_mecanum_description.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/nexus_4wd_mecanum_description/cmake" TYPE FILE FILES
-    "/home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_description/catkin_generated/installspace/nexus_4wd_mecanum_descriptionConfig.cmake"
-    "/home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_description/catkin_generated/installspace/nexus_4wd_mecanum_descriptionConfig-version.cmake"
+    "/home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_description/catkin_generated/installspace/nexus_4wd_mecanum_descriptionConfig.cmake"
+    "/home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_description/catkin_generated/installspace/nexus_4wd_mecanum_descriptionConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/nexus_4wd_mecanum_description" TYPE FILE FILES "/home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/nexus_4wd_mecanum_description" TYPE FILE FILES "/home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_description/package.xml")
 endif()
 

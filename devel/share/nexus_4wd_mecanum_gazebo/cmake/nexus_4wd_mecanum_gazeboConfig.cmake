@@ -67,14 +67,14 @@ set(nexus_4wd_mecanum_gazebo_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(nexus_4wd_mecanum_gazebo_SOURCE_PREFIX /home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo)
-  set(nexus_4wd_mecanum_gazebo_DEVEL_PREFIX /home/manel/rubot_mecanum_ws/devel)
+  set(nexus_4wd_mecanum_gazebo_SOURCE_PREFIX /home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo)
+  set(nexus_4wd_mecanum_gazebo_DEVEL_PREFIX /home/mpuig/rubot_mecanum_ws/devel)
   set(nexus_4wd_mecanum_gazebo_INSTALL_PREFIX "")
   set(nexus_4wd_mecanum_gazebo_PREFIX ${nexus_4wd_mecanum_gazebo_DEVEL_PREFIX})
 else()
   set(nexus_4wd_mecanum_gazebo_SOURCE_PREFIX "")
   set(nexus_4wd_mecanum_gazebo_DEVEL_PREFIX "")
-  set(nexus_4wd_mecanum_gazebo_INSTALL_PREFIX /home/manel/rubot_mecanum_ws/install)
+  set(nexus_4wd_mecanum_gazebo_INSTALL_PREFIX /home/mpuig/rubot_mecanum_ws/install)
   set(nexus_4wd_mecanum_gazebo_PREFIX ${nexus_4wd_mecanum_gazebo_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(nexus_4wd_mecanum_gazebo_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/include " STREQUAL " ")
+if(NOT "/home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/include " STREQUAL " ")
   set(nexus_4wd_mecanum_gazebo_INCLUDE_DIRS "")
-  set(_include_dirs "/home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/include")
+  set(_include_dirs "/home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/include " STRE
         message(FATAL_ERROR "Project 'nexus_4wd_mecanum_gazebo' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'nexus_4wd_mecanum_gazebo' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'nexus_4wd_mecanum_gazebo' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo/${idir}'.  ${_report}")
     endif()
     _list_append_unique(nexus_4wd_mecanum_gazebo_INCLUDE_DIRS ${include})
   endforeach()
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/manel/rubot_mecanum_ws/devel/lib;/home/manel/rubot_mecanum_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/mpuig/rubot_mecanum_ws/devel/lib;/home/mpuig/rubot_mecanum_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/manel/rubot_mecanum_ws/src
+CMAKE_SOURCE_DIR = /home/mpuig/rubot_mecanum_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/manel/rubot_mecanum_ws/build
+CMAKE_BINARY_DIR = /home/mpuig/rubot_mecanum_ws/build
 
 # Utility rule file for tf_generate_messages_cpp.
 
@@ -63,10 +63,10 @@ nexus_4wd_mecanum_gazebo/CMakeFiles/tf_generate_messages_cpp.dir/build: tf_gener
 .PHONY : nexus_4wd_mecanum_gazebo/CMakeFiles/tf_generate_messages_cpp.dir/build
 
 nexus_4wd_mecanum_gazebo/CMakeFiles/tf_generate_messages_cpp.dir/clean:
-	cd /home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && $(CMAKE_COMMAND) -P CMakeFiles/tf_generate_messages_cpp.dir/cmake_clean.cmake
+	cd /home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo && $(CMAKE_COMMAND) -P CMakeFiles/tf_generate_messages_cpp.dir/cmake_clean.cmake
 .PHONY : nexus_4wd_mecanum_gazebo/CMakeFiles/tf_generate_messages_cpp.dir/clean
 
 nexus_4wd_mecanum_gazebo/CMakeFiles/tf_generate_messages_cpp.dir/depend:
-	cd /home/manel/rubot_mecanum_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/manel/rubot_mecanum_ws/src /home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo /home/manel/rubot_mecanum_ws/build /home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo /home/manel/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo/CMakeFiles/tf_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/mpuig/rubot_mecanum_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mpuig/rubot_mecanum_ws/src /home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo /home/mpuig/rubot_mecanum_ws/build /home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo /home/mpuig/rubot_mecanum_ws/build/nexus_4wd_mecanum_gazebo/CMakeFiles/tf_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : nexus_4wd_mecanum_gazebo/CMakeFiles/tf_generate_messages_cpp.dir/depend
 

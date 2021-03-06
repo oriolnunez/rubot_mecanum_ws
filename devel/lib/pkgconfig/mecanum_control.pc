@@ -1,4 +1,4 @@
-prefix=/home/manel/rubot_mecanum_ws/devel
+prefix=/home/mpuig/rubot_mecanum_ws/devel
 
 Name: mecanum_control
 Description: Description of mecanum_control

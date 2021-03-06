@@ -1,4 +1,4 @@
-prefix=/home/manel/rubot_mecanum_ws/devel
+prefix=/home/mpuig/rubot_mecanum_ws/devel
 
 Name: nexus_4wd_mecanum_description
 Description: Description of nexus_4wd_mecanum_description

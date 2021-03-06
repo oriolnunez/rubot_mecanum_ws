@@ -67,14 +67,14 @@ set(nexus_4wd_mecanum_gazebo_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(nexus_4wd_mecanum_gazebo_SOURCE_PREFIX /home/manel/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo)
-  set(nexus_4wd_mecanum_gazebo_DEVEL_PREFIX /home/manel/rubot_mecanum_ws/devel)
+  set(nexus_4wd_mecanum_gazebo_SOURCE_PREFIX /home/mpuig/rubot_mecanum_ws/src/nexus_4wd_mecanum_gazebo)
+  set(nexus_4wd_mecanum_gazebo_DEVEL_PREFIX /home/mpuig/rubot_mecanum_ws/devel)
   set(nexus_4wd_mecanum_gazebo_INSTALL_PREFIX "")
   set(nexus_4wd_mecanum_gazebo_PREFIX ${nexus_4wd_mecanum_gazebo_DEVEL_PREFIX})
 else()
   set(nexus_4wd_mecanum_gazebo_SOURCE_PREFIX "")
   set(nexus_4wd_mecanum_gazebo_DEVEL_PREFIX "")
-  set(nexus_4wd_mecanum_gazebo_INSTALL_PREFIX /home/manel/rubot_mecanum_ws/install)
+  set(nexus_4wd_mecanum_gazebo_INSTALL_PREFIX /home/mpuig/rubot_mecanum_ws/install)
   set(nexus_4wd_mecanum_gazebo_PREFIX ${nexus_4wd_mecanum_gazebo_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/manel/rubot_mecanum_ws/install/lib;/home/manel/rubot_mecanum_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/mpuig/rubot_mecanum_ws/install/lib;/home/mpuig/rubot_mecanum_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
