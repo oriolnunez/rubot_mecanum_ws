@@ -381,7 +381,7 @@
 <!-- 2D Camera JOINT base_link -->
   <joint name="joint_camera" type="fixed">
     <axis xyz="0 0 1" />
-    <origin xyz="0.25 0 0.025" rpy="0 0 0"/>
+    <origin xyz="0.16 0 0.08" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="camera"/>
   </joint>
@@ -391,7 +391,7 @@
     <visual name="sensor_body">
       <origin xyz="0 0 0.04" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/X4.stl" scale="0.002 0.002 0.002"/> 
+        <mesh filename="package://nexus_4wd_mecanum_description/meshes/X4.stl" scale="0.0015 0.0015 0.0015"/> 
       </geometry>
       <material name="yellow"/>
     </visual>
@@ -414,13 +414,13 @@
 <!-- LIDAR base_scan JOINT base_link -->
   <joint name="scan_joint" type="fixed">
     <axis xyz="0 0 1" />
-    <origin xyz="0 0 0.15" rpy="0 0 0"/>
+    <origin xyz="0 0 0.09" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="base_scan"/>
   </joint>
 
   <!-- Include controller plugin for Gazebo -->
-  <xacro:include filename="$(find nexus_4wd_mecanum_description)/urdf/nexus_4wd_mecanum.gazebo" />
+  <xacro:include filename="$(find nexus_4wd_mecanum_description)/urdf/rubot_mecanum.gazebo" />
 
   <!-- Include URM04 ultrasonic range finders -->
   <xacro:include filename="$(find nexus_4wd_mecanum_description)/urdf/urm04_sensor.xacro"/>
