@@ -1,8 +1,0 @@
-prefix=/home/mpuig/rubot_mecanum_ws/install
-
-Name: mecanum_control
-Description: Description of mecanum_control
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
