@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>mecanum_control</name>
+  <name>nexus_control</name>
   <version>0.0.0</version>
   <description>The mecanum_control package</description>
 

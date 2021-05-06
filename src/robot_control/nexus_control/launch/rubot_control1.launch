@@ -6,7 +6,7 @@
     <arg name="z_pos" default="0.0"/>
   
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-      <arg name="world_name" value="$(find mecanum_control)/worlds/$(arg world)"/>
+      <arg name="world_name" value="$(find nexus_control)/worlds/$(arg world)"/>
       <arg name="paused" value="false"/>
       <arg name="use_sim_time" value="true"/>
       <arg name="gui" value="true"/>
@@ -32,7 +32,7 @@
     <arg name="vy" default="0.1"/>
     <arg name="w" default="0.2"/>
     <arg name="d" default="1.2"/>
-    <node pkg="mecanum_control" type="rubot_control1.py" name="rubot_nav" output="screen" >
+    <node pkg="nexus_control" type="rubot_control1.py" name="rubot_nav" output="screen" >
       <param name="vx" value="$(arg vx)"/>
       <param name="vy" value="$(arg vy)"/>
       <param name="w" value="$(arg w)"/>
