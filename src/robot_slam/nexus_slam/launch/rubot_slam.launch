@@ -21,11 +21,11 @@
   </node>
 
   <!-- SLAM using Gmapping -->
-  <include file="$(find mecanum_slam)/launch/gmapping.launch"/>
+  <include file="$(find nexus_slam)/launch/gmapping.launch"/>
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find mecanum_slam)/rviz/gmapping.rviz"/>
+          args="-d $(find nexus_slam)/rviz/gmapping.rviz"/>
   </group>
 </launch>

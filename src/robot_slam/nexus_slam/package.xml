@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>mecanum_slam</name>
+  <name>nexus_slam</name>
   <version>0.0.0</version>
-  <description>The mecanum_slam package</description>
+  <description>The nexus_slam package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
