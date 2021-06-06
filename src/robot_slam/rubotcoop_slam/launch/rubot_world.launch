@@ -1,12 +1,12 @@
 <launch>
-  <arg name="world" default="world1.world"/> 
+  <arg name="world" default="UCIworld.world"/> 
   <arg name="model" default="rubot_mecanum.xacro"/>
   <arg name="x_pos" default="0.0"/>
   <arg name="y_pos" default="0.0"/>
   <arg name="z_pos" default="0.0"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find nexus_slam)/worlds/$(arg world)"/>
+    <arg name="world_name" value="$(find rubotcoop_slam)/worlds/$(arg world)"/>
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
