@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 
-project(prototip_2904)
+project(rubot_mecanum)
 
 find_package(catkin REQUIRED)
 
