@@ -26,14 +26,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/nexus_base_link.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/nexus_base_link.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="yellow"/>
     </visual>
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/nexus_base_link_collision.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/nexus_base_link_collision.STL" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -52,14 +52,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -77,14 +77,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -102,14 +102,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -127,14 +127,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/wheel_shaft.STL" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -153,7 +153,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/mecanum_wheel_left.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/mecanum_wheel_left.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
@@ -180,7 +180,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/mecanum_wheel_right.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/mecanum_wheel_right.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
@@ -207,7 +207,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/mecanum_wheel_right.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/mecanum_wheel_right.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
@@ -234,7 +234,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/mecanum_wheel_left.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/mecanum_wheel_left.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
@@ -260,7 +260,7 @@
     <visual>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/urm04.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/urm04.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -274,7 +274,7 @@
     <visual>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/urm04.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/urm04.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -288,7 +288,7 @@
     <visual>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/urm04.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/urm04.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -302,7 +302,7 @@
     <visual>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/urm04.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://nexus_mecanum/meshes/urm04.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -312,7 +312,7 @@
     <visual>
       <origin rpy="0 1.570795 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/piCamera.stl" scale="0.0025 0.0025 0.0025"/>
+        <mesh filename="package://nexus_mecanum/meshes/piCamera.stl" scale="0.0025 0.0025 0.0025"/>
       </geometry>
       <material name="yellow"/>
     </visual>
@@ -340,7 +340,7 @@
     <visual name="sensor_body">
       <origin rpy="0 0 0" xyz="0 0 0.04"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/X4.stl" scale="0.0015 0.0015 0.0015"/>
+        <mesh filename="package://nexus_mecanum/meshes/X4.stl" scale="0.0015 0.0015 0.0015"/>
       </geometry>
       <material name="yellow"/>
     </visual>
@@ -483,4 +483,3 @@
   </gazebo>
 
 </robot>
-

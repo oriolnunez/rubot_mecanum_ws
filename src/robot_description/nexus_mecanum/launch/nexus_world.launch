@@ -3,22 +3,22 @@
   <arg name="use_sim_time" default="true" />
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
-  <arg name="world_name" default="$(find nexus_mecanum)/worlds/maze1.world" />
+  <arg name="world_name" default="$(find nexus_mecanum)/worlds/square.world" />
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="debug" value="0" />
     <arg name="gui" value="$(arg gui)" />
     <arg name="use_sim_time" value="$(arg use_sim_time)" />
     <arg name="headless" value="$(arg headless)" />
-    <!--<arg name="world_name" value="$(arg world_name)" /> -->
+    <arg name="world_name" value="$(arg world_name)" />
     <arg name="paused" value="false"/>
   </include>
 
 <!-- Load robot description -->
-<include file="$(find nexus_mecanum)/launch/display.launch" />
+  <include file="$(find nexus_mecanum)/launch/display.launch" />
 
 <!-- Spawn the robot -->
   <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
-        args="-urdf -model nexus -param robot_description -x 0 -y 0 -z 0" />
+        args="-urdf -model nexus -param robot_description -x 1 -y 1 -z 0" />
 
 </launch>
