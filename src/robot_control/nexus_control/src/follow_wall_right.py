@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 
 import rospy
-import numpy
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
