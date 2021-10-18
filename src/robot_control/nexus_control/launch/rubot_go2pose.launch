@@ -17,10 +17,10 @@
     <node pkg="gazebo_ros" type="spawn_model" name="spawn_model"
       args="-urdf -model nexus -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
   
-  <!-- run navigation program   -->
+  <!-- run navigation program  -->
     <arg name="x" default="1"/>
     <arg name="y" default="1"/>
-    <arg name="f" default="0"/>
+    <arg name="f" default="0.7"/>
     <node pkg="nexus_control" type="rubot_go2pose.py" name="nexus_control" output="screen" >
       <param name="x" value="$(arg x)"/>
       <param name="y" value="$(arg y)"/>
