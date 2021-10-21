@@ -16,6 +16,9 @@ class nexus:
         self.y_goal = rospy.get_param("~y")
         self.f_goal = rospy.get_param("~f")
         self.q_goal = quaternion_from_euler(0,0,self.f_goal)
+        self.x_pose=0
+        self.y_pose=0
+        self.yaw=0
         
         # Publisher which will publish to the topic '/cmd_vel'.
         self.velocity_publisher = rospy.Publisher('/cmd_vel', Twist, queue_size=10)

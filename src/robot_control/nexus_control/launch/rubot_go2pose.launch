@@ -18,9 +18,9 @@
       args="-urdf -model nexus -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
   
   <!-- run navigation program  -->
-    <arg name="x" default="1"/>
-    <arg name="y" default="1"/>
-    <arg name="f" default="0.7"/>
+    <arg name="x" default="0.7"/>
+    <arg name="y" default="0.7"/>
+    <arg name="f" default="0"/>
     <node pkg="nexus_control" type="rubot_go2pose.py" name="nexus_control" output="screen" >
       <param name="x" value="$(arg x)"/>
       <param name="y" value="$(arg y)"/>
