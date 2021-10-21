@@ -2,7 +2,7 @@
 import rospy
 from geometry_msgs.msg import Twist, Pose, Quaternion
 from nav_msgs.msg import Odometry
-from math import pow, atan2, sqrt
+from math import pow, atan2, sqrt, degrees, radians
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
 class nexus:
@@ -11,11 +11,14 @@ class nexus:
         # Creates a node with name 'turtlebot_controller' and make sure it is a
         # unique node (using anonymous=True).
         rospy.init_node('nexus_control', anonymous=True)
-        # Define Params
+        # Define goal odometry from parameters
         self.x_goal = rospy.get_param("~x")
         self.y_goal = rospy.get_param("~y")
-        self.f_goal = rospy.get_param("~f")
+        self.f_goal = radians(rospy.get_param("~f"))
+        print("goal angle= "+str(self.f_goal))
+        
         self.q_goal = quaternion_from_euler(0,0,self.f_goal)
+        # Define initial values for actual odometry (read in callback function)
         self.x_pose=0
         self.y_pose=0
         self.yaw=0
@@ -47,7 +50,7 @@ class nexus:
         return sqrt(pow((goal_odom.pose.pose.position.x - self.x_pose), 2) +
                     pow((goal_odom.pose.pose.position.y - self.y_pose), 2))
 
-    def linear_vel(self, goal_odom, constant=1):
+    def linear_vel(self, goal_odom, constant=0.3):
         """See video: https://www.youtube.com/watch?v=Qh15Nol5htM."""
         return constant * self.euclidean_distance(goal_odom)
 
@@ -55,7 +58,7 @@ class nexus:
         """See video: https://www.youtube.com/watch?v=Qh15Nol5htM."""
         return atan2(goal_odom.pose.pose.position.y - self.y_pose, goal_odom.pose.pose.position.x - self.x_pose)
 
-    def angular_vel(self, goal_odom, constant=6):
+    def angular_vel(self, goal_odom, constant=3):
         """See video: https://www.youtube.com/watch?v=Qh15Nol5htM."""
         return constant * (self.steering_angle(goal_odom) - self.yaw)
 
@@ -70,8 +73,6 @@ class nexus:
         goal_odom.pose.pose.orientation.y = self.q_goal[1]
         goal_odom.pose.pose.orientation.z= self.q_goal[2]
         goal_odom.pose.pose.orientation.w= self.q_goal[3]
-
-        rospy.loginfo("goal : " + str(goal_odom))
         
         # Please, insert a number slightly greater than 0 (e.g. 0.01).
         distance_tolerance = 0.01
