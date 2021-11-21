@@ -1,6 +1,6 @@
 <launch>
   <!-- Robot model to match with that of Gazebo or the physical robot -->
-  <arg name="model" default="rubot_mecanum.xacro" />
+  <arg name="model" default="nexus.urdf" />
   <!-- More arguments -->
   <arg name="multi_robot_name" default=""/>
   <arg name="map_file" default="$(find nexus_slam)/maps/map_world1.yaml"/>
@@ -8,7 +8,7 @@
   <arg name="move_forward_only" default="false"/>
 
   <!-- GoPiGo3 URDF model & robot_state_publisher -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find nexus_4wd_mecanum_description)/urdf/$(arg model)" />
+  <param name="robot_description" textfile="$(find nexus_mecanum)/urdf/$(arg model)" />
 
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="50.0" />

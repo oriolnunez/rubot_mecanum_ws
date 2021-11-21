@@ -338,7 +338,7 @@
   <!-- LIDAR base_scan -->
   <link name="base_scan">
     <visual name="sensor_body">
-      <origin rpy="0 0 0" xyz="0 0 0.04"/>
+      <origin rpy="0 0 3.1415" xyz="0 0 0.04"/>
       <geometry>
         <mesh filename="package://nexus_mecanum/meshes/X4.stl" scale="0.0015 0.0015 0.0015"/>
       </geometry>
