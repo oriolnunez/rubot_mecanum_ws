@@ -1,6 +1,6 @@
-# **gopigo3 model & control**
+# **rUBot mecanum model & control**
 The objectives of this chapter are:
-- Create a model of our gopigo3 robot 
+- Create a model of our rUBot 
 - use rviz package to view the different topics and nodes
 - create a model of the virtual environment
 - use gazebo package to simulate the robot kinematics and dynamics
@@ -8,9 +8,10 @@ The objectives of this chapter are:
 - create our firsts programs to control the robot movement with obstacle avoidance
 
 
-The final model represents the real gopigo3 robot we will use in the laboratory
+The final model represents the real rUBot we will use in the laboratory
 
 Interesting complementary information could be found:
+- https://github.com/RBinsonB/nexus_4wd_mecanum_simulator
 
 - https://brjapon.medium.com/learning-robotics-with-ros-made-easy-12197c918dab
 
