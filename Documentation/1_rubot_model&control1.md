@@ -31,6 +31,7 @@ The rUBot model we will use is based on the nexus robot model developed in: http
 
 We will use this model with some modifications to take into account the different sensors installed onboard.
 
+## 1. Nexus mecanum model generation
 First of all, we have to create the "nexus_mecanum" package containing the nexus model. In case you want to create it from scratch, type:
 ```shell
 cd ~/rubot_mecanum_ws/src
@@ -40,7 +41,7 @@ catkin_make
 ```
 Then open the .bashrc file and verify the environment variables and source to the proper workspace:
 ```shell
-source ~/rubot_gopigo_ws/devel/setup.bash
+source ~/rubot_mecanum_ws/devel/setup.bash
 ```
 To create our robot model, we use URDF files (Unified Robot Description Format). URDF file is an XML format file for representing a robot model.(http://wiki.ros.org/urdf/Tutorials)
 
@@ -66,93 +67,88 @@ The joint definition contains:
 - origin frame
 - rotation axis
 
-In the case or wright wheel:
+In the case or upper left wheel:
 ```xml
-<!-- Right Wheel -->
-  <link name="right_wheel">
+  <link name="upper_left_wheel">
     <visual>
-      <origin xyz="0 0 0" rpy="1.570795 0 0" />
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-          <cylinder length="0.05" radius="0.1" />
+        <mesh filename="package://nexus_mecanum/meshes/mecanum_wheel_left.STL" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="orange"/>
+      <material name="light_grey"/>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="1.570795 0 0" />
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-          <cylinder length="0.05" radius="0.1" />
+        <cylinder length="0.0505" radius="0.05"/>
       </geometry>
     </collision>
     <inertial>
-      <origin xyz="0 0 0" rpy="1.570795 0 0" />
-      <mass value="0.15"/>
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.3844"/>
+      <!-- Inertia based on cylinder -->
+      <inertia ixx="0.000324824" ixy="0" ixz="0" iyy="0.000480000" iyz="0" izz="0.000324824"/>
     </inertial>
   </link>
-  
-  <!-- Right Wheel joint -->
-  <joint name="joint_right_wheel" type="continuous">
-    <parent link="base_link"/>
-    <child link="right_wheel"/>
-    <origin xyz="0 -0.30 0.025" rpy="0 0 0" /> 
-    <axis xyz="0 1 0" />
+  <joint name="lower_left_wheel_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0.042 0"/>
+    <parent link="lower_left_wheel_shaft"/>
+    <child link="lower_left_wheel"/>
+    <axis xyz="0 1 0"/>
   </joint>
 ```
-The gopigo3 model includes different sensors and actuators:
+The rUBot model includes different sensors and actuators:
 
 Sensors:
 - a two-dimensional camera: correspondas to RBPi camera
-- a 360º LIDAR sensor: 
-  - the EAI YDLIDAR X4 (https://www.robotshop.com/es/es/escaner-laser-360-ydlidar-x4.html) 
-  - or RPLidar A1M8 (https://www.robotshop.com/es/es/rplidar-a1m8-kit-desarrollo-escaner-laser-360-grados.html)
+- a 360º RPLidar A1M8 (https://www.robotshop.com/es/es/rplidar-a1m8-kit-desarrollo-escaner-laser-360-grados.html)
 
 Actuator:
-- Differential drive actuator: based on 2 DC motors with encoders to obtain the Odometry information
+- Mecanum drive actuator: based on 4 DC motors with encoders to obtain the Odometry information
 
 The full model contains also information about the sensor and actuator controllers using specific Gazebo plugins (http://gazebosim.org/tutorials?tut=ros_gzplugins#Tutorial:UsingGazebopluginswithROS). 
 
 Gazebo plugins give your URDF models greater functionality and compatible with ROS messages and service calls for sensor output and motor input. 
 
 These plugins can be referenced through a URDF file, and to insert them in the URDF file, you have to follow the sintax:
-- for Differential drive actuator:
+### **Camera sensor plugin**
+This sensor is integrated as a link and fixed joint for visual purposes:
 ```xml
- <!-- Differential Drive Controller -->
-  <gazebo>
-    <plugin filename="libgazebo_ros_diff_drive.so" name="gopigo3_controller">
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <odometrySource>world</odometrySource>
-      <publishOdomTF>true</publishOdomTF>
-      <robotBaseFrame>base_footprint</robotBaseFrame>
-      <publishWheelTF>false</publishWheelTF>
-      <publishTf>true</publishTf>
-      <publishWheelJointState>true</publishWheelJointState>
-      <legacyMode>false</legacyMode>
-      <updateRate>30</updateRate>
-      <leftJoint>wheel_left_joint</leftJoint>
-      <rightJoint>wheel_right_joint</rightJoint>
-      <wheelSeparation>0.116</wheelSeparation>
-      <wheelDiameter>0.066</wheelDiameter>
-      <wheelAcceleration>0.5</wheelAcceleration>
-      <wheelTorque>1</wheelTorque>
-      <rosDebugLevel>na</rosDebugLevel>
-    </plugin>
-  </gazebo>
+  <!-- 2D Camera as a mesh of actual PiCamera -->
+  <link name="camera">
+    <visual>
+      <origin rpy="0 1.570795 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://nexus_4wd_mecanum_description/meshes/piCamera.stl" scale="0.0025 0.0025 0.0025"/>
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+    <collision>
+      <origin rpy="0 1.570795 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.075 0.075 0.025"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 1.570795 0" xyz="0 0 0"/>
+      <mass value="1e-3"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    </inertial>
+  </link>
+  <!-- 2D Camera JOINT base_link -->
+  <joint name="joint_camera" type="fixed">
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0.16 0 0.05"/>
+    <parent link="base_link"/>
+    <child link="camera"/>
+  </joint>
   ```
-In this gazebo plugin, the kinematics of the robot configuration is defined:
-- Forward kinematics: obtaining the robot POSE (odometry) with the robot wheel speeds information
-- Inverse kinematics: obtaining the robot wheels speds to reach specific robot POSE (odometry)
-
-The equations are sumarized below
-![Getting Starter](./Images/1_Drive_kine.png)
-- for Raspicam sensor plugins:
+  A driver is needed to view the images.
 ```xml
   <!-- 2D Camera controller -->
-  <gazebo reference="camera_rgb_frame">
+  <gazebo reference="camera">
     <sensor name="camera1" type="camera">
-      <always_on>true</always_on>
-      <visualize>false</visualize>
+      <update_rate>30.0</update_rate>
       <camera name="front">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
@@ -167,11 +163,11 @@ The equations are sumarized below
       </camera>
       <plugin filename="libgazebo_ros_camera.so" name="camera_controller">
         <alwaysOn>true</alwaysOn>
-        <updateRate>30.0</updateRate>
-        <cameraName>gopigo/camera1</cameraName>
+        <updateRate>0.0</updateRate>
+        <cameraName>rubot/camera1</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-        <frameName>camera_rgb_frame</frameName>
+        <frameName>camera</frameName>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>
@@ -182,83 +178,137 @@ The equations are sumarized below
     </sensor>
   </gazebo>
   ```
-- for LIDAR sensor plugin:
+### **LIDAR sensor plugin**
+This sensor is integrated as a link and fixed joint for visual purposes:
+```xml
+  <!-- LIDAR base_scan -->
+  <link name="base_scan">
+    <visual name="sensor_body">
+      <origin rpy="0 0 0" xyz="0 0 0.04"/>
+      <geometry>
+        <mesh filename="package://nexus_4wd_mecanum_description/meshes/X4.stl" scale="0.0015 0.0015 0.0015"/>
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.04"/>
+      <geometry>
+        <cylinder length="0.01575" radius="0.0275"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.4"/>
+      <mass value="0.057"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+  <!-- LIDAR base_scan JOINT base_link -->
+  <joint name="scan_joint" type="fixed">
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 0 0.09"/>
+    <parent link="base_link"/>
+    <child link="base_scan"/>
+  </joint>
+```
+A driver is needed to see the 720 laser distance points:
 ```xml
   <!-- Laser Distance Sensor YDLIDAR X4 controller-->
   <gazebo reference="base_scan">
-    <material>Gazebo/FlatBlack</material>
     <sensor name="lds_lfcd_sensor" type="ray">
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
-      <update_rate>10</update_rate>
+      <update_rate>5</update_rate>
       <ray>
         <scan>
           <horizontal>
             <samples>720</samples>
-            <resolution>1</resolution>
+            <resolution>0.5</resolution>
             <min_angle>0.0</min_angle>
             <max_angle>6.28319</max_angle>
           </horizontal>
         </scan>
         <range>
-          <min>0.120</min>
+          <min>0.12</min>
           <max>10</max>
           <resolution>0.015</resolution>
         </range>
         <noise>
           <type>gaussian</type>
           <!-- Noise parameters based on published spec for YDLIDAR X4
-               is 1.5% at half range 4m (= 60mm, "+-160mm" accuracy at max. range 8m).
-               A mean of 0.0m and stddev of 0.020m will put 99.7% of samples
-               within 0.16m of the true reading. -->
+              is 1.5% at half range 4m (= 60mm, "+-160mm" accuracy at max. range 8m).
+              A mean of 0.0m and stddev of 0.020m will put 99.7% of samples
+              within 0.16m of the true reading. -->
           <mean>0.0</mean>
           <stddev>0.02</stddev>
         </noise>
       </ray>
       <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_lds_lfcd_controller">
+        <!-- topicName>/gopigo/scan</topicName -->
         <topicName>scan</topicName>
         <frameName>base_scan</frameName>
       </plugin>
     </sensor>
   </gazebo>
+```
+
+### **Mecanum drive actuator plugin**
+A driver is needed to describe the kinematics.This kinematics is described in the "libgazebo_ros_planar_move.so" file and the URDF model will contain the specific gazebo plugin.
+
+This driver is the "Planar Move Plugin" and is described in Gazebo tutorials: http://gazebosim.org/tutorials?tut=ros_gzplugins#AddingaModelPlugin
+
+```xml
+  <!-- Mecanum drive controller -->
+  <gazebo>
+    <plugin name="Mecanum_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>50.0</odometryRate>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+    </plugin>
+  </gazebo>
   ```
-#### **Generated models in URDF**
-The diferent model files we have created in urdf folder are:
-- gopigo3_v1.urdf: includes only the geometrical description of gopigo robot.
-- gopigo3_v2.urdf: includes sensors and actuator:
-    - the 2D camera and LDS sensors
-    - the differential drive actuator
-- gopigo3_v3.urdf: includes sensors and actuator:
-    - the 2D camera, LDS and LIDAR sensors
-    - the differential drive actuator
-- gopigo3_v4.gazebo: includes corrections in the proposed model:
-    - base_link geometry and inertia
-    - 2D camera real position
-    - LIDAR scaling and orientation
 
 We use a specific "display.launch" launch file where we specify the robot model we want to open in rviz with a configuration specified in "urdf.rviz":
 ```xml
-<?xml version="1.0"?>
 <launch>
-  <!-- set these parameters on Parameter Server -->
-  <param name="robot_description" textfile="$(find gopigo3_description)/urdf/gopigo3.urdf" />
-  <!-- send fake joint values -->
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-    <param name="use_gui" value="False"/>
-  </node>
-  <!-- Combine joint values -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-  <!-- Show in Rviz   -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find gopigo3_description)/rviz/urdf.rviz"/>
+  <param name="robot_description" textfile="$(find nexus_mecanum)/urdf/nexus.urdf" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find nexus_mecanum)/rviz/urdf_final.rviz" />
 </launch>
 ```
 Launch the ROS visualization tool to check that the model is properly built. 
 RViz only represents the robot visual features. You have available all the options to check every aspect of the appearance of the model
 ```shell
-roslaunch gopigo3_description display.launch
+roslaunch nexus_mecanum display.launch
 ```
-![Getting Starter](./Images/1_gopigo_basic_rviz.png)
-![Getting Starter](./Images/1_gopigo3_rviz.png)
+![](./Images/1_nexus_rviz.png)
+
+## 1.2. rUBot mecanum custom model
+
+We can create a new model in 3D using SolidWorks and use the URDF plugin to generate the URDF file model: rubot_mecanum.urdf
+
+This model is located in a new "rubot_mecanum" package
+
+We add the same sensors and plugins.
+
+We can open the new model in rviz and gazebo:
+
+- roslaunch rubot_mecanum display.launch
+- roslaunch rubot_mecanum gazebo.launch
+
+![Getting Starter](./Images/1_rubot_mecanum2.png)
+
+In this gazebo plugin, the kinematics of the robot configuration is defined:
+- Forward kinematics: obtaining the robot POSE (odometry) with the robot wheel speeds information
+- Inverse kinematics: obtaining the robot wheels speds to reach specific robot POSE (odometry)
+
+The equations are sumarized below
+![](./Images/1_Drive_kine.png)
+
+
 ### **gopigo3 model improvements**
 Some modifications in the initial model "gopigo3_init.gazebo" have been made to:
 - locate the LIDAR in the correct position
