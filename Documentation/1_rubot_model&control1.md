@@ -13,24 +13,28 @@ The final model represents the real rUBot we will use in the laboratory
 Interesting complementary information could be found:
 - https://github.com/RBinsonB/nexus_4wd_mecanum_simulator
 
-- https://brjapon.medium.com/learning-robotics-with-ros-made-easy-12197c918dab
+The rUBot mecanum robot we will work is represented in the picture:
+![](./Images/1_osoyoo.png)
 
-- http://wiki.ros.org/Robots/gopigo3
+His main characteristics are: 
+- Arduino based control for sensors & actuators
+  - Servomotor actuators for the 4 mecanum wheels
+  - RPlidar distance sensor
+  - Raspicam 2D camera sensor
+- RaspberryPi4 High-level onboard control with Ubuntu20 and ROS Noetic
 
-- https://robots.ros.org/gopigo3/
+## **1. rUBot mecanum model generation**
 
-- https://github.com/ros-gopigo3/gopigo3
+The rUBot model we will use is based on the nexus robot model developed in: https://github.com/RBinsonB/nexus_4wd_mecanum_simulator
 
-- https://bitbucket.org/theconstructcore/two-wheeled-robot-motion-planning/src/master/
+![](./Images/1_nexus_4wd.png)
 
-<img src="./Images/1_gopigo3_UB.png" />
+We will use this model with some modifications to take into account the different sensors installed onboard.
 
-## **1. rUBot gopigo3 model generation**
-
-First of all, we have to create the "gopigo3_description" package containing the gopigo3 model:
+First of all, we have to create the "nexus_mecanum" package containing the nexus model. In case you want to create it from scratch, type:
 ```shell
-cd ~/rubot_gopigo_ws/src
-catkin_create_pkg gopigo3_description rospy
+cd ~/rubot_mecanum_ws/src
+catkin_create_pkg nexus_mecanum rospy
 cd ..
 catkin_make
 ```
