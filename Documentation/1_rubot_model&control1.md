@@ -31,12 +31,12 @@ The rUBot model we will use is based on the nexus robot model developed in: http
 
 We will use this model with some modifications to take into account the different sensors installed onboard.
 
-## 1. Nexus mecanum model generation
+### **1.1 Nexus mecanum model generation**
 First of all, we have to create the "nexus_mecanum" package containing the nexus model. In case you want to create it from scratch, type:
 ```shell
-cd ~/rubot_mecanum_ws/src
+cd ~/rubot_mecanum_ws/src/robot_description
 catkin_create_pkg nexus_mecanum rospy
-cd ..
+cd ../..
 catkin_make
 ```
 Then open the .bashrc file and verify the environment variables and source to the proper workspace:
@@ -184,7 +184,7 @@ This sensor is integrated as a link and fixed joint for visual purposes:
   <!-- LIDAR base_scan -->
   <link name="base_scan">
     <visual name="sensor_body">
-      <origin rpy="0 0 0" xyz="0 0 0.04"/>
+      <origin rpy="0 0 3.14" xyz="0 0 0.04"/>
       <geometry>
         <mesh filename="package://nexus_4wd_mecanum_description/meshes/X4.stl" scale="0.0015 0.0015 0.0015"/>
       </geometry>
@@ -205,11 +205,15 @@ This sensor is integrated as a link and fixed joint for visual purposes:
   <!-- LIDAR base_scan JOINT base_link -->
   <joint name="scan_joint" type="fixed">
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 0" xyz="0 0 0.09"/>
+    <origin rpy="0 0 3.14" xyz="0 0 0.09"/>
     <parent link="base_link"/>
     <child link="base_scan"/>
   </joint>
 ```
+> Note that rpLIDAR is mounted at 180º and you need to turn the link model and the joint to reflect this in the URDF model.
+
+![](./Images/1_ydlidar.png)
+
 A driver is needed to see the 720 laser distance points:
 ```xml
   <!-- Laser Distance Sensor YDLIDAR X4 controller-->
@@ -250,7 +254,6 @@ A driver is needed to see the 720 laser distance points:
     </sensor>
   </gazebo>
 ```
-![](./Images/1_ydlidar.png)
 
 It is important to note that:
 - the number of points of real RPLidar is 720 (one each half degree)
@@ -273,8 +276,8 @@ This driver is the "Planar Move Plugin" and is described in Gazebo tutorials: ht
   </gazebo>
   ```
 In this gazebo plugin, the kinematics of the robot configuration is defined:
-- Forward kinematics: obtaining the robot POSE (odometry) with the robot wheel speeds information
-- Inverse kinematics: obtaining the robot wheels speds to reach specific robot POSE (odometry)
+- Forward kinematics: obtains the robot velocity (linear and angular in /cmd_vel) and POSE (odometry) for speciffic robot wheel speeds
+- Inverse kinematics: obtains the robot wheels speeds for a desired robot velocity (linear and angular in /cmd_vel)
 
 We use a specific "display.launch" launch file where we specify the robot model we want to open in rviz with a configuration specified in "urdf.rviz":
 ```xml
@@ -291,9 +294,9 @@ RViz only represents the robot visual features. You have available all the optio
 ```shell
 roslaunch nexus_mecanum display.launch
 ```
-![](./Images/1_nexus_rviz.png)
+![](./Images/1_nexus_urdf.png)
 
-## 1.2. rUBot mecanum custom model
+### **1.2. rUBot mecanum custom model**
 
 We can create a new model in 3D using SolidWorks and use the URDF plugin to generate the URDF file model: rubot_mecanum.urdf
 
@@ -307,6 +310,12 @@ We can open the new model in rviz and gazebo:
 - roslaunch rubot_mecanum gazebo.launch
 
 ![Getting Starter](./Images/1_rubot_mecanum2.png)
+
+**Activity:**
+
+Design a proper model corresponding to the real rUBot_mecanum you will work with.
+![](./Images/1_osoyoo.png)
+
 
 ## **2. rUBot mecanum spawn in world environment**
 
@@ -328,6 +337,14 @@ roslaunch nexus_mecanum display.launch
 ```
 ![Getting Starter](./Images/1_nexus_mecanum2.png)
 
+> Gazebo colors are defined at the end of URDF file:
+```xml
+  <gazebo reference="upper_left_wheel">
+    <material>Gazebo/Grey</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+  ```
 >Carefull-1:
 - If there is an error "libcurl: (51) SSL: no alternative certificate subject name matches target host name ‘api.ignitionfuel.org’" then follow instructions:
     - Open "~/.ignition/fuel/config.yaml" (to see the hidden files type ctrl+h)

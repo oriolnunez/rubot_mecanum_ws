@@ -14,7 +14,7 @@
     <color rgba="0.2 0.2 0.2 1.0"/>
   </material>
   <material name="light_grey">
-    <color rgba="0.4 0.4 0.4 1.0"/>
+    <color rgba="0.75 0.75 0.75 1.0"/>
   </material>
   <link name="base_footprint"/>
   <joint name="base_link_joint" type="fixed">
@@ -314,7 +314,7 @@
       <geometry>
         <mesh filename="package://nexus_mecanum/meshes/piCamera.stl" scale="0.0025 0.0025 0.0025"/>
       </geometry>
-      <material name="yellow"/>
+      <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0 1.570795 0" xyz="0 0 0"/>
@@ -337,12 +337,12 @@
   </joint>
   <!-- LIDAR base_scan -->
   <link name="base_scan">
-    <visual name="sensor_body">
-      <origin rpy="0 0 3.1415" xyz="0 0 0.04"/>
+    <visual>
+      <origin rpy="0 0 3.14" xyz="0 0 0.04"/>
       <geometry>
         <mesh filename="package://nexus_mecanum/meshes/X4.stl" scale="0.0015 0.0015 0.0015"/>
       </geometry>
-      <material name="yellow"/>
+      <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0.04"/>
@@ -359,7 +359,7 @@
   <!-- LIDAR base_scan JOINT base_link -->
   <joint name="scan_joint" type="fixed">
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 0" xyz="0 0 0.09"/>
+    <origin rpy="0 0 3.14" xyz="0 0 0.09"/>
     <parent link="base_link"/>
     <child link="base_scan"/>
   </joint>
@@ -481,5 +481,27 @@
   <gazebo reference="lower_right_wheel_shaft">
     <material>Gazebo/Black</material>
   </gazebo>
+  <gazebo reference="upper_left_wheel">
+    <material>Gazebo/Grey</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
 
+  <gazebo reference="lower_left_wheel">
+    <material>Gazebo/Grey</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+
+  <gazebo reference="upper_right_wheel">
+    <material>Gazebo/Grey</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+
+  <gazebo reference="lower_right_wheel">
+    <material>Gazebo/Grey</material>
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
 </robot>
