@@ -296,6 +296,27 @@ roslaunch nexus_mecanum display.launch
 ```
 ![](./Images/1_nexus_urdf.png)
 
+> Colors: 
+>- are defined at the beginning
+>- Ensure the "visual" link properties have no "name"
+```xml
+<robot name="nexus">
+  <material name="yellow">
+    <color rgba="0.8 0.8 0.0 1.0"/>
+  </material>
+
+  ...
+
+    <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://nexus_mecanum/meshes/nexus_base_link.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+```
+
 ### **1.2. rUBot mecanum custom model**
 
 We can create a new model in 3D using SolidWorks and use the URDF plugin to generate the URDF file model: rubot_mecanum.urdf
@@ -337,7 +358,9 @@ roslaunch nexus_mecanum display.launch
 ```
 ![Getting Starter](./Images/1_nexus_mecanum2.png)
 
-> Gazebo colors are defined at the end of URDF file (be sure the <visual> properties have no name!):
+> Gazebo colors:
+> - are defined at the end of URDF file
+>- have a specific "Gazebo/Color" names
 ```xml
   <gazebo reference="upper_left_wheel">
     <material>Gazebo/Grey</material>
