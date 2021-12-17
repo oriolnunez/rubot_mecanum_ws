@@ -337,7 +337,7 @@ roslaunch nexus_mecanum display.launch
 ```
 ![Getting Starter](./Images/1_nexus_mecanum2.png)
 
-> Gazebo colors are defined at the end of URDF file:
+> Gazebo colors are defined at the end of URDF file (be sure the <visual> properties have no name!):
 ```xml
   <gazebo reference="upper_left_wheel">
     <material>Gazebo/Grey</material>
