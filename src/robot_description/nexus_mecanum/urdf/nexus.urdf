@@ -452,10 +452,10 @@
     <material>Gazebo/Yellow</material>
   </gazebo>
   <gazebo reference="base_scan">
-    <material>Gazebo/Black</material>
+    <material>Gazebo/DarkGrey</material>
   </gazebo>
   <gazebo reference="camera">
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Green</material>
   </gazebo>
   <gazebo reference="left_sensor">
     <material>Gazebo/Black</material>

@@ -6,12 +6,11 @@ from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
 
 
-class nexus:
+class GoPiGo3:
 
     def __init__(self):
 
         rospy.init_node("rubot_nav", anonymous=False)
-
         self._distanceLaser = rospy.get_param("~distance_laser")
         self._speedFactor = rospy.get_param("~speed_factor")
         self._forwardSpeed = rospy.get_param("~forward_speed")
@@ -36,7 +35,8 @@ class nexus:
         closestDistance, elementIndex = min(
             (val, idx) for (idx, val) in enumerate(scan.ranges) if scan.range_min < val < scan.range_max
         )
-        angleClosestDistance = self.__wrapAngle(elementIndex / 2) # YDLidar with 720 points in 360deg
+        angleClosestDistance = (elementIndex / 2)-180 # RPLidar zero angle in backside
+
         rospy.loginfo("Closest distance of %5.2f m at %5.1f degrees.",
                       closestDistance, angleClosestDistance)
 
@@ -69,7 +69,7 @@ class nexus:
 
 if __name__ == '__main__':
     try:
-        gpg = nexus()
+        gpg = GoPiGo3()
         gpg.start()
         rospy.spin()
     except rospy.ROSInterruptException: pass

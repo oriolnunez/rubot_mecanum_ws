@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>rubotcoop_control</name>
+  <name>rubot_control</name>
   <version>0.0.0</version>
   <description>The rubotcoop_control package</description>
 

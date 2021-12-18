@@ -361,6 +361,7 @@ roslaunch nexus_mecanum display.launch
 > Gazebo colors:
 > - are defined at the end of URDF file
 >- have a specific "Gazebo/Color" names
+>- You can find the list of available Gazebo colors in: http://wiki.ros.org/simulator_gazebo/Tutorials/ListOfMaterials
 ```xml
   <gazebo reference="upper_left_wheel">
     <material>Gazebo/Grey</material>
@@ -389,17 +390,7 @@ roslaunch nexus_mecanum display.launch
   sudo apt get update
   sudo apt get upgrade
   ```
-Then you can control the nexus robot with the following package:
-```shell
-sudo apt-get install ros-noetic-teleop-tools
-sudo apt-get install ros-noetic-teleop-twist-keyboard
-```
-Then you will be able to control the robot with the Keyboard typing:
-```shell
-rosrun key_teleop key_teleop.py /key_vel:=/cmd_vel
-or
-rosrun teleop_twist_keyboard teleop_twist_keyboard.py
-```
+
 ### **2.1. Design the Project world**
 
 Here we have first to design the project world, for exemple a maze from where our rUBot mecanum has to navigate autonomously.
@@ -445,84 +436,194 @@ roslaunch nexus_mecanum nexus_world.launch
 
 ## 3. rUBot mecanum navigation control in the new world environment
 
-Once the world has been generated we will create a ROS Package "nexus_control" to perform the autonomous navigation
+Once the world has been generated we will create a ROS Package "rubot_control" to perform the autonomous navigation
 ```shell
-cd ~/rubot_gopigo_ws/src
-catkin_create_pkg nexus_control rospy std_msgs sensor_msgs geometry_msgs nav_msgs
-cd ..
+cd ~/rubot_mecanum_ws/src/robot_control
+catkin_create_pkg rubot_control rospy std_msgs sensor_msgs geometry_msgs nav_msgs
+cd ../..
 catkin_make
 ```
+### **3.1 Kinematics model of mecanum robot**
+The first concept we are going to go through is kinematic models. So, we know what kinematics are, but, what is a kinematic model?
 
-We will create now different navigation python files in "src" folder:
-- rubot_nav1.py: to define a rubot movement with linear and angular speed
-- move2_gopigo_param.py: to perform the same operation using params
-- move3_gopigo_distance.py: to specify a maximum distance
+Wheeled mobile robots may be classified in two major categories, holonomic (omnidirectional) and nonholonomic. 
+- Nonholonomic mobile robots, such as conventional cars, employ conventional wheels, which prevents cars from moving directly sideways.
+- Holonomic mobile robots, such as mecanum cars, employ omni or mecanum wheels, which allow lateral and diagonal movements
 
-Specific launch files have been created to launch the nodes and python files created above:
+We will define the Kinematic model for Holonomic Mecanum wheeled robot:
+
+Omnidirectional wheeled mobile robots typically employ either omniwheels or mecanum wheels, which are typical wheels augmented with rollers on their outer circumference. These rollers spin freely and they allow sideways sliding while the wheel drives forward or backward without slip in that direction.
+
+The different movements our car can perform are:
+![](./Images/1_mecanum_kine1.png)
+
+The forces involved define the robot linear and angular movement:
+![](./Images/1_mecanum_kine2.png)
+
+The forward Kinematic's equations are defined below:
+![](./Images/1_mecanum_kine3.png)
+where
+
+- Vi: Linear speed of the wheels.
+- ωdi: Angular speed of the wheels.
+- Vir: Tangential speed of the rollers.
+- ul: Linear velocity of the system on the X axis.
+- uf: Linear velocity of the system on the Y axis.
+- ω: Speed of rotation of the system on the Z axis.
+- a: Distance from the center of the robot to the axis of rotation of the wheel.
+- b: Distance from the center of the robot to the center of the width of the wheel.
+
+>(see [Lynch & Park, 2017] for a complete derivation of this model).
+
+In our case we want to apply a robot movement defined by:
+- a linear and angular velocity using a Twist message type published in a /cmd_vel topic. 
+- we need to calculate the 4 wheel speeds needed to obtain this robot velocity
+
+This corresponds to an Inverse Kinematics defined by the following expressions:
+![](./Images/1_mecanum_kine4.png)
+This is in fact what the Gazebo plugin calculates to obtain the Odometry.
+
+In the case of real mecanum robot this is calculated by the robot driver as an arduino program in arduino-mega platform.
+
+### **3.2. Mecanum control in a world environment**
+We can control the movement of our robot using:
+- the keyboard or a joypad
+- pragramatically in python creating a "/rubot_nav" node
+
+#### **3.2.1. Keyboard control**
+You can control the nexus robot with the keyboard installing the following packages:
 ```shell
-roslaunch gopigo3_control rubot_move1.launch
-roslaunch gopigo3_control rubot_move2.launch
-roslaunch gopigo3_control rubot_move3.launch
+sudo apt-get install ros-noetic-teleop-tools
+sudo apt-get install ros-noetic-teleop-twist-keyboard
 ```
-![Getting Started](./Images/1_rubot_move3.png)
+Then you will be able to control the robot with the Keyboard typing:
+```shell
+rosrun key_teleop key_teleop.py /key_vel:=/cmd_vel
+or
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
+![Getting Started](./Images/1_nexus_mecanum.png)
+#### **3.2.2. Python programming control**
+Diferent navigation programs are created:
 
-## **gopigo3 autonomous navigation and obstacle avoidance**
-In order to navigate autonomously and avoid obstacles, we have created diferent python files in "src" folder:
-- rubot_lidar_test.py: to test the LIDAR distance readings and angles
-- rubot_self_nav.py: to perform a simple algorithm for navigation with obstacle avoidance
-- rubot_wall_follow.py: to follow a wall preciselly for mapping purposes
-- rubot_go2pose.py: to reach speciffic position and orientation
+- Navigation control: to define a desired robot velocity
+- Lidar test: to verify the LIDAR readings and angles
+- Autonomous navigation: to perform a simple algorithm for navigation with obstacle avoidance using the LIDAR
+- Wall follower: at a fixed distance to perform a good map
+- go to POSE: attend a specific position and orientation
 
-we will create also a "launch" folder including the corresponding launch files
-#### **1. LIDAR test**
-We have created a world to test the rubot model. This world is based on a wall to verify that the LIDAR see the obstacle in the correct angle. We have to launch the "rubot_lidar_test.launch" file in the "gopigo3_control" package.
+The nodes and topics structure corresponds to the following picture:
+![Getting Started](./Images/1_nodes_topics.png)
 
+#### **a) Navigation Control**
+
+We will create now a first navigation python files in "src" folder:
+- rubot_nav.py: to define a rubot movement with linear and angular speed to reach a maximum x-distance
+
+Specific launch file have been created to launch the node and python file created above:
+```shell
+roslaunch nexus_control rubot_nav.launch
+```
+```xml
+<launch>
+  <arg name="world" default="world1.world"/> 
+  <arg name="model" default="nexus.urdf" />
+  <arg name="x_pos" default="0.0"/>
+  <arg name="y_pos" default="0.0"/>
+  <arg name="z_pos" default="0.0"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find nexus_control)/worlds/$(arg world)"/>
+  </include>
+
+  <param name="robot_description" textfile="$(find nexus_mecanum)/urdf/$(arg model)" />
+  
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"
+    args="-urdf -model nexus -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+
+  <!-- send joint values -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="False"/>
+  </node>
+  <!-- Combine joint values -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find nexus_control)/rviz/rubot_nav.rviz" required="true"/>
+  <!-- Navigation Program   -->
+    <arg name="v" default="0.1"/>
+    <arg name="w" default="0"/>
+    <arg name="d" default="0.3"/>
+  <node name="rubot_nav" pkg="nexus_control" type="rubot_nav.py" output="screen" >
+    <param name="v" value="$(arg v)"/>
+    <param name="w" value="$(arg w)"/>
+    <param name="d" value="$(arg d)"/>
+  </node>
+</launch>
+```
+
+
+#### **b) LIDAR test**
+In order to navigate autonomously and avoid obstacles, we will use a specific rpLIDAR sensor.
+To verify the LIDAR readings and angles we have generated the "rubot_lidar_test.py" python file:
 ```python
-#! /usr/bin/env python
-
+#! /usr/bin/env python3
 import rospy
 from sensor_msgs.msg import LaserScan
-
 def callback(msg):
-    print len(msg.ranges)
-    # values at 0 degree
-    print msg.ranges[0]
-    # values at 90 degree
-    print msg.ranges[90]
-    # values at 180 degree
-    print msg.ranges[180]
-    # values at 270 degree
-    print msg.ranges[270]
-    # values at 360 degree
-    print msg.ranges[359]
-
+    print ("Number of scan points: "+ str(len(msg.ranges)))
+    # values at 0 degrees
+    print ("Distance at 0deg: " + str(msg.ranges[0]))
+    # values at 90 degrees
+    print ("Distance at 90deg: " + str(msg.ranges[180]))
+    # values at 180 degrees
+    print ("Distance at 180deg: " + str(msg.ranges[360]))
+    # values at 270 degrees
+    print ("Distance at 270deg: " + str(msg.ranges[540]))
+    # values at 360 degrees
+    print ("Distance at 360deg: " + str(msg.ranges[719]))
 rospy.init_node('scan_values')
 sub = rospy.Subscriber('/scan', LaserScan, callback)
 rospy.spin()
 ```
+To test the LIDAR we have generated a launch file
 ```shell
-roslaunch gopigo3_control rubot_lidar_test.launch
+roslaunch nexus_control rubot_lidar_test.launch
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
-![Getting Started](./Images/1_lidar_test.png)
-#### **2. Autonomous navigation with obstacle avoidance**
+![](./Images/1_nexus_lidar_test.png)
+> We can see that the zero angle corresponds to the back side of the robot!
+
+#### **c) Autonomous navigation with obstacle avoidance**
 We will use now the created world to test the autonomous navigation with obstacle avoidance performance. 
 
 We have to launch the "rubot_self_nav.launch" file in the "rubot_control" package.
 ```shell
-roslaunch gopigo3_control rubot_self_nav.launch
+roslaunch nexus_control rubot_self_nav.launch
 ```
 >Careful:
 - we have included in launch file: gazebo spawn, rviz visualization and rubot_nav node execution 
 - Verify in rviz you have to change the fixed frame to "odom" frame
 
-![Getting Started](./Images/1_rubot_self_nav.png)
+![](./Images/1_nexus_self.png)
 The algorithm description functionality is:
 - "rubot_self_nav.py": The Python script makes the robot go forward. 
     - LIDAR is allways searching the closest distance and the angle
     - when this distance is lower than a threshold, the robot goes backward with angular speed in the oposite direction of the minimum distance angle.
 
-#### **3. Wall Follower**
+> Note the 180 degrees turn due to the rpLIDAR orientation in rUBot:
+```python
+    def callbackLaser(self, scan):
+
+        closestDistance, elementIndex = min(
+            (val, idx) for (idx, val) in enumerate(scan.ranges) if scan.range_min < val < scan.range_max
+        )
+        angleClosestDistance = (elementIndex / 2)-180 # RPLidar zero angle in backside
+
+        rospy.loginfo("Closest distance of %5.2f m at %5.1f degrees.",
+                      closestDistance, angleClosestDistance)
+```
+
+#### **d) Wall Follower**
 Follow the wall accuratelly is an interesting challenge to make a map with precision to apply SLAM techniques for navigation purposes.
 
 There are 2 main tasks:
