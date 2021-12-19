@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 import rospy
 from sensor_msgs.msg import LaserScan
@@ -15,26 +15,28 @@ regions_ = {
     'front': 0,
     'fleft': 0,
     'left': 0,
+    'bright':0,
 }
 state_ = 0
 state_dict_ = {
     0: 'find the wall',
     1: 'turn left',
     2: 'follow the wall',
+    3: 'follow corner',
 }
 
 def clbk_laser(msg):
     global regions_
     regions_ = {
-        'left':  min(min(msg.ranges[135:225]), 3),
-        'fleft': min(min(msg.ranges[45:135]), 3),
-        'front':  min(msg.ranges[0], 3),
-        'fright':  min(min(msg.ranges[585:675]), 3),
-        'right':   min(min(msg.ranges[495:585]), 3),
+        'front':  min(min(msg.ranges[301:420]), 3),
+        'fright':  min(min(msg.ranges[181:300]), 3),
+        'right':   min(min(msg.ranges[179:181]), 3),
+        'bright':   min(min(msg.ranges[60:178]), 3),
     }
     print ("front distance: "+ str(regions_["front"]))
-    print ("right distance: "+ str(regions_["right"]))
     print ("front-right distance: "+ str(regions_["fright"]))
+    print ("right distance: "+ str(regions_["right"]))
+    print ("back-right distance: "+ str(regions_["bright"]))
 
     take_action()
 
@@ -55,35 +57,35 @@ def take_action():
 
     state_description = ''
 
-    d = 1
+    d = 0.4
 
-    if regions['front'] > d and regions['fleft'] > d and regions['fright'] > d:
+    if regions['front'] > d and regions['fright'] > (d+0.6) and regions['bright'] > d:
         state_description = 'case 1 - nothing'
         change_state(0)
-    elif regions['front'] < d and regions['fleft'] > d and regions['fright'] > d:
+    elif regions['front'] < d and regions['fright'] > d:
         state_description = 'case 2 - front'
         change_state(1)
-    elif regions['front'] > d and regions['fleft'] > d and regions['fright'] < d:
+    elif regions['front'] < d and regions['fright'] < d:
+        state_description = 'case 2 - front & fright'
+        change_state(1)
+    elif regions['front'] > d and regions['fright'] < d:
         state_description = 'case 3 - fright'
         change_state(2)
-    elif regions['front'] > d and regions['fleft'] < d and regions['fright'] > d:
-        state_description = 'case 4 - fleft'
-        change_state(0)
-    elif regions['front'] < d and regions['fleft'] > d and regions['fright'] < d:
-        state_description = 'case 5 - front and fright'
-        change_state(1)
-    elif regions['front'] < d and regions['fleft'] < d and regions['fright'] > d:
-        state_description = 'case 6 - front and fleft'
-        change_state(1)
-    elif regions['front'] < d and regions['fleft'] < d and regions['fright'] < d:
-        state_description = 'case 7 - front and fleft and fright'
-        change_state(1)
-    elif regions['front'] > d and regions['fleft'] < d and regions['fright'] < d:
-        state_description = 'case 8 - fleft and fright'
-        change_state(0)
+    elif regions['front'] > d and regions['right'] < d:
+        state_description = 'case 4 - right'
+        change_state(2)
+    elif regions['front'] > d and regions['bright'] < d:
+        state_description = 'case 5 - bright'
+        change_state(3)
+    elif regions['front'] > d and regions['right'] > d:
+        state_description = 'case 5 - right too far'
+        change_state(3)    
+    elif regions['front'] > d and regions['bright'] > d and regions['fright'] < (d+0.6):
+        state_description = 'case 5 - close fright'
+        change_state(3)
     else:
         state_description = 'unknown case'
-        rospy.loginfo(regions)
+        rospy.loginfo('unknown case')
 
 
 def find_wall():
@@ -104,8 +106,14 @@ def follow_the_wall():
 
     msg = Twist()
     msg.linear.x = 0.1
+    msg.angular.z = 0.05
     return msg
 
+def follow_corner():
+    msg = Twist()
+    msg.linear.x = 0.1
+    msg.angular.z = -1
+    return msg
 
 def main():
     global pub_
@@ -123,6 +131,8 @@ def main():
             msg = turn_left()
         elif state_ == 2:
             msg = follow_the_wall()
+        elif state_ == 3:
+            msg = follow_corner()
             pass
         else:
             rospy.logerr('Unknown state!')

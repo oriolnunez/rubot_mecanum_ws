@@ -634,47 +634,51 @@ We have developed 2 different methods for wall follower:
 - Geometrical method
 - Lidar ranges method
 
-##### **a) Geometrical method**
+#### **Geometrical method**
 
 Follow the instructions to perform the rubot_wall_follower_gm.py python program are in the notebook: 
 https://github.com/Albert-Alvarez/ros-gopigo3/blob/lab-sessions/develop/ROS%20con%20GoPiGo3%20-%20S4.md
-<img src="./Images/2_wall_follower1.png">
+
+The algorithm is based on:
+
+![](./Images/1_wall_follower_gm.png)
+
 A rubot_wall_follower_gm.launch is generated to test the node within a specified world
 ```shell
-roslaunch gopigo3_control rubot_wall_follower_gm.launch
+roslaunch nexus_control rubot_wall_follower_gm.launch
 ```
-<img src="./Images/1_wall_follower_gm.png">
 
 You can see a video for the Maze wall follower process in: 
 [![IMAGE_ALT](https://img.youtube.com/vi/z5sAyiFs-RU/maxresdefault.jpg)](https://youtu.be/z5sAyiFs-RU)
 
 
-##### **b) Lidar ranges method**
+#### **Lidar ranges method**
 
 We have created another rubot_wall_follower_rg.py file based on the reading distances from LIDAR in the ranges: front, front-right, front-left, right, left, back-right and back-left, and perform a specific actuation in function of the minimum distance readings.
 
 Follow the instructions to create the rubot_wall_follower_rg.py python file: https://www.theconstructsim.com/wall-follower-algorithm/
 
-<img src="./Images/1_wall_follower.png">
+![](./Images/1_wall_follower_rg.png)
+
 The algorith is based on laser ranges test and depends on the LIDAR type:
-<img src="./Images/1_wall_follower2.png">
+![](./Images/1_lidar_type.png)
 
 ```shell
-roslaunch gopigo3_control rubot_wall_follower_rg.launch
+roslaunch nexus_control rubot_wall_follower_rg.launch
 ```
-<img src="./Images/1_wall_ranges.png">
+![](./Images/1_nexus_wall_follower_rg.png)
 
-#### **4. Go to POSE**
-Define a specific Position and Orientation as a target point to gopigo3 robot
+#### **Go to POSE**
+Define a specific Position and Orientation as a target point to go:
 
-x target point
-y target point
-f yaw orientation angle in deg
+- x target point
+- y target point
+- f yaw orientation angle in deg
 
 Modify the python script developed in turlesim control package according to the odom message type
 
 For validation type:
 ```shell
-roslaunch gopigo3_control rubot_go2pose.launch
+roslaunch nexus_control rubot_go2pose.launch
 ```
-![Getting Started](./Images/1_rubot_go2point.png)
+![](./Images/1_nexus_go2pose.png)
