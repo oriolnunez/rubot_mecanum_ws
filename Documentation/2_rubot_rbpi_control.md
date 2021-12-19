@@ -1,38 +1,72 @@
-# **Control of gopigo3 in RaspberryPi**
-In a hospital, a delivery robot carries samples or food from one room to another. 
+# **rUBot mecanum in Raspberrypi4 Setup&Control**
 
 The main objectives are:
-- Assemble a real robot (gopigo3)
-- Control the gopigo3 robot movement
-- use SLAM (Simultaneous Localization and Mapping) techniques to generate and store a map of the room 
-- use Navigation ROS package to find an optimal trajectory to reach a speciffic target position
-- Define a route to be followed by the gopigo3 robot using Navigation package
+- Assemble a real robot (rUBot mecanum)
+- Setup the HW drivers in raspberrypi4
+- Control the rUBot movementj
 
-let's see how to fulfill these objectives
-## **Gopigo3 robot prototype setup**
+
+%et's see how to fulfill these objectives
+## **1. rUBot assembling**
 
 This tobot prototype is based on:
-- On-board computer based on raspberrypi3 board
-- 2 DC-motor with encoder for differential drive controller
+- Mecanum wheel chasis:
+- On-board Raspberrypi4
+- Arduino mega: for HW driver control
+- Arduino motor driver shield TB6612FNG:
+  - https://es.aliexpress.com/item/4001086592215.html?spm=a2g0o.productlist.0.0.55da155eRs0f1N&algo_pvid=523f34f9-da3e-4a7e-bcbd-927dc560fb14&algo_exp_id=523f34f9-da3e-4a7e-bcbd-927dc560fb14-40
+  - https://github.com/Seeed-Studio/Grove_Motor_Driver_TB6612FNG
 - RaspiCAM RGB camera
-- LIDAR sensor
+- rpLIDAR sensor
 
-![Getting Started](./Images/1_gopigo3_UB.png)
+![Getting Started](./Images/1_osoyoo.png)
 
-The raspberrypi3 onboard is preinstalled with:
-- raspbian OS
-- ROS source installation with rviz
-- a "master_ws_original_copy" repository. You have NOT to use this repository. This could be used only in case you need to restart the repository with the original settings
-- a "gopigo3_rbpi3_ws" repository. This will be used by the students to perform the project with gopigo3 robot. This folder will be placed in the raspberrypi3 Desktop.
+## **2. Setup the HW drivers in raspberrypi4**
+The raspberrypi4 onboard is preinstalled with:
+- Ubuntu 20 server 32bits
+  - NoMachine remote desktop
+- ROS Noetic
+- rubot_rbpi4_ws repository is located in /home/pi/Desktop folder 
 
-This repository is located in /home/pi/Desktop folder and it is already compiled.
+### **2.1. Install Ubuntu 20 server 32bits**
 
-#### Notebook visualization in raspberrypi
+Follow the steps in order to properly install the Raspberrypi:
+
+- Install Raspberry Pi OS using Raspberry Pi Imager (download for windows): https://www.raspberrypi.org/software/
+- Run the application and save the image:
+  - Ubuntu --> Ubuntu 20 server 32bits to the SD card
+- Insert the SD in a RBPi board and connect it to screen
+- The system ask you to choose a wifi network and change the timezone, language and password
+- Reboot and select Raspberry Pi Configuration to activate the SSH and Camera
+- reboot and open a terminal to obtain the IP address using "ifconfig"
+
+You are now ready to connect from your Ubuntu Virtual machine using VS Code or a simple terminal
+![](./Images/2_rbpi4_imager2.png)
+
+**Connection to RBPi from Ubuntu PC**
+
+The first connection to the RBPi has to be using a Terminal in Virtual Box:
+
+- type "ssh pi@192.168.18.46" (the default user:pi and pass:raspberry)
+- When you connect the same RBPi to another network, you have a warning because you have to regenerate the KeyGen of your computer. 
+
+  - You have to type (using the proper IP): ssh-keygen -R 192.168.18.46
+
+**Install nomachine remote desktop**
+
+Download nomachine in RaspberryPi and PC:
+- In raspberryPi (ARMv8 DEB): https://www.nomachine.com/download/linux&id=29&s=Raspberry
+- In PC: https://www.nomachine.com/
+
+**Notebook visualization in raspberrypi**
+
 Use the NBviewer program from Jupyter:
 
 https://nbviewer.ipython.org/
 
-#### Raspberrypi configuration and setup
+### **2.2. ROS Noetic Desktop installation**
+
+Follow the instructions on: http://wiki.ros.org/noetic/Installation/Ubuntu
 
 The raspberrypi3 is configured:
 - to generate a hotspot 
