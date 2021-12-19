@@ -34,28 +34,37 @@ Follow the steps in order to properly install the Raspberrypi:
 
 - Install Raspberry Pi OS using Raspberry Pi Imager (download for windows): https://www.raspberrypi.org/software/
 - Run the application and save the image:
-  - Ubuntu --> Ubuntu 20 server 32bits to the SD card
-- Insert the SD in a RBPi board and connect it to screen
-- The system ask you to choose a wifi network and change the timezone, language and password
-- Reboot and select Raspberry Pi Configuration to activate the SSH and Camera
-- reboot and open a terminal to obtain the IP address using "ifconfig"
-
-You are now ready to connect from your Ubuntu Virtual machine using VS Code or a simple terminal
+  - Ubuntu --> Ubuntu 20 server 64bits to the SD card
 ![](./Images/2_rbpi4_imager2.png)
 
-**Connection to RBPi from Ubuntu PC**
+- Insert the SD in a RBPi board and connect it to screen and ethernet cable to the router
+- power the raspberrypi4 and login:
+  - login: ubuntu
+  - password: ubuntu
+- You will have to change the password (we use ubuntu1234)
 
-The first connection to the RBPi has to be using a Terminal in Virtual Box:
+**Install Ubuntu Desktop**
 
-- type "ssh pi@192.168.18.46" (the default user:pi and pass:raspberry)
-- When you connect the same RBPi to another network, you have a warning because you have to regenerate the KeyGen of your computer. 
+In the terminal, type:
+```shell
+sudo apt-get install ubuntu-desktop
+```
+After some minutes, the desktop is installed. 
 
-  - You have to type (using the proper IP): ssh-keygen -R 192.168.18.46
+Type:
+```shell
+reboot
+```
+You will get the ubuntu 20 desktop
+
+- choose a wifi network and change the timezone, language and password
 
 **Install nomachine remote desktop**
 
 Download nomachine in RaspberryPi and PC:
-- In raspberryPi (ARMv8 DEB): https://www.nomachine.com/download/linux&id=29&s=Raspberry
+- In raspberryPi:
+  - Download the version ARMv8 DEB in: https://www.nomachine.com/download/linux&id=29&s=Raspberry
+  - open a terminal and install following the instructions
 - In PC: https://www.nomachine.com/
 
 **Notebook visualization in raspberrypi**
@@ -67,6 +76,11 @@ https://nbviewer.ipython.org/
 ### **2.2. ROS Noetic Desktop installation**
 
 Follow the instructions on: http://wiki.ros.org/noetic/Installation/Ubuntu
+> Is recommended to upgrade first:
+```shell
+sudo apt upgrade
+```
+### **2.3. RaspberryPi4 hotspot config**
 
 The raspberrypi3 is configured:
 - to generate a hotspot 
