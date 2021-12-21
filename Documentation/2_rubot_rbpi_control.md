@@ -80,9 +80,12 @@ Follow the instructions on: http://wiki.ros.org/noetic/Installation/Ubuntu
 ```shell
 sudo apt upgrade
 ```
-### **2.3. RaspberryPi4 hotspot config**
+### **2.3. RaspberryPi4 install Access Point**
 
-The raspberrypi3 is configured:
+Follow instructions in: https://www.diyhobi.com/install-wifi-hotspot-raspberry-pi-ubuntu-mate/
+
+
+The raspberrypi4 is configured:
 - to generate a hotspot 
 - VNC activated 
 - raspicam activated 
@@ -100,6 +103,59 @@ Once you are connected to this network you will be able to connect your computer
 - You will have the raspberrypi3 desktop on your windows VNC screen
 
 ![](./Images/2_vnc1.png)
+
+### **Create your workspace**
+
+We will create the workspace where we will install all needed packages for our Hardware project
+```shell
+mkdir -p ~/Desktop/rubot_rbpi4_ws/src
+cd ~/Desktop/rubot_rbpi4_ws/
+catkin_make
+echo "source ~/Desktop/rubot_rbpi4_ws/devel/setup.bash" >> ~/.bashrc
+```
+We will install:
+- Raspberrypi camera
+- rpLIDAR
+- Arduino board with rosserial
+### **Install raspberrypi camera**
+
+Install the needed packages to work with raspberrypi camera:
+```shell
+git clone https://github.com/UbiquityRobotics/raspicam_node.git
+git clone --single-branch --branch=noetic-devel https://github.com/ros-perception/image_transport_plugins.git
+git clone --single-branch --branch=noetic https://github.com/ros-perception/vision_opencv.git
+git clone --single-branch --branch=noetic-devel https://github.com/ros-perception/image_common.git
+```
+### **Install rpLIDAR**
+
+Open a terminal in src folder and type:
+```shell
+cd ~/Desktop/rubot_rbpi4_ws/src
+git clone https://github.com/Slamtec/rplidar_ros
+catkin_make
+```
+To test the sensor, connect the LIDAR sensor to RB Pi and execute:
+```shell
+roslaunch rplidar_ros view_rplidar.launch
+```
+### **Install ARDUINO**
+
+This robot will be controlled by an Arduino Mega board.
+
+The arduino program will start a serial_node with all the topics
+
+The Arduino programm is located in "files/Arduino_node" folder.
+
+Considering your Raspberry computer uses Ubuntu 20, as explained in previous sections, you need to download Arduino IDE version for Linux ARM 64 bits from the following link: https://www.arduino.cc/en/software.
+
+After dowloading the zip file, reclocate it and unzip it in the Tools folder: ~/Tools/Arduino-1.8.15. From this directory, open a terminal and execute the following commands:
+
+```shell
+sudo ./install.sh
+cd ~
+gedit .bashrc
+export PATH=$PATH:$HOME/Tools/Arduino-1.8.13
+```
 
 If you not have the "gopigo3_rbpi3_ws" folder in your desktop, you can "transfer" folder from your PC (it takes 30s)
 
