@@ -84,27 +84,26 @@ sudo apt upgrade
 
 Follow instructions in: https://www.diyhobi.com/install-wifi-hotspot-raspberry-pi-ubuntu-mate/
 
-
 The raspberrypi4 is configured:
-- to generate a hotspot 
-- VNC activated 
+- to generate a hotspot "rUBot_xx"
+- NoMachine activated 
 - raspicam activated 
 
 When powering the raspberrypi3, generates a hotspot you have to connect to:
-- SSID name: rubot_10 
-- password "CorrePiCorre"
+- SSID name: rUBot_10 
+- password "rUBot"
 
-Once you are connected to this network you will be able to connect your computer to the raspberrypi3 using VNC viewer:
-- download and install the VNC viewer for windows at: https://www.realvnc.com/en/connect/download/viewer/
+Once you are connected to this network you will be able to connect your computer to the raspberrypi4 using NoMachine viewer:
+- In PC open NoMachine viewer
 - Select the raspberrypi IP address: 192.168.4.1
 - you have to specify:
-    - user: pi
-    - password: raspberry
-- You will have the raspberrypi3 desktop on your windows VNC screen
+    - user: ubuntu
+    - password: ubuntu1234
+- You will have the raspberrypi4 desktop on your windows NoMachine screen
 
-![](./Images/2_vnc1.png)
+![](./Images/2_nomachine.png)
 
-### **Create your workspace**
+### **2.4. Create your workspace**
 
 We will create the workspace where we will install all needed packages for our Hardware project
 ```shell
@@ -118,8 +117,21 @@ We will install:
 - rpLIDAR
 - Arduino board with rosserial
 ### **Install raspberrypi camera**
+You need to activate the raspicam in Ubuntu:
+- open the file config.txt
+```shell
+sudo nano /boot/firmware/config.txt
+```
+- add the magic line start_x=1 at the end
+![](./Images/2_picam1.png)
 
-Install the needed packages to work with raspberrypi camera:
+- reboot
+- update your system to install the necessary drivers:
+```shell
+sudo apt update
+sudo apt upgrade
+```
+To work with raspicam in ROS, you need to install the packages:
 ```shell
 git clone https://github.com/UbiquityRobotics/raspicam_node.git
 git clone --single-branch --branch=noetic-devel https://github.com/ros-perception/image_transport_plugins.git
@@ -148,16 +160,42 @@ The Arduino programm is located in "files/Arduino_node" folder.
 
 Considering your Raspberry computer uses Ubuntu 20, as explained in previous sections, you need to download Arduino IDE version for Linux ARM 64 bits from the following link: https://www.arduino.cc/en/software.
 
-After dowloading the zip file, reclocate it and unzip it in the Tools folder: ~/Tools/Arduino-1.8.15. From this directory, open a terminal and execute the following commands:
+After dowloading the zip file, reclocate it and unzip it in the Tools folder: ~/Tools/Arduino-1.8.18. From this directory, open a terminal and execute the following commands:
 
 ```shell
 sudo ./install.sh
 cd ~
 gedit .bashrc
-export PATH=$PATH:$HOME/Tools/Arduino-1.8.13
+export PATH=$PATH:$HOME/Desktop/Arduino-1.8.18
 ```
+Save and close the file and install rosserial for ROS Noetic using:
+```shell
+sudo apt-get install ros-noetic-rosserial-arduino
+sudo apt-get install ros-noetic-rosserial
+```
+Go to ~/Desktop/Arduino-1.8.18/libraries directory and remove ros_lib folder. From this directory execute:
+```shell
+rosrun rosserial_arduino make_libraries.py .
+```
+### **Manage USB ports**
 
-If you not have the "gopigo3_rbpi3_ws" folder in your desktop, you can "transfer" folder from your PC (it takes 30s)
+The rbpi4 manage arduino board and rpLIDAR with 2 USB ports. 
+
+We have to force the same USB port to the same device:
+- USB0 to arduino mega board
+- USB1 to rpLIDAR
+
+This can be done creating UDEV rules for each devide:
+- For arduino follow instructions: https://medium.com/@darshankt/setting-up-the-udev-rules-for-connecting-multiple-external-devices-through-usb-in-linux-28c110cf9251
+- For rpLIDAR follow instructions:
+  - generate your rplidat.rules (specify the USB port) with: https://github.com/Slamtec/rplidar_ros/tree/master/scripts
+  - verify the rplidar.rules is properly located in /etc/udev/rules.d
+
+You have now your rUBot_mecanum ready to work-with!!
+
+### **Setup your workspace**
+
+If you not have the "rubot_rbpi4_ws" folder in your desktop, you can "transfer" folder from your PC (it takes 30s)
 
 The first time you copy the folder, you need to compile the workspace:
 - open a terminal in the ws
@@ -167,13 +205,29 @@ The first time you copy the folder, you need to compile the workspace:
 - review the ~/.bashrc: source to the ws and delete the environment variables
 - make executable the c++ and python files
 
-## **2. gopigo3 first control movements**
-First, let's control the gopigo3 movement to perform:
+## **3. rUBot_mecanum first control movements**
+First, let's control the rUBot_mecanum movement to perform:
 - movement control using keyboard
 - movement control with specific python script
 - autonomous navigation
 - autonomous navigation following right or left wall
 - Navigation to speciffic POSE
+
+First of all you need to bringup the rubot_mecanum robot.
+
+### **Bringup rubot_mecanum**
+
+To bringup we need to run the driver designed for rubot_mecanum robot. The driver is in fact an arduino program that controls:
+- The kinematics of the 4 mecanum wheels to apply the twist message in /cmd_vel topic
+- The encoders to obtain the odometry
+- Read the IMU orientation values
+- interface with all the other sensors/actuators connected to arduino-mega board
+
+The "rubot_mecanum.ino" arduino program is located on /Documentation/files/arduino/ folder
+
+To bringup your rubot_mecanum:
+- open arduino IDE
+- upload the rubot_mecanum.ino file
 
 We have created a specific package "gopigo_control" where all these controls are programed.
 You can review from the "gopigo3_rbpi3_ws" workspace the src/gopigo_control folder where there are 2 new folders:
