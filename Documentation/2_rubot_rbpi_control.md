@@ -131,13 +131,32 @@ sudo nano /boot/firmware/config.txt
 sudo apt update
 sudo apt upgrade
 ```
-To work with raspicam in ROS, you need to install the packages:
+Now we will install the python module for picamera:
+```shell
+sudo apt install python3-pip
+pip install picamera
+```
+And the needed libraries for raspicam package:
+```shell
+sudo apt-get install -y libyaml-cpp-dev
+sudo apt-get install -y libogg-dev libvorbis-dev libtheora-dev
+```
+Finally to work with raspicam in ROS, you need to install the packages:
 ```shell
 git clone https://github.com/UbiquityRobotics/raspicam_node.git
 git clone --single-branch --branch=noetic-devel https://github.com/ros-perception/image_transport_plugins.git
 git clone --single-branch --branch=noetic https://github.com/ros-perception/vision_opencv.git
 git clone --single-branch --branch=noetic-devel https://github.com/ros-perception/image_common.git
 ```
+Some dependencies have to be added.
+
+Follow raspicam_node --> Build Instructions in: https://github.com/UbiquityRobotics/raspicam_node
+
+Then you are able to compile the workspace:
+```shell
+catkin_make
+```
+
 ### **Install rpLIDAR**
 
 Open a terminal in src folder and type:
