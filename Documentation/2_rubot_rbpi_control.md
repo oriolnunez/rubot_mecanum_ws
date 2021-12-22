@@ -205,7 +205,46 @@ We have to force the same USB port to the same device:
 - USB1 to rpLIDAR
 
 This can be done creating UDEV rules for each devide:
-- For arduino follow instructions: https://medium.com/@darshankt/setting-up-the-udev-rules-for-connecting-multiple-external-devices-through-usb-in-linux-28c110cf9251
+
+**Arduino udev rules**
+
+Follow instructions: 
+- https://steve.fi/hardware/arduino-basics/
+- https://medium.com/@darshankt/setting-up-the-udev-rules-for-connecting-multiple-external-devices-through-usb-in-linux-28c110cf9251
+
+  To see the port name type:
+  ```shell
+  ls -l /dev/ttyAMC*
+  ```
+  To see the needed properties to create udev rules, type:
+  ```shell
+  lusb
+  ```
+  You will see:
+  ```shell
+  ubuntu@ubuntu:/usr/lib/udev/rules.d$ lsusb
+  Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+  Bus 001 Device 007: ID 2341:0042 Arduino SA Mega 2560 R3 (CDC ACM)
+  Bus 001 Device 004: ID 0e8f:00fb GreenAsia Inc. 
+  Bus 001 Device 003: ID 04d9:a01c Holtek Semiconductor, Inc. wireless multimedia keyboard with trackball [Trust ADURA 17911]
+  Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
+  Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+  ```
+  The create a file /etc/udev/rules.d/99-arduino.rules and give it the following contents:
+  ```xml
+  # Arduino port definition
+  SUBSYSTEM=="tty", GROUP="plugdev". MODE="0660"
+
+  SUBSYSTEMS=="USB1", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SYMLINK+="arduino"
+  ```
+  >The idProduct and idVendor corresponds to the numbers in the Arduino line.
+
+  Now restart the service:
+  ```shell
+  sudo service udev reload
+  sudo service udev restart
+  ```
+
 - For rpLIDAR follow instructions:
   - generate your rplidat.rules (specify the USB port) with: https://github.com/Slamtec/rplidar_ros/tree/master/scripts
   - verify the rplidar.rules is properly located in /etc/udev/rules.d
@@ -232,6 +271,12 @@ First, let's control the rUBot_mecanum movement to perform:
 - autonomous navigation following right or left wall
 - Navigation to speciffic POSE
 
+We will create a "rubot_control" package to perform the rUBot_mecanum control movements:
+```shell
+catkin_create_pkg rubot_control rospy std_msgs sensor_msgs geometry_msgs nav_msgs
+cd ..
+catkin_make
+```
 First of all you need to bringup the rubot_mecanum robot.
 
 ### **3.1. Bringup rubot_mecanum**
@@ -287,7 +332,7 @@ We will create a "rubot_bringup.launch" file to setup the rUBot_mecanum.
     <param name="baud" type="int" value="57600"/>
   </node>
  <!-- launch ydlidar   -->
-  <include file="$(find ydlidar)/launch/lidar.launch"/>
+  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
   <!-- launch raspicam   -->
   <include file="$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch">
 	<arg name="enable_raw" value="true"/>
@@ -298,104 +343,76 @@ We will create a "rubot_bringup.launch" file to setup the rUBot_mecanum.
 
 ### **3.2. Movement control using keyboard**
 
+To control the gopigo robot with keyboard, we need to install "teleop_tools" package. Open a new terminal and install the packages:
+```shell
+sudo apt-get install ros-noetic-teleop-tools
+sudo apt-get install ros-noetic-teleop-twist-keyboard
+```
+Proceed with:
+- Bringup rUBot_mecanum
+```shell
+roslaunch rubot_control rubot_bringup.launch
+```
+- Then open a new terminal and type:
+```shell
+rosrun key_teleop key_teleop.py /key_vel:=/cmd_vel
+or
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
 
 ### **3.3. Movement control with python script**
 
-We have created a specific package "gopigo_control" where all these controls are programed.
-You can review from the "gopigo3_rbpi3_ws" workspace the src/gopigo_control folder where there are 2 new folders:
+From the "rubot_rbpi4_ws" workspace, the src/rubot_control folder has 2 new folders:
 - scrip folder: with the python programs for specific movement control
 - launch folder: with programs to launch the movement control
 
-![](./Images/2_vnc2.png)
+Diferent navigation programs are created:
+
+- Navigation control: to define a desired robot velocity
+- Lidar test: to verify the LIDAR readings and angles
+- Autonomous navigation: to perform a simple algorithm for navigation with obstacle avoidance using the LIDAR
+- Wall follower: at a fixed distance to perform a good map
+- go to POSE: attend a specific position and orientation
+
+The nodes and topics structure corresponds to the following picture:
+![Getting Started](./Images/2_rubot_nodes.png)
+
+### **a) Navigation control**
+
+We have created a first navigation python files in "src" folder:
+
+- rubot_nav.py: to define a rubot movement with linear and angular speed to reach a maximum x-distance
+
+A "ubot_nav.launch" file have been created to launch the node and python file created above.
 
 To properly perform a especific movement control we have first to:
-- launch the gopigo3 node: able to control de 2 motors and measure the odometry
-- launch the raspicam node
-- launch the LIDAR sensor node
-- launch the rUBot_nav node to perform the specific movement control
-
-![Getting Started](./Images/2_nodes_cam.png)
-
-We will create specific python files and launch files for each movement control
-
-### **1. Keyboard movement control**
-
-To control the gopigo robot with keyboard, we need to install "teleop_tools" package. This is already installed in our master_ws as you can see in the previous figure.
-
-You will only need to:
-- launch the gopigo3 node
-- launch the key_teleop node
-
-Open 1 terminal and type:
-- roslaunch gopigo3_node gopigo3.launch
-
-Then open a new terminal and type:
-- rosrun key_teleop key_teleop.py /key_vel:=/cmd_vel
-
-Carefull: if there are problems, make a source in each terminal
-
-![Getting Started](./Images/2_key.png)
-
-Open a new terminal and see all the nodes and topics involved:
+- Bringup rUBot_mecanum
 ```shell
-rqt_graph
+roslaunch rubot_control rubot_bringup.launch
 ```
-Pres q and crtl+C to close the terminals
-
-### **2. Movement control with specific python script**
-
-You want to perform the movement control in "move3_gopigo_distance.py" simulation ws.
-
-You will only need to:
-- copy this python file to the script folder
-- create a new "move_gopigo3.launch" file to launch gopigo3 and the control node
-
->Carefull!: be sure the new python file is executable. 
-
-Type:
+- Then open a new terminal to launch the rUBot_nav node to perform the specific movement control.
 ```shell
-roslaunch gopigo_control move_gopigo3.launch
+roslaunch rubot_control rubot_nav.launch
 ```
-```xml
-<launch>
-  <node name="gopigo3" pkg="gopigo3_node" type="gopigo3_driver.py" output="screen" />
-  <!-- run gopigo   -->
-  <arg name="v" default="0.1"/>
-  <arg name="w" default="0"/>
-  <arg name="d" default="0.3"/>
-  <node pkg="gopigo_control" type="move_gopigo3.py" name="rubot_nav" output="screen" >
-    <param name="v" value="$(arg v)"/>
-    <param name="w" value="$(arg w)"/>
-    <param name="d" value="$(arg d)"/>
-  </node>
-</launch>
-```
-### **3. Autonomous navigation**
 
-For autonomous navigation you need the LIDAR sensor.
+### **b) LIDAR test**
 
-First test your LIDAR angles with the program: rubot_lidar_test.py
+In order to navigate autonomously and avoid obstacles, we will use a specific rpLIDAR sensor. To verify the LIDAR readings and angles we have generated the "rubot_lidar_test.py" python file:
 
-We will have to launch the following nodes:
-- the gopigo3 node for driving control
-- the ydlidar node (or rplidar)
-- the raspicam node
-- the lidar_test node
-
-To launch these nodes we need one terminal for each node. We will execute in different terminals:
-
-type the following commands to each terminal:
+To properly perform a especific movement control we have first to:
+- Bringup rUBot_mecanum
 ```shell
-roslaunch gopigo3_node gopigo3.launch
-roslaunch ydlidar lidar.launch (or roslaunch rplidar_ros rplidar.launch)
-roslaunch raspicam_node camerav2_1280x960_10fps.launch enable_raw:=true camera_frame_id:="laser_frame"
-rosrun gopigo_control rubot_lidar_test.py
+roslaunch rubot_control rubot_bringup.launch
 ```
-You need to verify that the forward direction corresponds to the zero angle. Is it true???
+- Then open a new terminal to launch the rUBot_nav node to perform the rpLIDAR test. We have created specific python file and launch file for this movement control
+```shell
+roslaunch rubot_control rubot_lidar_test.launch
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
+
+### **c) Autonomous navigation and obstacle avoidance**
 
 Now you can perform the autonomous navigation defined in "rubot_self_nav.py"
-
-Carefull!: be sure the new python file is executable
 
 We will have to launch the following nodes:
 - the gopigo3 node for driving control
