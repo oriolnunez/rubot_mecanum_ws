@@ -234,7 +234,14 @@ First, let's control the rUBot_mecanum movement to perform:
 
 First of all you need to bringup the rubot_mecanum robot.
 
-### **Bringup rubot_mecanum**
+### **3.1. Bringup rubot_mecanum**
+
+The bringup consists to:
+- launch the rUBot node in Arduino-Mega board
+- launch the LIDAR node
+- launch the raspicam node
+
+**Launch rUBot node**
 
 To bringup we need to run the driver designed for rubot_mecanum robot. The driver is in fact an arduino program that controls:
 - The kinematics of the 4 mecanum wheels to apply the twist message in /cmd_vel topic
@@ -247,6 +254,52 @@ The "rubot_mecanum.ino" arduino program is located on /Documentation/files/ardui
 To bringup your rubot_mecanum:
 - open arduino IDE
 - upload the rubot_mecanum.ino file
+- Open a new terminal and type:
+```shell
+roscore
+rosrun rosserial_python serial_node.py /dev/ttyUSB0 
+rostopic pub /cmd_vel geometry_msgs/Twist -r 10 -- '[0.5, 0.0, 0.0]' '[0.0, 0.0, 0.0]'
+```
+> USB0 is the port to which the Arduino is connected, change it in case yours is different
+
+> The last command sends a Twist message to the robot. The wheels should be moving forward. You can try different movements by modifying the numbers inside the brackets: '[vx, vy, vz]' '[wx, wy, wz]', you should only change vx, vy and wz values as the others do not apply. As it is an holonomic robot, if all the values are 0.0 except for wz (angular velocity in z axis) you will obtain a movement in which the robot spins on itself.
+
+**Launch LIDAR node**
+
+To launch the rpLIDAR sensor, connect the LIDAR sensor to RaspberryPi and execute:
+```shell
+roslaunch rplidar_ros rplidar.launch
+```
+**Launch raspicam node**
+
+To launch the raspicam sensor, execute:
+```shell
+roslaunch raspicam_node camerav2_1280x960_10fps.launch enable_raw:=true camera_frame_id:="laser_frame"
+```
+**Final bringup launch file**
+
+We will create a "rubot_bringup.launch" file to setup the rUBot_mecanum.
+```xml
+<launch>
+ <!-- launch rUBot mecanum   -->
+  <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
+    <param name="port" type="string" value="/dev/ttyACM0"/>
+    <param name="baud" type="int" value="57600"/>
+  </node>
+ <!-- launch ydlidar   -->
+  <include file="$(find ydlidar)/launch/lidar.launch"/>
+  <!-- launch raspicam   -->
+  <include file="$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch">
+	<arg name="enable_raw" value="true"/>
+	<arg name="camera_frame_id" value="base_scan"/>
+  </include>
+</launch>
+```
+
+### **3.2. Movement control using keyboard**
+
+
+### **3.3. Movement control with python script**
 
 We have created a specific package "gopigo_control" where all these controls are programed.
 You can review from the "gopigo3_rbpi3_ws" workspace the src/gopigo_control folder where there are 2 new folders:
