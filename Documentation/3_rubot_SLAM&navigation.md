@@ -1,5 +1,5 @@
-# **Gopigo SLAM & navigation**
-Using SLAM (short for Simultaneous Localization and Mapping) techniques, you will be able to execute autonomous navigation with GoPiGo3.
+# **rUBot mecanum SLAM & navigation**
+Using SLAM (short for Simultaneous Localization and Mapping) techniques, you will be able to execute autonomous navigation with rUBot mecanum.
 
 SLAM is a technique used in robotics to explore and map an unknown environment while estimating the pose of the robot itself. As it moves all around, it will be acquiring structured information of the surroundings by processing the raw data coming from its sensors.
 
@@ -8,15 +8,15 @@ For optimal and easy-to-understand coverage of the topic of SLAM, we will implem
 ## **Install ROS navigation & SLAM packages**
 First, let's prepare your machine with the required ROS packages needed for the navigation stack (http://wiki.ros.org/navigation):
 ```shell
-sudo apt install ros-melodic-navigation
+sudo apt install ros-noetic-navigation
 ```
 And finally the slam_gmapping package, that is already available in its binary version (https://wiki.ros.org/slam_gmapping)
 ```shell
-sudo apt install ros-melodic-slam-gmapping
+sudo apt install ros-noetic-slam-gmapping
 ```
 Open the .bashrc file and verify to source to the proper workspace:
 ```shell
-source /media/sf_github_manelpuig/rUBot_gopigo_ws_/devel/setup.bash
+source /media/sf_github_manelpuig/rUBot_mecanum_ws_/devel/setup.bash
 ```
 > change the path correcponding to your ws
 ## **What do you need to perform robot navigation with ROS?**
@@ -25,7 +25,7 @@ To perform navigation you need:
 - Localization: Next you need to localize the robot on that map
 - Path Planning: Now you can send goal locations to the robot
 - Obstacle avoidance: Finally, you need to avoid obstacles
-## **Navigation with gopigo3 in a custom maze**
+## **Navigation with rUBot mecanum in a custom maze**
 To navigate with gopigo3 robot in a custom maze we have first to create a virtual_slam package with dependencies:
 - roscpp
 - rospy
@@ -34,9 +34,9 @@ To navigate with gopigo3 robot in a custom maze we have first to create a virtua
 - geometry_msgs
 - nav_msgs
 
-The package "virtual_slam" is already created. Copy this folder to the src directory of your workspace and compile again your repository.
+The package "nexus_slam" is already created. Copy this folder to the src directory of your workspace and compile again your repository.
 
-This repository is essentially the one corresponding to turtlebot3 adapted for the gopigo3 robot prototype:
+This repository is essentially the one corresponding to turtlebot3 adapted for the nexus robot prototype:
 
  https://github.com/ROBOTIS-GIT/turtlebot3 
 
@@ -44,7 +44,7 @@ Now you can follow the next steps:
 ### **1. Spawn the robot in our custom made maze**
 We open a new terminal and type:
 ```shell
-roslaunch gopigo3_slam gopigo3_world.launch
+roslaunch nexus_slam rubot_world.launch
 ```
 ### **2. Generate the MAP**
 We will start the slam_gmapping node. This node is highly configurable and has lots of parameters you can change in order to improve the mapping performance. (http://wiki.ros.org/gmapping)
@@ -56,15 +56,11 @@ Let's now check some of the most important ones that usually have to be changed:
 - delta (default: 0.05): Sets the resolution of the map (I take 0.01m)
 
 
-Open the "gmapping.launch" file and change properly the parameters you consider. Then launch the gopigo_slam file:
+Open the "gmapping.launch" file and change properly the parameters you consider. Then launch the rubot_slam file:
 ```shell
-roslaunch gopigo3_slam gopigo3_slam.launch
+roslaunch nexus_slam rubot_slam.launch
 ```
 Teleoperate the robot to make it cover as much as possible of the surface of the current Gazebo world. 
-
-To obtain a softer movement with gopigo3 robot model be sure in gopigo3.urdf model file, the differentialdrive pluggin has parameters are:
-- Acceleration: 0.5
-- Torque: 1
 
 Let's do this as usual with the teleoperation package:
 ```shell
@@ -72,7 +68,7 @@ rosrun key_teleop key_teleop.py /key_vel:=/cmd_vel
 ```
 Or use the navigation program you have designed to follow the walls for exemple to properly generate the map.
 ```shell
-roslaunch gopigo3_control node_wall_follower_gm.launch
+roslaunch nexus_control node_wall_follower_gm.launch
 ```
 > Take care to launch only the wall_follower node
 
