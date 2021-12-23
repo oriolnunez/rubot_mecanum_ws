@@ -154,6 +154,7 @@ Follow raspicam_node --> Build Instructions in: https://github.com/UbiquityRobot
 
 Then you are able to compile the workspace:
 ```shell
+cd ~/Desktop/rubot_rbpi4_ws/
 catkin_make
 ```
 
@@ -163,6 +164,7 @@ Open a terminal in src folder and type:
 ```shell
 cd ~/Desktop/rubot_rbpi4_ws/src
 git clone https://github.com/Slamtec/rplidar_ros
+cd ..
 catkin_make
 ```
 To test the sensor, connect the LIDAR sensor to RB Pi and execute:
@@ -201,20 +203,24 @@ rosrun rosserial_arduino make_libraries.py .
 The rbpi4 manage arduino board and rpLIDAR with 2 USB ports. 
 
 We have to force the same USB port to the same device:
-- USB0 to arduino mega board
-- USB1 to rpLIDAR
+- "arduino" port to arduino mega board
+- "rplidar" port to rpLIDAR
 
 This can be done creating UDEV rules for each devide:
 
-**Arduino udev rules**
+**a) Arduino udev rules**
 
 Follow instructions: 
 - https://steve.fi/hardware/arduino-basics/
 - https://medium.com/@darshankt/setting-up-the-udev-rules-for-connecting-multiple-external-devices-through-usb-in-linux-28c110cf9251
 
-  To see the port name type:
+  Connect the Arduino Mega in USB port. To see the port name type:
   ```shell
   ls -l /dev/ttyAMC*
+  ```
+  Give permissions rwx to this port ttyACM*
+  ```shell
+  sudo chmod 777 /dev/ttyACM*
   ```
   To see the needed properties to create udev rules, type:
   ```shell
@@ -233,35 +239,82 @@ Follow instructions:
   The create a file /etc/udev/rules.d/99-arduino.rules and give it the following contents:
   ```xml
   # Arduino port definition
-  SUBSYSTEM=="tty", GROUP="plugdev". MODE="0660"
+  SUBSYSTEM=="tty", GROUP="plugdev", MODE="0660"
 
-  SUBSYSTEMS=="USB1", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SYMLINK+="arduino"
+  ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SYMLINK+="arduino"
   ```
   >The idProduct and idVendor corresponds to the numbers in the Arduino line.
 
   Now restart the service:
   ```shell
-  sudo service udev reload
-  sudo service udev restart
+  sudo /etc/init.d/udev restart 
+  ```
+  Unplug and plug again the Arduino Board and verify if the symlink is created:
+  ```shell
+  ls -l /dev/arduino /dev/ttyACM0
+  ```
+  If all is OK, you will see:
+  ```shell
+  lrwxrwxrwx 1 root root         7 dic 23 08:58 /dev/arduino -> ttyACM0
+  crw-rw---- 1 root plugdev 166, 0 dic 23 08:58 /dev/ttyACM0
   ```
 
-- For rpLIDAR follow instructions:
-  - generate your rplidat.rules (specify the USB port) with: https://github.com/Slamtec/rplidar_ros/tree/master/scripts
-  - verify the rplidar.rules is properly located in /etc/udev/rules.d
+**b) rpLIDAR udev rules**
+
+Follow instructions:  
+- https://github.com/Slamtec/rplidar_ros/tree/master/scripts
+
+  Connect the rpLIDAR in USB port. To see the port name type:
+  ```shell
+  ls -l /dev/ttyUSB*
+  ```
+  Give permissions rwx to this port ttyUSB*
+  ```shell
+  sudo chmod 777 /dev/ttyACM*
+  ```
+  To see the needed properties to create udev rules, type:
+  ```shell
+  lusb
+  ```
+  You will see your rpLIDAR device properties:
+  ```shell
+  Bus 001 Device 010: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+  ```
+  The create a file /etc/udev/rules.d/rplidar.rules and give it the following contents:
+  ```xml
+  # set the udev rule , make the device_port be fixed by rplidar
+  #
+  KERNEL=="ttyUSB*", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", MODE:="0777", SYMLINK+="rplidar"
+  ```
+  Now restart the service:
+  ```shell
+  sudo /etc/init.d/udev restart 
+  ```
+  Unplug and plug again the Arduino Board and verify if the symlink is created:
+  ```shell
+  ls -l /dev/arduino /dev/ttyACM0 /dev/rplidar /dev/ttyUSB0
+  ```
+  If all is OK, you will see:
+  ```shell
+  lrwxrwxrwx 1 root root         7 dic 23 09:31 /dev/arduino -> ttyACM0
+  lrwxrwxrwx 1 root root         7 dic 23 09:31 /dev/rplidar -> ttyUSB0
+  crw-rw---- 1 root plugdev 166, 0 dic 23 09:31 /dev/ttyACM0
+  crwxrwxrwx 1 root plugdev 188, 0 dic 23 09:31 /dev/ttyUSB0
+  ```
 
 You have now your rUBot_mecanum ready to work-with!!
 
 ### **Setup your workspace**
 
-If you not have the "rubot_rbpi4_ws" folder in your desktop, you can "transfer" folder from your PC (it takes 30s)
+If you do not have the "rubot_rbpi4_ws" folder in your desktop, you can "transfer" folder from your PC (it takes 30s)
 
 The first time you copy the folder, you need to compile the workspace:
 - open a terminal in the ws
 - type "catkin_make" (it takes 10min)
 
 >Carefull!: Some actions have to be done:
-- review the ~/.bashrc: source to the ws and delete the environment variables
-- make executable the c++ and python files
+>- review the ~/.bashrc: source to the ws and delete the environment variables
+>- make executable the c++ and python files
 
 ## **3. rUBot_mecanum first control movements**
 First, let's control the rUBot_mecanum movement to perform:
@@ -273,6 +326,7 @@ First, let's control the rUBot_mecanum movement to perform:
 
 We will create a "rubot_control" package to perform the rUBot_mecanum control movements:
 ```shell
+cd ~/Desktop/rubot_rbpi4_ws/src
 catkin_create_pkg rubot_control rospy std_msgs sensor_msgs geometry_msgs nav_msgs
 cd ..
 catkin_make
@@ -299,7 +353,7 @@ The "rubot_mecanum.ino" arduino program is located on /Documentation/files/ardui
 To bringup your rubot_mecanum:
 - open arduino IDE
 - upload the rubot_mecanum.ino file
-- Open a new terminal and type:
+- Open 3 new terminals and type:
 ```shell
 roscore
 rosrun rosserial_python serial_node.py /dev/ttyUSB0 
@@ -383,7 +437,7 @@ We have created a first navigation python files in "src" folder:
 
 - rubot_nav.py: to define a rubot movement with linear and angular speed to reach a maximum x-distance
 
-A "ubot_nav.launch" file have been created to launch the node and python file created above.
+A "rubot_nav.launch" file have been created to launch the node and python file created above.
 
 To properly perform a especific movement control we have first to:
 - Bringup rUBot_mecanum
@@ -404,7 +458,7 @@ To properly perform a especific movement control we have first to:
 ```shell
 roslaunch rubot_control rubot_bringup.launch
 ```
-- Then open a new terminal to launch the rUBot_nav node to perform the rpLIDAR test. We have created specific python file and launch file for this movement control
+- Then open a new terminal to launch the rUBot_nav node to perform the rpLIDAR test. We have created specific python file and launch file for this test control
 ```shell
 roslaunch rubot_control rubot_lidar_test.launch
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
@@ -412,48 +466,35 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 
 ### **c) Autonomous navigation and obstacle avoidance**
 
-Now you can perform the autonomous navigation defined in "rubot_self_nav.py"
+Using rpLIDAR sensor you can perform the autonomous navigation avoiding obstacles.
 
-We will have to launch the following nodes:
-- the gopigo3 node for driving control
-- the ydlidar node (or rplidar)
-- the raspicam node
-- the rubot_nav node for autonomous navigation
+This performance is defined in "rubot_self_nav.py"
 
-You can create a compact "rubotYD_self_nav.launch" file for gopigo3 robots using YDLidar (similar for the RPLidar):
-
+To properly perform a especific self-navigation control we have first to:
+- Bringup rUBot_mecanum
 ```shell
-roslaunch gopigo_control rubotYD_self_nav.launch
+roslaunch rubot_control rubot_bringup.launch
 ```
+- Then open a new terminal to launch the rUBot_nav node to perform the self-navigation. We have created specific python file and launch file for this navigation control
+```shell
+roslaunch rubot_control rubot_self_nav.launch
+```
+The launch file contains some parameters you can modify:
 ```xml
 <launch>
-  <!-- launch gopigo3   -->
-  <include file="$(find gopigo3_node)/launch/gopigo3.launch"/>
-  <!-- launch ydlidar   -->
-  <include file="$(find ydlidar)/launch/lidar.launch"/>
-
-  <!-- launch raspicam   -->
-  <include file="$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch">
-	<arg name="enable_raw" value="true"/>
-	<arg name="camera_frame_id" value="base_scan"/>
-  </include>
   <!-- launch obstacle avoidance   -->
-    <arg name="LIDAR" default="YD" />
     <arg name="distance_laser" default="0.3" />
     <arg name="speed_factor" default="0.1"/>
     <arg name="forward_speed" default="2" />
     <arg name="backward_speed" default="-1" />
     <arg name="rotation_speed" default="20" />
-    <node name="rubot_nav" pkg="gopigo_control" type="rubot_self_nav.py" output="screen" >
-        <param name="LIDAR" value="$(arg LIDAR)"/>
+    <node name="rubot_nav" pkg="rubot_control" type="rubot_self_nav.py" output="screen" >
         <param name="distance_laser" value="$(arg distance_laser)"/>
         <param name="speed_factor" value="$(arg speed_factor)"/>
         <param name="forward_speed" value="$(arg forward_speed)"/>
         <param name="backward_speed" value="$(arg backward_speed)"/>
         <param name="rotation_speed" value="$(arg rotation_speed)"/>
     </node>    
-  <!-- Show in Rviz   -->
-  <!--<node name="rviz" pkg="rviz" type="rviz" args="-d $(find gopigo_control)/rviz/laserscan.rviz"/>-->
 </launch>
 ```
 In order to see the rubot with the topics information we will use rviz. Open rviz in a new terminal.
@@ -465,148 +506,114 @@ You can then save the config file as laserscan.rviz name and use it in the launc
 
 A launch file is created to integrate all the needed roslaunch parameters but you can change the defauld values with this syntax:
 ```shell
-roslaunch gopigo_control rubotYD_self_nav.launch distance_laser:=0.2 speed_factor:=1.3
+roslaunch rubot_control rubot_self_nav.launch distance_laser:=0.2 speed_factor:=1.3
 ```
-### **4. Wall Follower**
+### **D) Wall Follower**
 
 This control task consist on find a wall and follow it at a certain distance. We will see that this is an important control task because this will be used later to make accurate maps of working environments.
-
-There are 2 main tasks:
-- Create a python file to perform the wall follower in the maze of our gopigo3 robot
-- Create a launch file to initialyse all the needed nodes in our system for autonomous navigation
 
 We have developed 2 different methods for wall follower:
 - Geometrical method
 - Lidar ranges method
 
-#### **a) Geometrical method**
+#### **Geometrical method**
 In src folder you create the python file for wall follower purposes
 
 The instructions to perform the python program are in the notebook: 
 
 https://github.com/Albert-Alvarez/ros-gopigo3/blob/lab-sessions/develop/ROS%20con%20GoPiGo3%20-%20S4.md
 
-<img src="./Images/2_wall_follower1.png">
+![](./Images/2_wall_follower_gm.png)
 
-Create a launch folder for the launch files taking into account if you are using an YD or RP LIDAR
+To properly perform a especific self-navigation control we have first to:
+- Bringup rUBot_mecanum
 ```shell
-roslaunch gopigo_control rubotRP_wall_follower_gm.launch
+roslaunch rubot_control rubot_bringup.launch
 ```
+- Then open a new terminal to launch the rUBot_nav node to perform the wall-follower. We have created specific python file and launch file for this navigation control
+```shell
+roslaunch rubot_control rubot_wall_follower_gm.launch
+```
+The launch file contains different parameters you can modify:
 ```xml
 <launch>
-  <!-- launch gopigo3   -->
-  <include file="$(find gopigo3_node)/launch/gopigo3.launch"/>
-  <!-- launch rplidar   -->
-  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
- 
-  <!-- launch raspicam   -->
-  <!--<include file="$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch">
-	<arg name="enable_raw" value="true"/>
-	<arg name="camera_frame_id" value="base_scan"/>
-  </include>-->
   <!-- launch follow wall   -->
-  <arg name="LIDAR" default="RP" />
-  <arg name="kp" default="0.5" />
+  <arg name="kp" default="5" />
   <arg name="distance_reference" default="0.3" />
   <arg name="lookahead_distance" default="0.4" />
   <arg name="forward_speed" default="0.04" />
   <arg name="theta" default="50.0" />
   <node name="wall_follower_controller" pkg="gopigo_control" type="rubot_wall_follower_gm.py" output="screen" >
-    <param name="LIDAR" value="$(arg LIDAR)"/>
     <param name="kp" value="$(arg kp)"/>
     <param name="distance_reference" value="$(arg distance_reference)"/>
     <param name="lookahead_distance" value="$(arg lookahead_distance)"/>
     <param name="forward_speed" value="$(arg forward_speed)"/>
     <param name="theta" value="$(arg theta)"/>
   </node>
-  <!-- Show in Rviz   -->
-  <!--<node name="rviz" pkg="rviz" type="rviz" args="-d $(find obstacle_avoidance)/rviz/laserscan.rviz"/>-->
 </launch>
 ```
 You can see the video result:
 
 [![Watch the video](https://img.youtube.com/vi/z5sAyiFs-RU/maxresdefault.jpg)](https://youtu.be/z5sAyiFs-RU)
+
 #### **b) ranges method**
 In src folder you create the python file for wall follower purposes
 
 The algorith is based on laser ranges test and depends on the LIDAR type:
 
-<img src="./Images/1_wall_follower2.png">
+![](./Images/2_wall_follower_rg1.png)
 
 Take into account that:
 - RP LIDAR has 180º rotation
 - YDlidar in front direction has 2 different ranges [660:719] and [0:60]
 - YDlidar sends some 0 values due to wrong readings. They have to be changed to high value to be able to take the minimum falue from the desired range.
 
-The "rubot_wall_follower_rg_filter.py" has to integrate this in callback function
-
-``` python
-def clbk_laser(msg):
-    global regions_, LIDAR
-    if LIDAR == "RP":
-	    regions_ = {
-		'left':  min(min(msg.ranges[539:541]), 3),
-		'fleft': min(min(msg.ranges[421:538]), 3),
-		'front':  min(min(msg.ranges[300:420]), 3),
-		'fright':  min(min(msg.ranges[182:300]), 3),
-		'right':   min(min(msg.ranges[179:181]), 3),
-	    }
-	    print ("LIDAR: RP")
-    else:
-        for i, val in msg.ranges:
-            if val == 0:
-                msg.ranges[i]=3 # YD Lidar sends some 0 values and then the minimum is allways 0
-	    regions_ = {
-		'left':  min(min(msg.ranges[179:181]), 3),
-		'fleft': min(min(msg.ranges[60:178]), 3),
-		'front':  min(min(msg.ranges[661:719]),min(msg.ranges[0:59]), 3),
-		'fright':  min(min(msg.ranges[542:660]), 3),
-		'right':   min(min(msg.ranges[539:541]), 3),
-	    }
-	    print ("LIDAR: YD")
- 
-    print ("front distance: "+ str(regions_["front"]))
-    print ("right distance: "+ str(regions_["right"]))
-    print ("front-right distance: "+ str(regions_["fright"]))
-
-    take_action()
-```
-Type:
+To properly perform a especific self-navigation control we have first to:
+- Bringup rUBot_mecanum
 ```shell
-roslaunch gopigo_control rubotRP_wall_follower_rg.launch
+roslaunch rubot_control rubot_bringup.launch
 ```
+- Then open a new terminal to launch the rUBot_nav node to perform the wall-follower. We have created specific python file and launch file for this navigation control
+```shell
+roslaunch rubot_control rubot_wall_follower_rg.launch
+```
+The launch file has no parameters to modify:
+
 ```xml
 <launch>
-  <!-- launch gopigo3   -->
-  <include file="$(find gopigo3_node)/launch/gopigo3.launch"/>
-  <!-- launch ydlidar   -->
-  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
-
-  <!-- launch raspicam   -->
-  <!--<include file="$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch">
-	<arg name="enable_raw" value="true"/>
-	<arg name="camera_frame_id" value="base_scan"/>
-  </include>-->
   <!-- launch follow wall   -->
-	<arg name="LIDAR" default="RP" />
   <node name="wall_follow" pkg="gopigo_control" type="rubot_wall_follower_rg.py" output="screen" >
-	<param name="LIDAR" value="$(arg LIDAR)"/>
   </node>
-  <!-- Show in Rviz   -->
-  <!--<node name="rviz" pkg="rviz" type="rviz" args="-d $(find obstacle_avoidance)/rviz/laserscan.rviz"/>-->
 </launch>
 ```
-### **5. Go to POSE**
+### **E) Go to POSE**
 
 The objective is to program the robot to reach a speciffic target POSE defining:
 - x position
 - y position
 - angle orientation (from 0º to 180º)
 
-We can take the same python script you have programed for simulated Gazebo environment
-
-Type:
-
+To properly perform a especific self-navigation control we have first to:
+- Bringup rUBot_mecanum
 ```shell
-roslaunch gopigo_control rubotYD_go2pose.launch
+roslaunch rubot_control rubot_bringup.launch
+```
+- Then open a new terminal to launch the rUBot_nav node to perform the go 2 pose control. We have created specific python file and launch file for this navigation control
+```shell
+roslaunch rubot_control rubot_go2pose.launch
+```
+The launch file has no parameters to modify:
+
+```xml
+<launch>
+<!-- run navigation program  -->
+    <arg name="x" default="0.7"/>
+    <arg name="y" default="0.7"/>
+    <arg name="f" default="120"/>
+    <node pkg="nexus_control" type="rubot_go2pose.py" name="nexus_control" output="screen" >
+      <param name="x" value="$(arg x)"/>
+      <param name="y" value="$(arg y)"/>
+      <param name="f" value="$(arg f)"/>
+    </node>
+</launch>
 ```

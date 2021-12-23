@@ -1,0 +1,16 @@
+<launch>
+ <!-- launch rUBot mecanum   -->
+  <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
+    <param name="port" type="string" value="/dev/ttyACM0"/>
+    <param name="baud" type="int" value="57600"/>
+  </node>
+ <!-- launch ydlidar   -->
+  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+  <!-- launch raspicam   -->
+  <include file="$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch">
+	<arg name="enable_raw" value="true"/>
+	<arg name="camera_frame_id" value="base_scan"/>
+  </include>
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find rubot_control)/rviz/rubot_nav.rviz"/>
+</launch>

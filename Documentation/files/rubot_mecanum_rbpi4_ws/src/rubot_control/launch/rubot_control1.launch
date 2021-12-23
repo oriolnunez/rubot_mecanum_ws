@@ -1,0 +1,13 @@
+<launch>
+  <!-- run navigation program   -->
+    <arg name="vx" default="0.1"/>
+    <arg name="vy" default="0.1"/>
+    <arg name="w" default="0.2"/>
+    <arg name="d" default="0.5"/>
+    <node pkg="nexus_control" type="rubot_control1.py" name="rubot_nav" output="screen" >
+      <param name="vx" value="$(arg vx)"/>
+      <param name="vy" value="$(arg vy)"/>
+      <param name="w" value="$(arg w)"/>
+      <param name="d" value="$(arg d)"/>
+    </node>
+  </launch>

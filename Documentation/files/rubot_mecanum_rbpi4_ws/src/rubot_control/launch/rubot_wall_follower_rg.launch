@@ -1,0 +1,5 @@
+<launch>
+ <!-- Navigation Program   -->
+  <node name="wall_follower" pkg="nexus_control" type="rubot_wall_follower_rg.py" output="screen" >
+  </node>
+</launch>
