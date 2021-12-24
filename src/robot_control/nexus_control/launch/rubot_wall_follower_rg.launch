@@ -6,7 +6,7 @@
   <arg name="z_pos" default="0.0"/>
   <!-- spawn world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find nexus_control)/worlds/$(arg world)"/>
+    <arg name="world_name" value="$(find nexus_mecanum)/worlds/$(arg world)"/>
   </include>
   <!-- spawn nexus -->
   <param name="robot_description" textfile="$(find nexus_mecanum)/urdf/$(arg model)" />

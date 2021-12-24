@@ -72,12 +72,12 @@ class WallFollower:
                 len(scan.ranges) / 360)
             self.__isScanRangesLengthCorrectionFactorCalculated = True
         # wrong readings deliver 0 value in range
-        newRange = []
+        """ newRange = []
         for val in scan.ranges:
             if (val == 0):
                 newRange.append(3)
             else:
-                newRange.append(val)
+                newRange.append(val) """
         # Obtenemos las mediciones de A y B y las guardamos en variables locales
         """zero angle is on th back --> angle-180 """
         A = scan.ranges[int(round(self.__unWrapAngle(-90 + np.rad2deg(self.__theta))-180)) * self.__scanRangesLengthCorrectionFactor]

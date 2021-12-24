@@ -72,6 +72,8 @@ roslaunch nexus_control node_wall_follower_gm.launch
 ```
 > Take care to launch only the wall_follower node
 
+![](./Images/3_nexus_map1.png)
+
 [![IMAGE_ALT](https://img.youtube.com/vi/I6WwQv63Txw/maxresdefault.jpg)](https://youtu.be/I6WwQv63Txw)
 
 
@@ -85,9 +87,9 @@ The map is generated with two files:
 - Hospital3_map.yaml (map parameters)
 
 
-Provided with the map, we are ready to perform robot navigation with the GoPiGo3.
+Provided with the map, we are ready to perform robot navigation with the rUBot mecanum.
 
-### **3. Robot Navigation**
+### **4. Robot Navigation**
 When the robot moves around a map, it needs to know which is its POSE within the map.
 
 The AMCL (Adaptive Monte Carlo Localization) package provides the amcl node, which uses the MCL system in order to track the localization of a robot moving in a 2D space. This node subscribes to the data of the laser, the laser-based map, and the transformations of the robot, and publishes its estimated position in the map. 
@@ -96,11 +98,18 @@ On startup, the amcl node initializes its particle filter according to the param
 
 This AMCL node is also highly customizable and we can configure many parameters in order to improve its performance. (http://wiki.ros.org/amcl)
 
-Let's have a look at some of the most important ones:
+rUBot mecanum is omni driven robot and has some peculiarities. Interesting information you can found in: 
+- https://www.robotshop.com/community/robots/show/autonomous-navigation-mecanum-wheel-robot
+- https://answers.ros.org/question/350791/how-can-i-make-my-robot-move-like-a-robot-with-mecanum-wheels/
+- https://answers.ros.org/question/227474/navigation-stack-holonomic-true-not-working/
+
+
+
+Let's have a look at some of the most important parameters in "amcl.launch" file:
 
 #### **General Parameters**
 
-- odom_model_type (default: "diff"): It puts the odometry model to use. It can be "diff," "omni," "diff-corrected," or "omni-corrected."
+- odom_model_type (default: "diff"): It puts the odometry model to use. It can be "diff", "omni", "diff-corrected", or "omni-corrected".
 - base_frame_id (default: "base_link"): Indicates the frame associated with the robot base.
 
 #### **Costmap Parameters**
@@ -115,8 +124,12 @@ Review these parameters in "costmap_common_params.yaml"
 ```python
 obstacle_range: 3.0
 raytrace_range: 3.5
+
 #robot_gopigo
-footprint: [[-0.17, -0.06], [-0.17, 0.06], [0.09, 0.06], [0.09, -0.06]]
+#footprint: [[-0.17, -0.06], [-0.17, 0.06], [0.09, 0.06], [0.09, -0.06]]
+#robot_nexus
+footprint: [[-0.22, -0.16], [-0.22, 0.16], [0.22, 0.16], [0.22, -0.16]]
+
 inflation_radius: 1.0
 cost_scaling_factor: 5.0
 
@@ -134,28 +147,28 @@ https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#tuning-guide
 
 So, basically, we have to do the following:
 
-- Open the gopigo3 robot in Hospital3 world (if you have closed it before)
+- Open the nexus robot in Hospital3 world (if you have closed it before)
 ```shell
-roslaunch gopigo3_slam gopigo3_world.launch
+roslaunch nexus_slam rubot_world.launch
 ```
 
 - Open Navigation launch file including the map location:
 ```shell
-roslaunch gopigo3_slam gopigo3_navigation.launch
+roslaunch nexus_slam rubot_navigation.launch
 ```
 > Take care in launch file to read the correct map file in "maps" folder
 
-![Getting Started](./Images/3_nav1_gopigo.png)
+![](./Images/3_nav1_gopigo.png)
 - set up an initial pose by using the 2D Pose Estimate tool (which published that pose to the /initialpose topic).
 
-![Getting Started](./Images/3_nav2_gopigo.png)
+![](./Images/3_nav2_gopigo.png)
 
 - To obtain a proper localisation of your robot, move it right and left using the key_teleop.
 ```shell
 rosrun key_teleop key_teleop.py /key_vel:=/cmd_vel
 ```
 
-![Getting Started](./Images/3_nav3_gopigo.png)
+![](./Images/3_nav3_nexus.png)
 
 - Select the target goal to navigate with the tool "2D-Nav-Goal"
 
