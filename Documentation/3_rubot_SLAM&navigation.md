@@ -103,14 +103,14 @@ rUBot mecanum is omni driven robot and has some peculiarities. Interesting infor
 - https://answers.ros.org/question/350791/how-can-i-make-my-robot-move-like-a-robot-with-mecanum-wheels/
 - https://answers.ros.org/question/227474/navigation-stack-holonomic-true-not-working/
 
-
-
 Let's have a look at some of the most important parameters in "amcl.launch" file:
 
 #### **General Parameters**
 
 - odom_model_type (default: "diff"): It puts the odometry model to use. It can be "diff", "omni", "diff-corrected", or "omni-corrected".
 - base_frame_id (default: "base_link"): Indicates the frame associated with the robot base.
+
+We can use the nexus robot as a Differential drive robot model without available lateral movements. 
 
 #### **Costmap Parameters**
 
@@ -178,3 +178,64 @@ You can see some videos of Navigation process inside Hospital plant:
 [![IMAGE_ALT](https://img.youtube.com/vi/my33X_qWsjY/maxresdefault.jpg)](https://youtu.be/my33X_qWsjY)
 
 [![IMAGE_ALT](https://img.youtube.com/vi/r92mEQ9JAL8/maxresdefault.jpg)](https://youtu.be/r92mEQ9JAL8)
+
+The movement is more complicate in the small room! the mobility is limited to forward and rotations. Sometimes the target navigation pose is not feasible like in the following exemple:
+
+![](./Images/3_nav3_nexus_abort.png)
+
+Using "omni" drive performances, the robot is able to move also in y direction and the mobility is much better.
+
+You need to modify the "dwa_local_planner_params_burger.yaml parameters. An exemple of possible parameters set is:
+
+```xml
+DWAPlannerROS:
+
+  holonomic_robot: true           #false
+# Robot Configuration Parameters  Defaults
+  max_vel_x: 1                    #0.22
+  min_vel_x: -1                   #-0.22
+
+  max_vel_y: 0.5                    #0.0
+  min_vel_y: -0.5                   #0.0
+
+# The velocity when robot is moving in a straight line
+  max_vel_trans:  1               #0.22
+  min_vel_trans:  0.2             #0.11
+
+  max_vel_theta: 1              #2.75
+  min_vel_theta: -1              #1.37
+
+  acc_lim_x: 2.5
+  acc_lim_y: 0.5                  #0.0
+  acc_lim_theta: 3.0              #3.2 
+
+# Goal Tolerance Parametes
+  xy_goal_tolerance: 0.1          #0.05
+  yaw_goal_tolerance: 0.1         #0.17
+  latch_xy_goal_tolerance: false
+
+# Forward Simulation Parameters
+  sim_time: 1.5
+  vx_samples: 20
+  vy_samples: 20                  #0
+  vth_samples: 40
+  controller_frequency: 5.0      #10.0
+
+# Trajectory Scoring Parameters
+  path_distance_bias: 32.0
+  goal_distance_bias: 20.0
+  occdist_scale: 0.02
+  forward_point_distance: 0.325
+  stop_time_buffer: 0.2
+  scaling_speed: 0.25
+  max_scaling_factor: 0.2
+
+# Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.05
+
+# Debugging
+  publish_traj_pc : true
+  publish_cost_grid_pc: true
+```
+In that case you can see a very good and fast mobility!!!
+![](./Images/3_nav3_nexus_lateral.png)
