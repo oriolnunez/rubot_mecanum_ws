@@ -198,6 +198,9 @@ Go to ~/Desktop/Arduino-1.8.18/libraries directory and remove ros_lib folder. Fr
 ```shell
 rosrun rosserial_arduino make_libraries.py .
 ```
+
+Test Arduino ROS library with "Hello World" exemple: http://wiki.ros.org/rosserial_arduino/Tutorials/Hello%20World
+
 ### **Manage USB ports**
 
 The rbpi4 manage arduino board and rpLIDAR with 2 USB ports. 
@@ -350,13 +353,17 @@ To bringup we need to run the driver designed for rubot_mecanum robot. The drive
 
 The "rubot_mecanum.ino" arduino program is located on /Documentation/files/arduino/ folder
 
+>Carefull!:
+>
+>You need to install Encoder.h lib: https://www.arduino.cc/reference/en/libraries/encoder/
+
 To bringup your rubot_mecanum:
 - open arduino IDE
 - upload the rubot_mecanum.ino file
 - Open 3 new terminals and type:
 ```shell
 roscore
-rosrun rosserial_python serial_node.py /dev/ttyUSB0 
+rosrun rosserial_python serial_node.py _port:=/dev/arduino _baud:=57600
 rostopic pub /cmd_vel geometry_msgs/Twist -r 10 -- '[0.5, 0.0, 0.0]' '[0.0, 0.0, 0.0]'
 ```
 > USB0 is the port to which the Arduino is connected, change it in case yours is different

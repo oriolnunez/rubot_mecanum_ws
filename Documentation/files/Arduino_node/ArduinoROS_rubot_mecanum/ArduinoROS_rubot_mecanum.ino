@@ -14,7 +14,7 @@
 #include"pid.hpp"
 #include"imu.hpp"
 
-#define HDW_DEBUG  //aquesta opcio es per provar que envia correctament pel port serie les dades de la IMU i dels encodes, despres s'ha de desactivar  amb //
+//#define HDW_DEBUG  //aquesta opcio es per provar que envia correctament pel port serie les dades de la IMU i dels encodes, despres s'ha de desactivar  amb //
 
 #if !defined(HDW_DEBUG)
 ros::NodeHandle_<ArduinoHardware, 5, 5, 512, 1024> nh;
