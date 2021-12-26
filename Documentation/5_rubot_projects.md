@@ -1,9 +1,18 @@
-# **gopigo3 challenging projects**
+# **rUBot mecanum challenging projects**
 
 The projects proposed will be based on:
-- Gopigo3 navigation using python-based code
+- rUBot navigation using python-based code
 - Video and picture caption
 - Image processing
+
+The image processing projects will be performed using:
+- 2D raspicam
+- 3D Inter Realsense camera
+
+References InterRealSense:
+- https://dev.intelrealsense.com/docs/ros-wrapper
+- https://www.youtube.com/watch?v=GhHvuAoFC6I
+- https://intel.github.io/robot_devkit_doc/pages/rs_slam.html
 
 References:
 - https://learn.turtlebot.com/
