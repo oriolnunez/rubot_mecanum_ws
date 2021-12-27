@@ -3,10 +3,14 @@
 The main objectives are:
 - Assemble a real robot (rUBot mecanum)
 - Setup the HW drivers in raspberrypi4
-- Control the rUBot movementj
+- Control the rUBot movement
 
 
-%et's see how to fulfill these objectives
+Let's see how to fulfill these objectives
+
+References:
+- https://github.com/ros-mobile-robots/diffbot
+
 ## **1. rUBot assembling**
 
 This tobot prototype is based on:

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
 Copyright (c) 2016, Nadya Ampilogova
@@ -16,7 +16,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 from __future__ import print_function
 import sys
 import rospy
-import cv2
+import cv2 as cv
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
@@ -28,7 +28,7 @@ class TakePhoto:
         self.image_received = False
 
         # Connect image topic
-        img_topic = "/gopigo/camera1/image_raw"
+        img_topic = "/rubot/camera1/image_raw"
         self.image_sub = rospy.Subscriber(img_topic, Image, self.callback)
 
         # Allow up to one second to connection
@@ -39,6 +39,7 @@ class TakePhoto:
         # Convert image to OpenCV format
         try:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
+            cv.putText(cv_image, "Image 1", (100,290), cv.FONT_HERSHEY_TRIPLEX, 1, (0, 255, 255), 1)
         except CvBridgeError as e:
             print(e)
 
@@ -48,7 +49,7 @@ class TakePhoto:
     def take_picture(self, img_title):
         if self.image_received:
             # Save an image
-            cv2.imwrite(img_title, self.image)
+            cv.imwrite(img_title, self.image)
             return True
         else:
             return False
@@ -63,7 +64,7 @@ if __name__ == '__main__':
 
     # Use '_image_title' parameter from command line
     # Default value is 'photo.jpg'
-    img_title = rospy.get_param('~image_title', './src/gopigo3_projects/photos/photo_sim.jpg')
+    img_title = rospy.get_param('~image_title', './src/robot_projects/rubot_projects/photos/photo2_sim.jpg')
 
     if camera.take_picture(img_title):
         rospy.loginfo("Saved image " + img_title)

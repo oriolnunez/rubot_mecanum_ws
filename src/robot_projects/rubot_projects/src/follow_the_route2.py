@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
 Copyright (c) 2016, Nadya Ampilogova
@@ -20,8 +20,8 @@ from math import radians, degrees
 if __name__ == '__main__':
 
     # Read information from yaml file
-    with open("./src/gopigo3_projects/src/route2.yaml", 'r') as stream:
-        dataMap = yaml.load(stream)
+    with open("./src/robot_projects/rubot_projects/src/route2.yaml", 'r') as stream:
+        dataMap = yaml.full_load(stream)
 
     try:
         # Initialize

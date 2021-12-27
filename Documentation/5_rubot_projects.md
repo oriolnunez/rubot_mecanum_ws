@@ -9,10 +9,18 @@ The image processing projects will be performed using:
 - 2D raspicam
 - 3D Inter Realsense camera
 
+References OpenCV:
+- http://wiki.ros.org/cv_bridge/Tutorials/ConvertingBetweenROSImagesAndOpenCVImagesPython
+- https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html
+- https://github.com/Akshay594/OpenCV/tree/master/tutorials
+
 References InterRealSense:
 - https://dev.intelrealsense.com/docs/ros-wrapper
 - https://www.youtube.com/watch?v=GhHvuAoFC6I
 - https://intel.github.io/robot_devkit_doc/pages/rs_slam.html
+
+References for webcam:
+- https://automaticaddison.com/working-with-ros-and-opencv-in-ros-noetic/
 
 References:
 - https://learn.turtlebot.com/
@@ -23,20 +31,20 @@ References:
 - http://wiki.ros.org/Camera%2BDynamixelRobotSample/CameraPictureServer
 - https://industrial-training-master.readthedocs.io/en/melodic/_source/session5/OpenCV-in-Python.html
 
-The first step is to create a new package "gopigo3_projects" with dependencies:
+The first step is to create a new package "rubot_projects" with dependencies:
 - rospy
 - sensor_msgs
 - std_msgs
 - cv_bridge
 
 ```shell
-catkin_create_pkg gopigo3_projects rospy std_msgs sensor_msgs cv_bridge
+catkin_create_pkg rubot_projects rospy std_msgs sensor_msgs cv_bridge
 ```
 This package is already created and ready to use it!. You have not to create it.
 
-We will perform some specific projects related to gopigo3 vision capabilities in a navigation process.
+We will perform some specific projects related to rUBot vision capabilities in a navigation process.
 
-## 1. Gopigo3 takes photo
+## 1. rUBot takes photo
 The objective is to program a python code to take a photo using raspicam in gopigo3 robot prototype.
 
 Important information is taken from: https://learn.turtlebot.com/2015/02/04/3/
@@ -44,15 +52,15 @@ Important information is taken from: https://learn.turtlebot.com/2015/02/04/3/
 Follow the procedure:
 - Identify the topic name where raspicam publishes the photo as a mesage of type sensor_msgs:
 ```shell
-roslaunch gopigo3_slam gopigo3_world.launch 
+roslaunch nexus_slam rubot_world.launch 
 rostopic list
 ```
 - Then modify the "take_photo.py" python file with:
-    - the proper topic name /gopigo/camera1/image_raw
-    - the proper photo filename in folder path: ./src/gopigo3_projects/photos/photo_sim.jpg
+    - the proper topic name /rubot/camera1/image_raw
+    - the proper photo filename in folder path: ./src/rubot_projects/photos/photo_sim.jpg
 - run the "take_photo.py" python file to take a photo
 ```shell
-rosrun gopigo3_projects take_photo.py
+rosrun rubot_projects take_photo.py
 ```
 - Open the "photos" folder and you will see the photo1.jpg created
 
@@ -75,15 +83,14 @@ For this purpose we need to use the **move_base node**. This node:
 Follow the procedure:
 - Launch Gazebo:
     ```shell
-    roslaunch gopigo3_slam gopigo3_world.launch
+    roslaunch nexus_slam rubot_world.launch
     ```
 
 - Launch the navigation:
     ```shell
-    roslaunch gopigo3_slam gopigo3_navigation.launch
+    roslaunch nexus_slam rubot_navigation.launch
     ```
 - Choose a target point in RVIZ using "Publish point" and select the target coordinates (i.e. x=2.0 y=-0.7)
-![Getting Started](./Images/5_go2point.png)
 
 - open "go_to_specific_point_on_map.py" and specify the target point
     - in line 78 specify the target point, customize the following values so they are appropriate for your location
@@ -91,9 +98,9 @@ Follow the procedure:
 
 - Launch the "go_to_specific_point_on_map.py" program:
     ```shell
-    rosrun gopigo3_projects go_to_specific_point_on_map.py
+    rosrun rubot_projects go_to_specific_point_on_map.py
     ```
-
+![](./Images/5_go2point.png)
 
 ## **3. Go to specific point in the map and take a photo**
 
@@ -101,7 +108,7 @@ We will combine our skills from two previous objectives:
 - “Going to a Specific Location on Your Map Using Code” 
 - and “Taking a Photo Using Code”. 
 
-The gopigo3 will go from the start to each goal from the list and take a photo in every position.
+The rUBot will go from the start to each goal from the list and take a photo in every position.
 
 We will work with the files from: https://github.com/markwsilliman/turtlebot
 
@@ -113,11 +120,11 @@ We have generated  the python file **"Follow_the_route.py"** that reads input da
 
 The YAML file has three lines. It means that there are three goals. Look on the first line:
 
-- {filename: 'dumpster.png', position: { x: 0.355, y: -0.2}, quaternion: {r1: 0, r2: 0, r3: -0.628, r4: 0.778}}
+- {filename: 'photo1.png', position: { x: 0.355, y: -0.2}, quaternion: {r1: 0, r2: 0, r3: -0.628, r4: 0.778}}
 
     The dumpster.png is the image title for picture. 
     
-    The position and quaternion set the goal: the place where gopigo3 takes a photo. 
+    The position and quaternion set the goal: the place where rUBot takes a photo. 
 
 The objective is to follow the route and take pictures. 
 
@@ -125,29 +132,29 @@ Proceed with the following steps:
 
 - Launch Gazebo:
     ```shell
-    roslaunch gopigo3_slam gopigo3_world.launch
+    roslaunch nexus_slam rubot_world.launch
     ```
 
 - Run the navigation demo:
     ```shell
-    roslaunch gopigo3_slam gopigo3_navigation.launch
+    roslaunch nexus_slam rubot_navigation.launch
     ```
 
 - Specify a "route.yaml" file with the points to follow and take photo:
 
-    - {filename: './src/gopigo3_projects/photos/picture1.png', position: { x: -0.3, y: -0.8}, quaternion: {r1: 0, r2: 0, r3: -0.628, r4: 0.778}}
-    - {filename: './src/gopigo3_projects/photos/picture2.png', position: { x: 1.7, y: -0.7}, quaternion: {r1: 0, r2: 0, r3: 0.936, r4: 0.353}}
-    - {filename: './src/gopigo3_projects/photos/picture3.png', position: { x: 1.7, y: 0.5}, quaternion: {r1: 0, r2: 0, r3: 0.904, r4: -0.427}}
+    - {filename: './src/robot_projects/rubot_projects/photos/picture1.png', position: { x: -0.3, y: -0.8}, quaternion: {r1: 0, r2: 0, r3: -0.628, r4: 0.778}}
+    - {filename: './src/robot_projects/rubot_projects/photos/picture2.png', position: { x: 1.7, y: -0.7}, quaternion: {r1: 0, r2: 0, r3: 0.936, r4: 0.353}}
+    - {filename: './src/robot_projects/rubot_projects/photos/picture3.png', position: { x: 1.7, y: 0.5}, quaternion: {r1: 0, r2: 0, r3: 0.904, r4: -0.427}}
 
 - Open a terminal in the ldestination of pictures and launch the "follow_the_route.py" program:
     ```shell
-    rosrun gopigo3_projects follow_the_route.py
+    rosrun rubot_projects follow_the_route.py
     ```
 
 >Careful!: 
-Be sure to execute the rosrun instruction inside the "rUBot_gopigo_ws" folder. Review the the absolute path or relative path to the yaml file and the picture path destination.
+Be sure to execute the rosrun instruction inside the "rubot_mecanum_ws" folder. Review the the absolute path or relative path to the yaml file and the picture path destination.
 
-![Getting Started](./Images/5_follow_route2.png)
+![](./Images/5_follow_route2.png)
 
 Improvement!:
 - a modified "follow_the_route2.py" and "route2.yaml" is made in order to insert the target orientation in RPY degrees
@@ -157,4 +164,4 @@ Improvement!:
 
 Launch the "follow_the_route.py" program:
 
-    rosrun gopigo3_projects follow_the_route2.py 
+    rosrun rubot_projects follow_the_route2.py 
