@@ -36,3 +36,5 @@ Compile the ws:
 ```shell
 colcon build
 ```
+
+Create your first Package: https://docs.ros.org/en/foxy/Tutorials/Creating-Your-First-ROS2-Package.html
