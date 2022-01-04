@@ -84,9 +84,31 @@ Follow the instructions on: http://wiki.ros.org/noetic/Installation/Ubuntu
 ```shell
 sudo apt upgrade
 ```
-### **2.3. RaspberryPi4 install Access Point**
+### **2.3. RaspberryPi4 Create WiFi Hotspot in Ubuntu 20**
 
-Follow instructions in: https://www.diyhobi.com/install-wifi-hotspot-raspberry-pi-ubuntu-mate/
+Follow instructions in: https://www.debugpoint.com/2020/04/how-to-create-wifi-hotspot-in-ubuntu-20-04-lts/
+
+![](./Images/2_hotspot.png)
+>Carefull!:
+>- If "Turn On Wi-Fi Hotspot is disabled select another setting (i.e. Bluetooth) and come back to Wi-Fi setting
+>- Choose a SSID corresponding to your robot name
+
+To select this Hotspot automatically on restart:
+- open a terminal and see all the connection names:
+```shell
+nmcli con show
+```
+- Make the connection "Hotspot" start automatically:
+```shell
+nmcli con mod Hotspot connection.autoconnect yes
+``` 
+- Verify listing all the Hotspot parameters including "autoconnect"
+```shell
+nmcli con show Hotspot
+```
+- Identify the IP of the rbpi4 Hotspot:
+  - type ifconfig
+  - in wlan0 you identify the inet address: 10.42.0.1
 
 The raspberrypi4 is configured:
 - to generate a hotspot "rUBot_xx"
@@ -94,12 +116,12 @@ The raspberrypi4 is configured:
 - raspicam activated 
 
 When powering the raspberrypi3, generates a hotspot you have to connect to:
-- SSID name: rUBot_10 
-- password "rUBot"
+- SSID name: rUBot_01 
+- password "rUBot_Mec"
 
 Once you are connected to this network you will be able to connect your computer to the raspberrypi4 using NoMachine viewer:
 - In PC open NoMachine viewer
-- Select the raspberrypi IP address: 192.168.4.1
+- Select the raspberrypi IP address: 10.42.0.1
 - you have to specify:
     - user: ubuntu
     - password: ubuntu1234
