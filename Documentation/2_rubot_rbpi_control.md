@@ -84,7 +84,7 @@ Follow the instructions on: http://wiki.ros.org/noetic/Installation/Ubuntu
 ```shell
 sudo apt upgrade
 ```
-### **2.3. RaspberryPi4 Create WiFi Hotspot in Ubuntu 20**
+### **2.3. Create WiFi Hotspot and setup**
 
 Follow instructions in: https://www.debugpoint.com/2020/04/how-to-create-wifi-hotspot-in-ubuntu-20-04-lts/
 
@@ -110,6 +110,8 @@ nmcli con show Hotspot
   - type ifconfig
   - in wlan0 you identify the inet address: 10.42.0.1
 
+**Setup**
+
 The raspberrypi4 is configured:
 - to generate a hotspot "rUBot_xx"
 - NoMachine activated 
@@ -128,6 +130,12 @@ Once you are connected to this network you will be able to connect your computer
 - You will have the raspberrypi4 desktop on your windows NoMachine screen
 
 ![](./Images/2_nomachine.png)
+
+If you want to change the Hotspot name (one for each robot):
+- Change the Hotspot settings (name or password):
+```shell
+sudo nm-connection-editor
+```
 
 ### **2.4. Create your workspace**
 
