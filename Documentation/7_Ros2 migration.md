@@ -16,6 +16,7 @@ Interesting references for courses:
 - https://www.udemy.com/course/ros2-self-driving-car-with-deep-learning-and-computer-vision/learn/lecture/28236852#overview
 
 Some interesting projects:
+- https://github.com/noshluk2/ROS2-Ultimate-Mobile-Robotics-Course-for-Beginners-OpenCV
 - https://github.com/noshluk2/ROS2-Self-Driving-Car-AI-using-OpenCV
 
 And the ROS2 reference sites:

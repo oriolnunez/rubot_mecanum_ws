@@ -595,7 +595,7 @@ The launch file contains different parameters you can modify:
 ```
 You can see the video result:
 
-[![Watch the video](https://img.youtube.com/vi/z5sAyiFs-RU/maxresdefault.jpg)](https://youtu.be/z5sAyiFs-RU)
+[![Click here to watch the video](https://img.youtube.com/vi/z5sAyiFs-RU/maxresdefault.jpg)](https://youtu.be/z5sAyiFs-RU)
 
 #### **b) ranges method**
 In src folder you create the python file for wall follower purposes
