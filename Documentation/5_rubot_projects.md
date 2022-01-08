@@ -5,6 +5,12 @@ The projects proposed will be based on:
 - Video and picture caption
 - Image processing
 
+The different projects will be:
+- 1. rUBot takes photo
+- 2. Go to specific point in the map
+- 3. Go to specific point in the map and take a photo
+- 4. Line follower
+
 The image processing projects will be performed using:
 - 2D raspicam
 - 3D Inter Realsense camera
@@ -44,7 +50,7 @@ This package is already created and ready to use it!. You have not to create it.
 
 We will perform some specific projects related to rUBot vision capabilities in a navigation process.
 
-## 1. rUBot takes photo
+## **1. rUBot takes photo**
 The objective is to program a python code to take a photo using raspicam in gopigo3 robot prototype.
 
 Important information is taken from: https://learn.turtlebot.com/2015/02/04/3/
@@ -165,3 +171,16 @@ Improvement!:
 Launch the "follow_the_route.py" program:
 
     rosrun rubot_projects follow_the_route2.py 
+
+##**4. Line follower**
+
+Importan information can be obtained here: 
+- https://www.theconstructsim.com/morpheus-chair-create-a-linefollower-with-rgb-camera-and-ros-episode-5/
+- https://www.youtube.com/watch?v=9C7Q8bRERgM
+
+Related to the links:
+- http://www.rosject.io/l/8292943/
+- https://en.wikipedia.org/wiki/Differential_wheeled_robot
+
+And with the code:
+- https://bitbucket.org/theconstructcore/morpheus_chair/src/master/
