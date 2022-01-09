@@ -198,17 +198,57 @@ We have created different models to include in gazebo world:
 - lights
 - road
 
-We have construct a gazebo world and we can call it in gazebo:
+We will construct first these models in a specific folder:
+- /media/sf_github_manelpuig/rubot_mecanum_ws/src/robot_projects/rubot_projects/models
+
+We have to add this folder to GAZEBO_MODEL_PATH tenvironment variable. This is done in ~/.bashrc file adding this line:
+```xml
+export GAZEBO_MODEL_PATH=/media/sf_github_manelpuig/rubot_mecanum_ws/src/robot_projects/rubot_projects/models:$GAZEBO_MODEL_PATH
+```
+To add models in our world add each model in the last part of your world file:
+
+```xml
+<!-- A traffic sign -->
+		<include>
+			<uri>model://sign_board_30</uri>
+			<pose>0 0 0 0 0 0</pose>
+		</include> 
+
+  </world>
+</sdf>
+```
+The size and color is inside the .sdf model file:
+```xml
+<?xml version='1.0'?>
+<sdf version='1.7'>
+  <model name='sign'>
+    <link name='link_0'>
+      <inertial>
+          ...
+      </inertial>
+      <pose>-0 0 0 0 -0 0</pose>
+      <visual name='visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>/media/sf_github_manelpuig/rubot_mecanum_ws/src/robot_projects/rubot_projects/models/sign_board_30/meshes/sign_board.obj</uri>
+            <scale>0.1 0.1 0.1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+            ...
+        </material>
+            ...
+      </visual>
+```
+
+We spawn our robot into gazebo world:
 ```shell
 roslaunch rubot_projects rubot_bringup.launch
 ```
 
-Scale in world:
-```xml
-<!-- A post box plane -->
-		<include>
-			<uri>model://sign_board_30</uri>
-			<pose>2 1 0 1 1 0</pose>
-			<mesh scale="0.5 0.5 0.5" filename="package://sign_board_30/meshes/sign_board.obj"/>
-		</include> 
-```

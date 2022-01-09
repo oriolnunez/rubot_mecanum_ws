@@ -324,11 +324,15 @@
       </camera>
     </gui>
 
-	<!-- A post box plane -->
+	<!-- sign_board_30_small -->
+		<include>
+			<uri>model://sign_board_30_small</uri>
+			<pose>2 1 0 0 0 0</pose>
+		</include> 
+<!-- sign_board_30 -->
 		<include>
 			<uri>model://sign_board_30</uri>
-			<pose>2 1 0 1 1 0</pose>
-			<mesh scale="0.5 0.5 0.5" filename="package://sign_board_30/meshes/sign_board.obj"/>
+			<pose>3 2 0 0 0 0</pose>
 		</include> 
 
   </world>
