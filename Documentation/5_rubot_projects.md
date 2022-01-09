@@ -172,7 +172,7 @@ Launch the "follow_the_route.py" program:
 
     rosrun rubot_projects follow_the_route2.py 
 
-##**4. Line follower**
+## **4. Line follower**
 
 Importan information can be obtained here: 
 - https://www.theconstructsim.com/morpheus-chair-create-a-linefollower-with-rgb-camera-and-ros-episode-5/
@@ -184,3 +184,31 @@ Related to the links:
 
 And with the code:
 - https://bitbucket.org/theconstructcore/morpheus_chair/src/master/
+
+The nexts steps will be:
+- Define a proper simulated world in Gazebo
+- spawn the robot model in Gazebo world
+- setup the robot with camera
+- start the line follower node
+
+### **4.1. world setup**
+
+We have created different models to include in gazebo world:
+- Trafic signs
+- lights
+- road
+
+We have construct a gazebo world and we can call it in gazebo:
+```shell
+roslaunch rubot_projects rubot_bringup.launch
+```
+
+Scale in world:
+```xml
+<!-- A post box plane -->
+		<include>
+			<uri>model://sign_board_30</uri>
+			<pose>2 1 0 1 1 0</pose>
+			<mesh scale="0.5 0.5 0.5" filename="package://sign_board_30/meshes/sign_board.obj"/>
+		</include> 
+```
