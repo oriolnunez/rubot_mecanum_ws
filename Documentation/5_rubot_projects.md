@@ -205,15 +205,25 @@ We have to add this folder to GAZEBO_MODEL_PATH tenvironment variable. This is d
 ```xml
 export GAZEBO_MODEL_PATH=/media/sf_github_manelpuig/rubot_mecanum_ws/src/robot_projects/rubot_projects/models:$GAZEBO_MODEL_PATH
 ```
-To add models in our world add each model in the last part of your world file:
+To add models in our world add each model in the last part of your world file (here starts with empy.world):
 
 ```xml
-<!-- A traffic sign -->
-		<include>
-			<uri>model://sign_board_30</uri>
-			<pose>0 0 0 0 0 0</pose>
-		</include> 
-
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <!-- A traffic sign -->
+    <include>
+      <uri>model://sign_board_30</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include> 
   </world>
 </sdf>
 ```

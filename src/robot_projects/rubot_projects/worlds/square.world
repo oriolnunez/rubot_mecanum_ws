@@ -323,17 +323,5 @@
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-
-	<!-- sign_board_30_small -->
-		<include>
-			<uri>model://sign_board_30_small</uri>
-			<pose>2 1 0 0 0 0</pose>
-		</include> 
-<!-- sign_board_30 -->
-		<include>
-			<uri>model://sign_board_30</uri>
-			<pose>3 2 0 0 0 0</pose>
-		</include> 
-
   </world>
 </sdf>
