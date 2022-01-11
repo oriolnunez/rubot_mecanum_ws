@@ -321,3 +321,4 @@ Start the node line_follower
 ```shell
 roslaunch rubot_projects line_follower_start.launch
 ```
+![](./Images/5_line_follower1.png)

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import numpy as np
 import cv2
 
@@ -20,9 +20,9 @@ class BGR_HSV(object):
 
 if __name__ == '__main__':
     bgr_hsv = BGR_HSV()
-    R = int(raw_input("R="))
-    G = int(raw_input("G="))
-    B = int(raw_input("B="))
+    R = int(input("R="))
+    G = int(input("G="))
+    B = int(input("B="))
     rgb_now = [R, G, B]
     hsv_numpy_now, hsv_numpy_percentage_now = bgr_hsv.rgb_hsv(rgb=rgb_now)
     print(hsv_numpy_now)
