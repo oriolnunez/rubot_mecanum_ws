@@ -6,7 +6,7 @@ material sign_left_turn/Diffuse
     {
       texture_unit
       {
-        texture turn.png
+        texture left_turn.png
         filtering anistropic
         max_anisotropy 16
       }

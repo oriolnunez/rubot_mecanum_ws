@@ -14,13 +14,13 @@
         </inertia>
         <pose>0 0 0 0 -0 0</pose>
       </inertial>
-      <pose>0.004049 0.007882 -0.308682 0 -0 0</pose>
+      <pose>0 0 -0.1 0 -0 0</pose>
       <visual name='visual'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <cylinder>
-            <radius>0.161904</radius>
-            <length>0.0658517</length>
+            <radius>0.05</radius>
+            <length>0.02</length>
           </cylinder>
         </geometry>
         <material>
@@ -41,8 +41,8 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <cylinder>
-            <radius>0.161904</radius>
-            <length>0.065852</length>
+            <radius>0.05</radius>
+            <length>0.02</length>
           </cylinder>
         </geometry>
         <surface>
@@ -103,15 +103,15 @@
           <iyz>0</iyz>
           <izz>3.30867e-06</izz>
         </inertia>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
       </inertial>
-      <pose>0.004049 0.007882 -0.058682 0 -0 0</pose>
+      <pose>0 0 0 0 0 0</pose>
       <visual name='visual'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <cylinder>
-            <radius>0.0421917</radius>
-            <length>0.523006</length>
+            <radius>0.01</radius>
+            <length>0.2</length>
           </cylinder>
         </geometry>
         <material>
@@ -132,8 +132,8 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <cylinder>
-            <radius>0.042192</radius>
-            <length>0.523006</length>
+            <radius>0.01</radius>
+            <length>0.2</length>
           </cylinder>
         </geometry>
         <surface>
@@ -194,14 +194,14 @@
           <iyz>0</iyz>
           <izz>8.06245e-05</izz>
         </inertia>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
       </inertial>
-      <pose>-0.001489 -0.000392 0.36314 0 -0 0</pose>
+      <pose>0 0 0.15 0 0 0</pose>
       <visual name='visual'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <box>
-            <size>0.070481 0.339688 0.335889</size>
+            <size>0.01 0.1 0.1</size>
           </box>
         </geometry>
 
@@ -222,7 +222,7 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <box>
-            <size>0.070481 0.339688 0.335889</size>
+            <size>0.01 0.1 0.1</size>
           </box>
         </geometry>
         <surface>
@@ -289,8 +289,8 @@
         </ode>
       </physics>
     </joint>
-    <joint name='link_1_JOINT_1' type='fixed'>
-      <parent>link_1</parent>
+    <joint name='link_0_JOINT_1' type='fixed'>
+      <parent>link_0</parent>
       <child>link_2</child>
       <pose>0 0 0 0 -0 0</pose>
       <physics>

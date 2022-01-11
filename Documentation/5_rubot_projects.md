@@ -217,6 +217,7 @@ Let's create a "sign board 30" model:
 - in model.sdf you can:
   - reduce the mass of the upper links for inertial stability.
   - change the defauld color (Gazebo/Grey)
+  - change the dimensions and pose of different links if necessary
 - open gazebo and add the generated model to verify the size and mecanical stability.
 
 This model will be used to create all the other traffic signs, for exemple the turn traffic sign:
@@ -287,6 +288,18 @@ To add models in our world add each model in the last part of your world file (h
     <include>
       <uri>model://sign_left_turn</uri>
       <pose>0 0 0.5 0 0 0</pose>
+    </include>
+    <!-- Line Test 1 -->
+    <include>
+        <uri>model://line2</uri>
+        <name>line_1</name>
+        <pose>0 0 0 0 0 0</pose>
+      </include> 
+    <!-- Line Test 2 -->
+    <include>
+        <uri>model://line2</uri>
+        <name>line_2</name>
+        <pose>1 1.025 0 0 0 1.57</pose>
     </include> 
   </world>
 </sdf>
@@ -296,4 +309,15 @@ We spawn our robot into gazebo world:
 ```shell
 roslaunch rubot_projects rubot_bringup.launch
 ```
+To see the camera image, type:
+```shell
+rosrun rqt_image_view rqt_image_view
+```
 
+Open line_follower.py and:
+- change the camera_topic="/rubot/camera1/image_raw", cmd_vel_topic="/cmd_vel"
+- be sure to have the "rgb_hsv.py" file in src folder
+Start the node line_follower
+```shell
+roslaunch rubot_projects line_follower_start.launch
+```
