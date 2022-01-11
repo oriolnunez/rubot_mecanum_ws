@@ -163,7 +163,7 @@ This sensor is integrated as a link and fixed joint for visual purposes:
       </camera>
       <plugin filename="libgazebo_ros_camera.so" name="camera_controller">
         <alwaysOn>true</alwaysOn>
-        <updateRate>0.0</updateRate>
+        <visualize>true</visualize>
         <cameraName>rubot/camera1</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
@@ -178,6 +178,13 @@ This sensor is integrated as a link and fixed joint for visual purposes:
     </sensor>
   </gazebo>
   ```
+>To view the camera image you can:
+> - add the line in the plugin 
+> ```xml
+><visualize>true</visualize>"
+> ```
+> -  use rviz
+> - type rqt in a terminal and select Plugins->Visualization->Image View
 ### **LIDAR sensor plugin**
 This sensor is integrated as a link and fixed joint for visual purposes:
 ```xml
@@ -186,7 +193,7 @@ This sensor is integrated as a link and fixed joint for visual purposes:
     <visual name="sensor_body">
       <origin rpy="0 0 3.14" xyz="0 0 0.04"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/X4.stl" scale="0.0015 0.0015 0.0015"/>
+        <mesh filename="package://nexus_mecanum/meshes/X4.stl" scale="0.0015 0.0015 0.0015"/>
       </geometry>
       <material name="yellow"/>
     </visual>
@@ -220,7 +227,7 @@ A driver is needed to see the 720 laser distance points:
   <gazebo reference="base_scan">
     <sensor name="lds_lfcd_sensor" type="ray">
       <pose>0 0 0 0 0 0</pose>
-      <visualize>false</visualize>
+      <visualize>true</visualize>
       <update_rate>5</update_rate>
       <ray>
         <scan>
@@ -254,6 +261,11 @@ A driver is needed to see the 720 laser distance points:
     </sensor>
   </gazebo>
 ```
+>To view the LIDAR rays be sure to add 
+> ```xml
+><visualize>true</visualize>"
+> ```
+> or use rviz
 
 It is important to note that:
 - the number of points of real RPLidar is 720 (one each half degree)

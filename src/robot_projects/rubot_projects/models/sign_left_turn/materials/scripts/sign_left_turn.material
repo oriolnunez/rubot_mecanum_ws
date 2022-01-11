@@ -1,4 +1,4 @@
-material sign_board_30/Diffuse
+material sign_left_turn/Diffuse
 {
   technique
   {
@@ -6,7 +6,7 @@ material sign_board_30/Diffuse
     {
       texture_unit
       {
-        texture 30.png
+        texture turn.png
         filtering anistropic
         max_anisotropy 16
       }

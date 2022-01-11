@@ -380,8 +380,8 @@
       <camera name="front">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
-          <width>800</width>
-          <height>800</height>
+          <width>320</width>
+          <height>240</height>
           <format>R8G8B8</format>
         </image>
         <clip>
@@ -391,7 +391,7 @@
       </camera>
       <plugin filename="libgazebo_ros_camera.so" name="camera_controller">
         <alwaysOn>true</alwaysOn>
-        <updateRate>0.0</updateRate>
+        <visualize>false</visualize>
         <cameraName>rubot/camera1</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>

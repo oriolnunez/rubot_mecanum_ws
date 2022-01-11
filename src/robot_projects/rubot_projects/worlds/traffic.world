@@ -12,8 +12,8 @@
  
     <!-- sign_board_30_small -->
     <include>
-        <uri>model://sign_board_30_small</uri>
-        <pose>1 0 0 0 0 3.14</pose>
+        <uri>model://sign_left_turn</uri>
+        <pose>1 0 0.5 0 0 3.14</pose>
     </include> 
     <!-- Line Test -->
     <include>

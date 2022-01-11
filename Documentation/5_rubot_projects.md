@@ -205,6 +205,70 @@ We have to add this folder to GAZEBO_MODEL_PATH tenvironment variable. This is d
 ```xml
 export GAZEBO_MODEL_PATH=/media/sf_github_manelpuig/rubot_mecanum_ws/src/robot_projects/rubot_projects/models:$GAZEBO_MODEL_PATH
 ```
+#### **a) Traffic sign**
+Let's create a "sign board 30" model:
+- Open Gazebo as superuser (sudo gazebo)
+- select edit --> Model Editor 
+- add the meshes (obj files or standard objects) needed to create the sign model
+- adjust the size and place the objects in the correct positions to be assembled
+- select joint in gazebo (fixed), define the parent and child links, adjust the relative pose, change the joint name if you want and create the model
+- save the model as "sign_stand"
+- You will see the folder created for this model with 2 files (model.config and model.sdf)
+- in model.sdf you can:
+  - reduce the mass of the upper links for inertial stability.
+  - change the defauld color (Gazebo/Grey)
+- open gazebo and add the generated model to verify the size and mecanical stability.
+
+This model will be used to create all the other traffic signs, for exemple the turn traffic sign:
+- Make a copy of this folder with the name "sign_left_turn"
+- in model.config file change the name to "sign_left_turn"
+- add material and mesh folders inside "sign_left_turn"
+- In materials folder add scripts and textures folder
+- In textures folder add the png file with the sign picture (turn.png)
+- in scripts add a sign_left_turn.material file with this contents (specify the turn.png file):
+```xml
+material sign_left_turn/Diffuse
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture turn.png
+        filtering anistropic
+        max_anisotropy 16
+      }
+    }
+  }
+}
+```
+- Open the model.sdf and change the material properties of link02 where we want to place the turn left texture. Replace the text:
+```xml
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+          <shader type='pixel'/>
+          <emissive>0 0 0 1</emissive>
+        </material>
+```
+by this text:
+```xml
+        <material>
+          <script>
+            <uri>model://sign_left_turn/materials/scripts</uri>
+            <uri>model://sign_left_turn/materials/textures</uri>
+            <name>sign_left_turn/Diffuse</name>
+          </script>
+        </material>
+```
+
+- you have now the turn traffic sign ready!
+
+
 To add models in our world add each model in the last part of your world file (here starts with empy.world):
 
 ```xml
@@ -221,40 +285,11 @@ To add models in our world add each model in the last part of your world file (h
     </include>
     <!-- A traffic sign -->
     <include>
-      <uri>model://sign_board_30</uri>
-      <pose>0 0 0 0 0 0</pose>
+      <uri>model://sign_left_turn</uri>
+      <pose>0 0 0.5 0 0 0</pose>
     </include> 
   </world>
 </sdf>
-```
-The size and color is inside the .sdf model file:
-```xml
-<?xml version='1.0'?>
-<sdf version='1.7'>
-  <model name='sign'>
-    <link name='link_0'>
-      <inertial>
-          ...
-      </inertial>
-      <pose>-0 0 0 0 -0 0</pose>
-      <visual name='visual'>
-        <pose>0 0 0 0 -0 0</pose>
-        <geometry>
-          <mesh>
-            <uri>/media/sf_github_manelpuig/rubot_mecanum_ws/src/robot_projects/rubot_projects/models/sign_board_30/meshes/sign_board.obj</uri>
-            <scale>0.1 0.1 0.1</scale>
-          </mesh>
-        </geometry>
-        <material>
-          <lighting>1</lighting>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
-          </script>
-            ...
-        </material>
-            ...
-      </visual>
 ```
 
 We spawn our robot into gazebo world:
