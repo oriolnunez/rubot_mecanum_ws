@@ -400,7 +400,7 @@ roscore
 rosrun rosserial_python serial_node.py _port:=/dev/arduino _baud:=57600
 rostopic pub /cmd_vel geometry_msgs/Twist -r 10 -- '[0.5, 0.0, 0.0]' '[0.0, 0.0, 0.0]'
 ```
-> USB0 is the port to which the Arduino is connected, change it in case yours is different
+> /dev/arduino is the port to which the Arduino is connected, change it in case yours is different
 
 > The last command sends a Twist message to the robot. The wheels should be moving forward. You can try different movements by modifying the numbers inside the brackets: '[vx, vy, vz]' '[wx, wy, wz]', you should only change vx, vy and wz values as the others do not apply. As it is an holonomic robot, if all the values are 0.0 except for wz (angular velocity in z axis) you will obtain a movement in which the robot spins on itself.
 
@@ -414,8 +414,10 @@ roslaunch rplidar_ros rplidar.launch
 
 To launch the raspicam sensor, execute:
 ```shell
-roslaunch raspicam_node camerav2_1280x960_10fps.launch enable_raw:=true camera_frame_id:="laser_frame"
+roslaunch raspicam_node camerav2_410x308_30fps.launch enable_raw:=true camera_frame_id:="laser_frame"
 ```
+> Change the launch file for image resolution and frame rate
+
 **Final bringup launch file**
 
 We will create a "rubot_bringup.launch" file to setup the rUBot_mecanum.
@@ -423,13 +425,13 @@ We will create a "rubot_bringup.launch" file to setup the rUBot_mecanum.
 <launch>
  <!-- launch rUBot mecanum   -->
   <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
-    <param name="port" type="string" value="/dev/ttyACM0"/>
+    <param name="port" type="string" value="/dev/arduino"/>
     <param name="baud" type="int" value="57600"/>
   </node>
  <!-- launch ydlidar   -->
   <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
   <!-- launch raspicam   -->
-  <include file="$(find raspicam_node)/launch/camerav2_1280x960_10fps.launch">
+  <include file="$(find raspicam_node)/launch/camerav2_410x308_30fps.launch">
 	<arg name="enable_raw" value="true"/>
 	<arg name="camera_frame_id" value="base_scan"/>
   </include>
@@ -477,8 +479,9 @@ The nodes and topics structure corresponds to the following picture:
 We have created a first navigation python files in "src" folder:
 
 - rubot_nav.py: to define a rubot movement with linear and angular speed to reach a maximum x-distance
+- rubot_nav1.py: to define the movement with vx, vy and w to reach a maximum distance in x or y
 
-A "rubot_nav.launch" file have been created to launch the node and python file created above.
+A "rubot_nav.launch" and "rubot_nav1.launch" files have been created to launch the node and python file created above.
 
 To properly perform a especific movement control we have first to:
 - Bringup rUBot_mecanum
@@ -543,7 +546,8 @@ In order to see the rubot with the topics information we will use rviz. Open rvi
 In rviz, select the fixed frame to "base_scan", and add Camera and LaserScan with the corresponding topics names.
 
 You can then save the config file as laserscan.rviz name and use it in the launch file
-![Getting Started](./Images/2_self_nav.png)
+
+![](./Images/2_self_nav.png)
 
 A launch file is created to integrate all the needed roslaunch parameters but you can change the defauld values with this syntax:
 ```shell
