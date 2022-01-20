@@ -15,13 +15,26 @@ References:
 
 This tobot prototype is based on:
 - Mecanum wheel chasis:
+  - https://es.aliexpress.com/item/4001121790912.html?gatewayAdapt=glo2esp&spm=a2g0o.9042311.0.0.3c7963c0XKupJW
+- Battery 12V: 
+  - https://www.amazon.es/gp/product/B07YSCXGNF/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1
+  - https://www.amazon.es/THENAGD-Recargable-Interruptor-Encendido-DC-122000/dp/B091F465RP/ref=sr_1_48?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3OCUQZILUVPAJ&keywords=bateria%2B5v%2B12v%2B2a%2Brecargable&qid=1642669235&sprefix=bateria%2B5v%2B12v%2B2a%2Brecargable%2Caps%2C65&sr=8-48&th=1
+- Battery 5V:
+  - https://www.amazon.es/dp/B09MYQFXP5?psc=1&smid=AKVUAZL0K2E1J&ref_=chk_typ_imgToDp
+  - https://www.amazon.es/SWEYE-Capacidad%EF%BC%BDCargador-M%C3%BAltiples-Protecciones-Smartphones/dp/B0814JMRLR/ref=sr_1_18?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3OCUQZILUVPAJ&keywords=bateria+5v+12v+2a+recargable&qid=1642669235&sprefix=bateria+5v+12v+2a+recargable%2Caps%2C65&sr=8-18
 - On-board Raspberrypi4
+  - https://es.rs-online.com/web/p/raspberry-pi/2012367
+  - https://es.rs-online.com/web/p/placas-hat-y-complementos-para-raspberry-pi/2208633
 - Arduino mega: for HW driver control
+  - https://es.rs-online.com/web/p/arduino/7154084
 - Arduino motor driver shield TB6612FNG:
   - https://es.aliexpress.com/item/4001086592215.html?spm=a2g0o.productlist.0.0.55da155eRs0f1N&algo_pvid=523f34f9-da3e-4a7e-bcbd-927dc560fb14&algo_exp_id=523f34f9-da3e-4a7e-bcbd-927dc560fb14-40
   - https://github.com/Seeed-Studio/Grove_Motor_Driver_TB6612FNG
-- RaspiCAM RGB camera
-- rpLIDAR sensor
+- RaspiCAM RGB camera:
+  - https://es.rs-online.com/web/p/camaras-para-raspberry-pi/9132664
+  - https://es.rs-online.com/web/p/cajas-para-raspberry-pi/8679049
+- rpLidar:
+  - https://www.robotshop.com/es/es/rplidar-a1m8-kit-desarrollo-escaner-laser-360-grados.html
 
 ![Getting Started](./Images/1_osoyoo.png)
 
