@@ -23,6 +23,9 @@ His main characteristics are:
   - Raspicam 2D camera sensor
 - RaspberryPi4 High-level onboard control with Ubuntu20 and ROS Noetic
 
+**Bibliography:**
+- https://bitbucket.org/theconstructcore/workspace/projects/PS
+
 ## **1. rUBot mecanum model generation**
 
 The rUBot model we will use is based on the nexus robot model developed in: https://github.com/RBinsonB/nexus_4wd_mecanum_simulator
