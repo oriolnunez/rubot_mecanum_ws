@@ -1,0 +1,20 @@
+<launch>
+  <arg name="model" default="rubot" />
+  <arg name="open_rviz" default="true"/>
+
+  <param name="robot_description"
+    textfile="$(find rubot_mecanum)/urdf/$(arg model).urdf" />
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="False"/>
+  </node>
+
+  <!-- SLAM using Gmapping -->
+  <include file="$(find rubot_slam)/launch/gmapping.launch"/>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find rubot_slam)/rviz/gmapping.rviz"/>
+  </group>
+</launch>

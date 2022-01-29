@@ -1,9 +1,9 @@
 # **rUBot mecanum SLAM & navigation**
 Using SLAM (short for Simultaneous Localization and Mapping) techniques, you will be able to execute autonomous navigation with rUBot mecanum.
 
-SLAM is a technique used in robotics to explore and map an unknown environment while estimating the pose of the robot itself. As it moves all around, it will be acquiring structured information of the surroundings by processing the raw data coming from its sensors.
+SLAM is a technique used in robotics to explore and map an unknown environment while estimating the pose of the robot itself. As it moves all around, it will be acquiring structured information of the surroundings by processing the raw data coming from its sensors.
 
-For optimal and easy-to-understand coverage of the topic of SLAM, we will implement a 360º-coverage LIDAR sensor in the virtual robot. 
+For optimal and easy-to-understand coverage of the topic of SLAM, we will implement a 360º-coverage LIDAR sensor in the virtual robot. 
 
 ## **Install ROS navigation & SLAM packages**
 First, let's prepare your machine with the required ROS packages needed for the navigation stack (http://wiki.ros.org/navigation):
@@ -26,7 +26,7 @@ To perform navigation you need:
 - Path Planning: Now you can send goal locations to the robot
 - Obstacle avoidance: Finally, you need to avoid obstacles
 ## **Navigation with rUBot mecanum in a custom maze**
-To navigate with gopigo3 robot in a custom maze we have first to create a virtual_slam package with dependencies:
+To navigate with rUBot mecanum robot in a custom maze we have first to create a virtual_slam package with dependencies:
 - roscpp
 - rospy
 - std_msgs
@@ -110,7 +110,7 @@ Let's have a look at some of the most important parameters in "amcl.launch" file
 - odom_model_type (default: "diff"): It puts the odometry model to use. It can be "diff", "omni", "diff-corrected", or "omni-corrected".
 - base_frame_id (default: "base_link"): Indicates the frame associated with the robot base.
 
-We can use the nexus robot as a Differential drive robot model without available lateral movements. 
+We can use the nexus robot as a Differential drive robot model without available lateral movements or Omni drive allowing lateral movements to improve the navigation performances.
 
 #### **Costmap Parameters**
 
