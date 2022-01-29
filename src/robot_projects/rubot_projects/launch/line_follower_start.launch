@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
 
-        <arg name="R" default="150" />
-        <arg name="G" default="160" />
-        <arg name="B" default="174" />
+        <arg name="R" default="255" />
+        <arg name="G" default="255" />
+        <arg name="B" default="255" />
         <arg name="colour_error" default="10.0" />
         <!-- mode if its different from colour_cal, it will start following line ( line_follow )-->
         <arg name="mode" default="follow_line" />

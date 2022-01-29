@@ -237,6 +237,7 @@ if __name__ == '__main__':
 
         #rgb_to_track = [255,255,255]
         rgb_to_track = [red_value, green_value, blue_value]
+        print(rgb_to_track)
         robot_mover = LineFollower(rgb_to_track=rgb_to_track,
                                    colour_error= colour_error_value,
                                    colour_cal=is_colour_cal)
