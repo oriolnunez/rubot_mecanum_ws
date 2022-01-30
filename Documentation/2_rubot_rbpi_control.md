@@ -170,6 +170,9 @@ We will install:
 - rpLIDAR
 - Arduino board with rosserial
 ### **Install raspberrypi camera**
+Information is located on: https://picamera.readthedocs.io/en/release-1.11/install.html
+
+
 You need to activate the raspicam in Ubuntu:
 - open the file config.txt
 ```shell
