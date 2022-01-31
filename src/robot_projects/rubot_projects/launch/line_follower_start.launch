@@ -3,7 +3,7 @@
 
         <arg name="R" default="255" />
         <arg name="G" default="255" />
-        <arg name="B" default="255" />
+        <arg name="B" default="0" />
         <arg name="colour_error" default="10.0" />
         <!-- mode if its different from colour_cal, it will start following line ( line_follow )-->
         <arg name="mode" default="follow_line" />

@@ -33,8 +33,8 @@ class LineFollower(object):
 
     def camera_callback(self, data):
 
-        # It seems that making tests, the rapsicam doesnt update the image until 6 frames have passed
-        self.process_this_frame = self.droped_frames >= 6
+        # It seems that making tests, the rapsicam doesnt update the image until 2-6 frames have passed
+        self.process_this_frame = self.droped_frames >= 0
 
         if self.process_this_frame:
             # We reset the counter
@@ -62,7 +62,8 @@ class LineFollower(object):
                 #descentre = 160
                 #rows_to_watch = 100
                 #crop_img = small_frame[(height) / 2 + descentre:(height) / 2 + (descentre + rows_to_watch)][1:width]
-                crop_img = small_frame
+                #crop_img = small_frame
+                crop_img = cv_image
                 cv2.imshow("crop image", crop_img)
 
                 # Convert from RGB to HSV
@@ -70,21 +71,17 @@ class LineFollower(object):
                 cv2.imshow("HSV image", hsv)
                 print("hsv: "+str(self.hsv))
 
-                """ min_hsv = self.hsv * (1.0-(self._colour_error / 100.0))
-                max_hsv = self.hsv * (1.0 + (self._colour_error / 100.0))
-                lower_yellow = np.array(min_hsv)
-                upper_yellow = np.array(max_hsv)
-                print("Yelow: "+str(lower_yellow)+" , "+str(upper_yellow)) """
-                lower_white = np.array([0,0,0], dtype=np.uint8)
-                upper_white = np.array([0,0,255], dtype=np.uint8)
+                lower_color = np.array([28,255,255], dtype=np.uint8)
+                upper_color = np.array([33,255,255], dtype=np.uint8)
 
                 # Threshold the HSV image to get only yellow colors
-                mask = cv2.inRange(hsv, lower_white, upper_white)
+                mask = cv2.inRange(hsv, lower_color, upper_color)
                 cv2.imshow("mask image", mask)
 
                 # Bitwise-AND mask and original image
                 res = cv2.bitwise_and(crop_img, crop_img, mask=mask)
-                cv2.imshow("re image", res)
+                cv2.imshow("res image", res)
+                # Our OpenCV version is 4 --> major=4
 
                 if self.major == '3':
                     # If its 3
@@ -159,8 +156,8 @@ class LineFollower(object):
         FACTOR_ANGULAR = 0.1
 
         delta_left_percentage_not_important = 0.1
-        min_lin = 0.26
-        min_ang = 0.7
+        min_lin = 0.2 # before 0.26
+        min_ang = 0.3 # before 0.7
         
         if cx is not None and cy is not None:
             origin = [image_dim_x / 2.0, image_dim_y / 2.0]

@@ -172,7 +172,72 @@ Launch the "follow_the_route.py" program:
 
     rosrun rubot_projects follow_the_route2.py 
 
-## **4. Line follower**
+## **4. Color Detection**
+Detailed official information in: 
+- https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_colorspaces/py_colorspaces.html
+- https://www.peko-step.com/es/tool/hsvrgb.html
+
+In HSV, it is more easier to represent a color than RGB color-space. 
+![](./Images/5_HSV.png)
+
+In our application, we will try to extract a blue colored object. So here is the method:
+
+- Take each frame of the video
+- Convert from BGR to HSV color-space
+- We threshold the HSV image for a range of blue color
+- Now extract the blue object alone, we can do whatever on that image we want.
+
+Below is the code which are commented in detail :
+```python
+#!/usr/bin/env python3
+
+import cv2
+import numpy as np
+
+# terminal in the png folder
+# blue color figures RGB=(0,100,200) or BGR=(200,100,0)
+frame = cv2.imread("color.png", cv2.IMREAD_COLOR)
+cv2.imshow("blue circle", frame)
+# Convert BGR to HSV
+hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+# Convert blue color BGR=[200,100,0]
+color = np.uint8([[[200,100,0]]])
+hsv_color=cv2.cvtColor(color, cv2.COLOR_BGR2HSV)
+print("HSV Color= " + str(hsv_color))
+# Exemple blue color figures HSV=(105 255 200)
+cv2.imshow("hsv", hsv)
+# define range of blue color in HSV
+# Take red H range: fom 90 to 130 --> [90, 100,20] and [130, 255, 255] 
+# Take S range: from 100 to 255 (for white from 0)
+# Tahe V range: from 20 to 255 (for white from 0)
+lower_color = np.array([0,0,40])
+upper_color = np.array([10,0,255])
+# Threshold the HSV image to get only blue colors
+mask = cv2.inRange(hsv, lower_color, upper_color)
+
+# Bitwise-AND mask and original image
+res = cv2.bitwise_and(frame,frame, mask= mask)
+
+cv2.imshow('frame',frame)
+cv2.imshow('mask',mask)
+cv2.imshow('res',res)
+cv2.waitKey(0)
+    # It is for removing/deleting created GUI window from screen
+    # and memory
+cv2.destroyAllWindows()
+```
+![](./Images/5_color_detection.png)
+
+Type from road.png folder:
+```hell
+rosrun rubot_projects color_detection.py
+```
+
+https://pythonexamples.org/python-opencv-cv2-find-contours-in-image/
+
+## **5. Line follower**
+
+## **5. Line follower**
 
 Importan information can be obtained here: 
 - https://www.theconstructsim.com/morpheus-chair-create-a-linefollower-with-rgb-camera-and-ros-episode-5/
@@ -223,7 +288,7 @@ Let's create a "sign board 30" model:
 This model will be used to create all the other traffic signs, for exemple the turn traffic sign:
 - Make a copy of this folder with the name "sign_left_turn"
 - in model.config file change the name to "sign_left_turn"
-- add material and mesh folders inside "sign_left_turn"
+- add materials and meshes folders inside "sign_left_turn"
 - In materials folder add scripts and textures folder
 - In textures folder add the png file with the sign picture (turn.png)
 - in scripts add a sign_left_turn.material file with this contents (specify the turn.png file):
@@ -273,7 +338,6 @@ by this text:
 To add models in our world add each model in the last part of your world file (here starts with empy.world):
 
 ```xml
-<?xml version="1.0" ?>
 <sdf version="1.5">
   <world name="default">
     <!-- A global light source -->

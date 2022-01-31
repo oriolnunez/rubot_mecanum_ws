@@ -44,6 +44,11 @@ This tobot prototype is based on:
 
 ![Getting Started](./Images/1_osoyoo.png)
 
+Other platforms:
+- https://www.superdroidrobots.com/robotic-kits-platforms/mecanum-robots
+- https://www.robotshop.com/es/es/kit-robot-arduino-con-rueda-mecanum-4wd-60-mm.html
+- https://www.robotshop.com/es/es/4wd-robot-basico-mecanum-compatible-con-arduino.html
+
 ## **2. Setup the HW drivers in raspberrypi4**
 The raspberrypi4 onboard is preinstalled with:
 - Ubuntu 20 server 32bits
