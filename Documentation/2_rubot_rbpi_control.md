@@ -70,6 +70,9 @@ Follow the steps in order to properly install the Raspberrypi:
   - login: ubuntu
   - password: ubuntu
 - You will have to change the password (we use ubuntu1234)
+> Note: 
+> - Connect HDMI just after power rbpi4
+> - Keyboard is not ESP and "-" is on "'" key
 
 **Install Ubuntu Desktop**
 
@@ -77,7 +80,11 @@ In the terminal, type:
 ```shell
 sudo apt-get install ubuntu-desktop
 ```
+> Follow instructions:
+>- Perhaps you may type "sudo dpkg --configure -a"
+
 After some minutes, the desktop is installed. 
+> You have to update and upgrade the ubuntu now (type it several times untill all packages will be updated)
 
 Type:
 ```shell
@@ -91,8 +98,8 @@ You will get the ubuntu 20 desktop
 
 Download nomachine in RaspberryPi and PC:
 - In raspberryPi:
-  - Download the version ARMv8 DEB in: https://www.nomachine.com/download/linux&id=29&s=Raspberry
-  - open a terminal and install following the instructions
+  - Download the Raspberrypy4 version ARMv8 DEB in: https://www.nomachine.com/download/linux&id=29&s=Raspberry
+  - open a terminal in download folder and install following the instructions
 - In PC: https://www.nomachine.com/
 
 **Notebook visualization in raspberrypi**
@@ -104,9 +111,11 @@ https://nbviewer.ipython.org/
 ### **2.2. ROS Noetic Desktop installation**
 
 Follow the instructions on: http://wiki.ros.org/noetic/Installation/Ubuntu
-> Is recommended to upgrade first:
+> Is recommended to update and upgrade first:
 ```shell
+sudo apt update
 sudo apt upgrade
+sudo apt update
 ```
 ### **2.3. Create WiFi Hotspot and setup**
 

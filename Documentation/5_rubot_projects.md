@@ -172,20 +172,40 @@ Launch the "follow_the_route.py" program:
 
     rosrun rubot_projects follow_the_route2.py 
 
-## **4. Color Detection**
+## **4. Object Detection & tracking**
 Detailed official information in: 
 - https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_colorspaces/py_colorspaces.html
+- https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_contours/py_contours_begin/py_contours_begin.html
+- https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_contours/py_contour_features/py_contour_features.html
 - https://www.peko-step.com/es/tool/hsvrgb.html
+
+The objective of this project is:
+- From an image obtained with raspicam
+- Detect the yelow line
+- identify the contours
+- obtain the center of mass (centroids from moments)
 
 In HSV, it is more easier to represent a color than RGB color-space. 
 ![](./Images/5_HSV.png)
 
-In our application, we will try to extract a blue colored object. So here is the method:
+**a) Obtain a camera image**
 
-- Take each frame of the video
+Locate the robot in the Gazebo simulated environment.
+```shell
+roslaunch rubot_projects rubot_bringup.launch
+rosrun rqt_image_view rqt_image_view
+```
+Save an image to work with. The choosen image is:
+
+![](./Images/5_road_view1.png)
+
+**b) Detect the yelow line**
+
+We will try to detect the yelow line. So here is the method:
+
 - Convert from BGR to HSV color-space
-- We threshold the HSV image for a range of blue color
-- Now extract the blue object alone, we can do whatever on that image we want.
+- We threshold the HSV image for a range of yelow color
+- Now extract the yelow object alone, we can do whatever on that image we want.
 
 Below is the code which are commented in detail :
 ```python
@@ -232,10 +252,9 @@ Type from road.png folder:
 ```hell
 rosrun rubot_projects color_detection.py
 ```
+**C) Identify the contours**
 
 https://pythonexamples.org/python-opencv-cv2-find-contours-in-image/
-
-## **5. Line follower**
 
 ## **5. Line follower**
 
