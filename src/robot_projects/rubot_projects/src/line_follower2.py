@@ -39,7 +39,7 @@ class LineFollower(object):
         if self.process_this_frame:
             # We reset the counter
             #print("Process Frame, Dropped frame to==" + str(self.droped_frames))
-            self.droped_frames = 0
+            self.droped_frames = 2
             try:
                 # We select bgr8 because its the OpenCV encoding by default
                 cv_image = self.bridge_object.imgmsg_to_cv2(data, desired_encoding="bgr8")
@@ -57,7 +57,7 @@ class LineFollower(object):
                 height, width, channels = small_frame.shape
                 print("shape: "+str(height)+" , "+str(width))
 
-                rospy.logdebug("height=%s, width=%s" % (str(height), str(width)))
+                rospy.loginfo("height=%s, width=%s" % (str(height), str(width)))
 
                 #descentre = 160
                 #rows_to_watch = 100
@@ -156,8 +156,8 @@ class LineFollower(object):
         FACTOR_ANGULAR = 0.1
 
         delta_left_percentage_not_important = 0.1
-        min_lin = 0.2 # before 0.26
-        min_ang = 0.3 # before 0.7
+        min_lin = 0.0 # before 0.26
+        min_ang = 0.0 # before 0.7
         
         if cx is not None and cy is not None:
             origin = [image_dim_x / 2.0, image_dim_y / 2.0]
