@@ -3,7 +3,7 @@
   <model name='road'>
     <link name='link_0'>
       <inertial>
-        <mass>1.39978</mass>
+        <mass>10</mass>
         <inertia>
           <ixx>24.9463</ixx>
           <ixy>0</ixy>
@@ -19,7 +19,7 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <box>
-            <size>9.6725 14.6239 0.00985</size>
+            <size>10 15 0.02</size>
           </box>
         </geometry>
         <material>
@@ -38,7 +38,7 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <box>
-            <size>9.6725 14.6239 0.00985</size>
+            <size>10 15 0.02</size>
           </box>
         </geometry>
         <surface>
