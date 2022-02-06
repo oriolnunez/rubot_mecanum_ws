@@ -10,6 +10,7 @@ Let's see how to fulfill these objectives
 
 References:
 - https://github.com/ros-mobile-robots/diffbot
+- https://johanschwind.medium.com/mobile-robot-teleoperation-with-the-jetson-nano-and-ros-d72b4b57e9be
 
 ## **1. rUBot assembling**
 
@@ -270,6 +271,10 @@ rosrun rosserial_arduino make_libraries.py .
 ```
 
 Test Arduino ROS library with "Hello World" exemple: http://wiki.ros.org/rosserial_arduino/Tutorials/Hello%20World
+
+**Mecanum robot drive**
+Take care when using Arduino Mega board: 
+- 
 
 ### **Manage USB ports**
 
