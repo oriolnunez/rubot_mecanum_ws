@@ -272,9 +272,6 @@ rosrun rosserial_arduino make_libraries.py .
 
 Test Arduino ROS library with "Hello World" exemple: http://wiki.ros.org/rosserial_arduino/Tutorials/Hello%20World
 
-**Mecanum robot drive**
-Take care when using Arduino Mega board: 
-- 
 
 ### **Manage USB ports**
 
@@ -381,6 +378,33 @@ Follow instructions:
   ```
 
 You have now your rUBot_mecanum ready to work-with!!
+
+### **Install joy control**
+
+Almost all robots subscribe /cmd_vel topic whose message type is Twist for controlling robots.
+
+Here we demonstrate how to publish Twist message to /cmd_vel using Dualshock 4 which is an official controller of PlayStation 4.
+
+Install the following packages:
+```shell
+sudo apt-get install ros-noetic-joy
+sudo apt-get install ros-noetic-joy-teleop
+sudo apt-get install ros-noetic-teleop-tools
+sudo apt-get install ros-noetic-teleop-twist-joy
+```
+Optional: 
+- https://github.com/chrippa/ds4drv
+- http://wiki.ros.org/ds4_driver
+
+Follow indications in:
+https://github.com/Utagoe-robotics/Wiki/wiki/melodic-ds4-joy
+
+Test it using:
+```shell
+roslaunch teleop_twist_joy ps4_teleop.launch joy_dev:="/dev/input/js2"
+```
+Test the /joy and /cmd_vel topic's contents
+
 
 ### **Setup your workspace**
 

@@ -1,4 +1,16 @@
 # **rUBot mecanum model & control**
+
+Diferent mecanum robot prototypes are available in the market:
+- Banggood: https://es.banggood.com/MC100-4WD-Wheeled-Trolley-Smart-Car-Kit-with-Mecanum-Wheel-1-48-Reduction-Ratio-TT-Motor-p-1750584.html?utm_source=googleshopping&utm_medium=cpc_organic&gmcCountry=ES&utm_content=minha&utm_campaign=minha-esg-es-pc&currency=EUR&cur_warehouse=CN&createTmp=1&ID=566379&utm_source=googleshopping&utm_medium=cpc_bgcs&utm_content=dcr&utm_campaign=dcr-ssc-esg-newcustom-ncv90-all-0918&ad_id=466159945321&gclid=CjwKCAiA9aKQBhBREiwAyGP5leASG0rgJg4DdLkhyGJHO2s8--61OPUbExwgUVEGmNRK6F4PyGSWQhoCUrMQAvD_BwE
+- OSOYOO: https://www.amazon.es/dp/B082DBYH9G?tag=amz-mkt-chr-es-21&ascsubtag=1ba00-01000-org00-win10-other-nomod-es000-pcomp-feature-scomp-feature-scomp&ref=aa_scomp
+- Custom: https://howtomechatronics.com/projects/arduino-mecanum-wheels-robot/
+- Nexus: https://www.robotshop.com/es/es/kit-robot-mecanum-4wd-compatible-con-arduino.html?gclid=CjwKCAiA9aKQBhBREiwAyGP5lUZxwsAoWg1ReL8KX55B53HHBaoz_CsA6pTOyKxdpkayztIXsi9ihxoC3N0QAvD_BwE
+- Nexus2: https://www.robotshop.com/es/es/kit-robot-arduino-con-rueda-mecanum-4wd-60-mm.html
+- Vikep: https://www.amazon.es/VIKEP-AutoPilot-Posicionamiento-automatizado-Conducci%C3%B3n/dp/B09MKFLFKJ/ref=sr_1_24?keywords=robot+mecanum&qid=1644752293&sr=8-24
+- VIKEP_Chasis: https://www.amazon.es/VIKEP-Motores-Bricolaje-Mecanum-Plataforma/dp/B09NNFKL3Z/ref=sr_1_42?keywords=robot%2Bmecanum&qid=1644752293&sr=8-42&th=1
+- KESOTO_Chasis: https://www.amazon.es/KESOTO-Chasis-Coche-Inteligente-Mecanum/dp/B082SQ787K/ref=sr_1_28?keywords=robot+mecanum&qid=1644752293&sr=8-28
+
+
 The objectives of this chapter are:
 - Create a model of our rUBot 
 - use rviz package to view the different topics and nodes
