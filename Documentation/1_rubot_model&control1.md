@@ -47,16 +47,16 @@ The rUBot model we will use is based on the nexus robot model developed in: http
 We will use this model with some modifications to take into account the different sensors installed onboard.
 
 ### **1.1 Nexus mecanum model generation**
-First of all, we have to create the "nexus_mecanum" package containing the nexus model. In case you want to create it from scratch, type:
+First of all, we have to create the "rubot_mecanum_description" package containing the nexus model. In case you want to create it from scratch, type:
 ```shell
-cd ~/rubot_mecanum_ws/src/robot_description
-catkin_create_pkg nexus_mecanum rospy
-cd ../..
+cd ~/Desktop/rubot_mecanum_ws/src
+catkin_create_pkg rubot_mecanum_description rospy
+cd ..
 catkin_make
 ```
 Then open the .bashrc file and verify the environment variables and source to the proper workspace:
 ```shell
-source ~/rubot_mecanum_ws/devel/setup.bash
+source ~/Desktop/rubot_mecanum_ws/devel/setup.bash
 ```
 To create our robot model, we use URDF files (Unified Robot Description Format). URDF file is an XML format file for representing a robot model.(http://wiki.ros.org/urdf/Tutorials)
 
@@ -88,7 +88,7 @@ In the case or upper left wheel:
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_mecanum/meshes/mecanum_wheel_left.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://rubot_mecanum_description/meshes/nexus/mecanum_wheel_left.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
@@ -134,7 +134,7 @@ This sensor is integrated as a link and fixed joint for visual purposes:
     <visual>
       <origin rpy="0 1.570795 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://nexus_4wd_mecanum_description/meshes/piCamera.stl" scale="0.0025 0.0025 0.0025"/>
+        <mesh filename="package://rubot_mecanum_description/meshes/nexus/piCamera.stl" scale="0.0025 0.0025 0.0025"/>
       </geometry>
       <material name="yellow"/>
     </visual>
@@ -208,7 +208,7 @@ This sensor is integrated as a link and fixed joint for visual purposes:
     <visual name="sensor_body">
       <origin rpy="0 0 3.14" xyz="0 0 0.04"/>
       <geometry>
-        <mesh filename="package://nexus_mecanum/meshes/X4.stl" scale="0.0015 0.0015 0.0015"/>
+        <mesh filename="package://rubot_mecanum_description/meshes/nexus/X4.stl" scale="0.0015 0.0015 0.0015"/>
       </geometry>
       <material name="yellow"/>
     </visual>
@@ -309,17 +309,17 @@ In this gazebo plugin, the kinematics of the robot configuration is defined:
 We use a specific "display.launch" launch file where we specify the robot model we want to open in rviz with a configuration specified in "urdf.rviz":
 ```xml
 <launch>
-  <param name="robot_description" textfile="$(find nexus_mecanum)/urdf/nexus.urdf" />
+  <param name="robot_description" textfile="$(find rubot_mecanum_description)/urdf/nexus.urdf" />
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find nexus_mecanum)/rviz/urdf_final.rviz" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rubot_mecanum_description)/rviz/urdf_final.rviz" />
 </launch>
 ```
 Launch the ROS visualization tool to check that the model is properly built. 
 RViz only represents the robot visual features. You have available all the options to check every aspect of the appearance of the model
 ```shell
-roslaunch nexus_mecanum display.launch
+roslaunch rubot_mecanum_description display.launch
 ```
 ![](./Images/1_nexus_urdf.png)
 
@@ -357,7 +357,7 @@ We can open the new model in rviz and gazebo:
 - roslaunch rubot_mecanum display.launch
 - roslaunch rubot_mecanum gazebo.launch
 
-![Getting Starter](./Images/1_rubot_mecanum2.png)
+![](./Images/1_rubot_mecanum2.png)
 
 **Activity:**
 
@@ -373,17 +373,17 @@ Gazebo is an open source 3D robotics simulator and includes an ODE physics engin
 
 We will create a new gazebo.launch file to spawn the robot in an empty world:
 ```shell
-roslaunch nexus_mecanum gazebo.launch
-roslaunch nexus_mecanum display.launch
+roslaunch rubot_mecanum_description gazebo.launch
+roslaunch rubot_mecanum_description display.launch
 ```
 ```xml
 <launch>
   <include file="$(find gazebo_ros)/launch/empty_world.launch" />
   <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
-    args="-file $(find nexus_mecanum)/urdf/nexus.urdf -urdf -model nexus" output="screen"/>
+    args="-file $(find rubot_mecanum_description)/urdf/nexus.urdf -urdf -model nexus" output="screen"/>
 </launch>
 ```
-![Getting Starter](./Images/1_nexus_mecanum2.png)
+![](./Images/1_nexus_mecanum2.png)
 
 > Gazebo colors:
 > - are defined at the end of URDF file
@@ -445,19 +445,28 @@ Once you finish is better to close the terminal you have work as superuser
 - save your world in a Desktop directory
 - close gazebo and the terminal
 #### **Create world with model parts**
-You can create model parts like walls of 1m or 0,5m with a geometry and color, using building editor. These parts can be saved in "home/ubuntu/building_editor_models/" and you will have acces in gazebo insert section. Then you can construct your world adding parts.
+You can create model parts like walls of 90cm or 60cm with a geometry and color, using building editor. These parts can be saved:
+- in ~/.gazebo/models/
+- in speciffic folder in your package (i.e. rubot_mecanum_ws/src/rubot_projects/models), if you add this line in .bashrc file:
+  ```xml
+  export GAZEBO_MODEL_PATH=/media/sf_github_manelpuig/rubot_mecanum_ws/src/rubot_projects/models:$GAZEBO_MODEL_PATH
+  ```
+
+You will have acces in gazebo insert section. Then you can construct your world adding parts.
 
 This is an exemple:
 ![](./Images/1_BuildingEditor.png)
+
 ### **Exercise:**
 Generate a proper world corresponding to the real world we want to spawn our rUBot mecanum robot in. For exemple a maze.
 
 Save this world as maze.world
+
 ### **2.2. Spawn the gopigo3 robot in project world**
 
 Now, spawn the rUBot mecanum robot in our generated world. You have to create a "nexus_world.launch" file:
 ``` shell
-roslaunch nexus_mecanum nexus_world.launch
+roslaunch rubot_mecanum_description nexus_world.launch
 ```
 ![](./Images/1_nexus_mecanum3.png)
 
@@ -465,9 +474,9 @@ roslaunch nexus_mecanum nexus_world.launch
 
 Once the world has been generated we will create a ROS Package "rubot_control" to perform the autonomous navigation
 ```shell
-cd ~/rubot_mecanum_ws/src/robot_control
+cd ~/rubot_mecanum_ws/src
 catkin_create_pkg rubot_control rospy std_msgs sensor_msgs geometry_msgs nav_msgs
-cd ../..
+cd ..
 catkin_make
 ```
 ### **3.1 Kinematics model of mecanum robot**
@@ -560,10 +569,10 @@ roslaunch nexus_control rubot_nav.launch
   <arg name="z_pos" default="0.0"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find nexus_control)/worlds/$(arg world)"/>
+    <arg name="world_name" value="$(find rubot_control)/worlds/$(arg world)"/>
   </include>
 
-  <param name="robot_description" textfile="$(find nexus_mecanum)/urdf/$(arg model)" />
+  <param name="robot_description" textfile="$(find rubot_mecanum_description)/urdf/$(arg model)" />
   
   <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"
     args="-urdf -model nexus -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
@@ -575,12 +584,12 @@ roslaunch nexus_control rubot_nav.launch
   <!-- Combine joint values -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
   <!-- Show in Rviz   -->
-  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find nexus_control)/rviz/rubot_nav.rviz" required="true"/>
+  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find rubot_control)/rviz/rubot_nav.rviz" required="true"/>
   <!-- Navigation Program   -->
     <arg name="v" default="0.1"/>
     <arg name="w" default="0"/>
     <arg name="d" default="0.3"/>
-  <node name="rubot_nav" pkg="nexus_control" type="rubot_nav.py" output="screen" >
+  <node name="rubot_nav" pkg="rubot_control" type="rubot_nav.py" output="screen" >
     <param name="v" value="$(arg v)"/>
     <param name="w" value="$(arg w)"/>
     <param name="d" value="$(arg d)"/>
@@ -614,7 +623,7 @@ rospy.spin()
 ```
 To test the LIDAR we have generated a launch file
 ```shell
-roslaunch nexus_control rubot_lidar_test.launch
+roslaunch rubot_control rubot_lidar_test.launch
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 ![](./Images/1_nexus_lidar_test.png)
@@ -625,13 +634,14 @@ We will use now the created world to test the autonomous navigation with obstacl
 
 We have to launch the "rubot_self_nav.launch" file in the "rubot_control" package.
 ```shell
-roslaunch nexus_control rubot_self_nav.launch
+roslaunch rubot_control rubot_self_nav.launch
 ```
 >Careful:
 - we have included in launch file: gazebo spawn, rviz visualization and rubot_nav node execution 
 - Verify in rviz you have to change the fixed frame to "odom" frame
 
 ![](./Images/1_nexus_self.png)
+
 The algorithm description functionality is:
 - "rubot_self_nav.py": The Python script makes the robot go forward. 
     - LIDAR is allways searching the closest distance and the angle
@@ -691,7 +701,7 @@ The algorith is based on laser ranges test and depends on the LIDAR type:
 ![](./Images/1_lidar_type.png)
 
 ```shell
-roslaunch nexus_control rubot_wall_follower_rg.launch
+roslaunch rubot_control rubot_wall_follower_rg.launch
 ```
 ![](./Images/1_nexus_wall_follower_rg.png)
 
@@ -706,6 +716,6 @@ Modify the python script developed in turlesim control package according to the 
 
 For validation type:
 ```shell
-roslaunch nexus_control rubot_go2pose.launch
+roslaunch rubot_control rubot_go2pose.launch
 ```
 ![](./Images/1_nexus_go2pose.png)
