@@ -348,16 +348,16 @@ roslaunch rubot_mecanum_description display.launch
 
 We can create a new model in 3D using SolidWorks and use the URDF plugin to generate the URDF file model: rubot_mecanum.urdf
 
-This model is located in a new "rubot_mecanum" package
-
-We add the same sensors and plugins.
-
-We can open the new model in rviz and gazebo:
-
-- roslaunch rubot_mecanum display.launch
-- roslaunch rubot_mecanum gazebo.launch
-
 ![](./Images/1_rubot_mecanum2.png)
+
+You can use FreeCAD to design a custom model and construct manually the URDF file. 
+
+For that it is important to:
+- install in VS Code the ROS extension from Microsoft
+- Press ctrl+shift+p to access the control commands 
+- type ROS and select ROS: Preview URDF
+
+
 
 **Activity:**
 
