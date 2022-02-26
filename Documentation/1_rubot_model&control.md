@@ -120,7 +120,7 @@ Possible correct values are
       <inertial>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <mass value="10"/>
-        <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+        <inertia ixx="10" ixy="0" ixz="0" iyy="10" iyz="0" izz="10"/>
       </inertial>
   ```
 The rUBot model includes different sensors and actuators:
@@ -394,6 +394,7 @@ roslaunch rubot_mecanum_description display.launch
 ![](./Images/1_rubot_rviz.png) 
 
 ![](./Images/1_rubot_gazebo.png)
+> FreeCAD model is shifted -0.028m this is why the view in gazebo. It is better the lowest coordinates are 0m in freecad.
 
 > rUBot frames: are all located in the back-right corner:
 ![](./Images/1_rubot_frames.png)
@@ -417,6 +418,8 @@ roslaunch rubot_mecanum_description display.launch
 ```
 
 ![](./Images/1_rubot_frames2.png)
+
+
 ## **2. rUBot mecanum spawn in world environment**
 
 In robotics research, always before working with a real robot, we simulate the robot behaviour in a virtual environment close to the real one. The dynamic simulation of a robot, is a better approach to examining the actual behavior of the robot rather than just using software. Rigid body mechanics, including mass and inertia, friction, damping, motor controllers, sensor detection properties, noise signals, and every aspect of the robot and the environment that can be retained in a model with reasonable accuracy is much less expensive when replicated in a simulator than if you tried to do this with physical hardware.
