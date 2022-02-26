@@ -112,6 +112,17 @@ In the case or upper left wheel:
     <axis xyz="0 1 0"/>
   </joint>
 ```
+> Be careful with base_link:
+>
+> The inertia matrix can be analytically calculated with the mas and geometry. Be sure the mass is consistent and the inertia Ixx,Iyy and Izz are high enough to avoid underired drift movements.
+Possible correct values are
+  ```xml
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="10"/>
+        <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+      </inertial>
+  ```
 The rUBot model includes different sensors and actuators:
 
 Sensors:
@@ -323,7 +334,7 @@ roslaunch rubot_mecanum_description display.launch
 ```
 ![](./Images/1_nexus_urdf.png)
 
-> Colors: 
+> Colors in rviz: 
 >- are defined at the beginning
 >- Ensure the "visual" link properties have no "name"
 ```xml
@@ -343,7 +354,14 @@ roslaunch rubot_mecanum_description display.launch
       <material name="yellow"/>
     </visual>
 ```
-
+> Colors in gazebo: 
+>- are defined at the end of urdf file:
+```xml
+<!-- Gazebo colors have to be specified here with predefined Gazebo colors -->
+  <gazebo reference="base_link">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+```
 ### **1.2. rUBot mecanum custom model**
 
 We can create a new model in 3D using SolidWorks and use the URDF plugin to generate the URDF file model: rubot_mecanum.urdf
@@ -373,9 +391,32 @@ Test the robot model within rview and gazebo
 ```shell
 roslaunch rubot_mecanum_description display.launch
 ```
-![](./Images/1_rubot_rviz.png)
+![](./Images/1_rubot_rviz.png) 
 
+![](./Images/1_rubot_gazebo.png)
 
+> rUBot frames: are all located in the back-right corner:
+![](./Images/1_rubot_frames.png)
+> You need to shift the Image and lidar frames in urdf file according to the Freecad position values
+```xml
+<!-- 2D Camera as a mesh of actual PiCamera -->
+  <joint name="joint_camera" type="fixed">
+    <origin rpy="0 0 0" xyz="0.236 0.076 0.072"/>
+    <parent link="base_link"/>
+    <child link="camera"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <link name="camera">
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.236 -0.076 -0.072"/>
+      <geometry>
+        <mesh filename="package://rubot_mecanum_description/meshes/rubot/picam.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+```
+
+![](./Images/1_rubot_frames2.png)
 ## **2. rUBot mecanum spawn in world environment**
 
 In robotics research, always before working with a real robot, we simulate the robot behaviour in a virtual environment close to the real one. The dynamic simulation of a robot, is a better approach to examining the actual behavior of the robot rather than just using software. Rigid body mechanics, including mass and inertia, friction, damping, motor controllers, sensor detection properties, noise signals, and every aspect of the robot and the environment that can be retained in a model with reasonable accuracy is much less expensive when replicated in a simulator than if you tried to do this with physical hardware.
@@ -388,26 +429,27 @@ roslaunch rubot_mecanum_description gazebo.launch
 roslaunch rubot_mecanum_description display.launch
 ```
 
-```xml
-<launch>
-  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
-  <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
-    args="-file $(find rubot_mecanum_description)/urdf/nexus.urdf -urdf -model nexus" output="screen"/>
-</launch>
-```
-![](./Images/1_nexus_mecanum2.png)
+![](./Images/1_rubot_rviz_gazebo.png)
 
 > Gazebo colors:
 > - are defined at the end of URDF file
 >- have a specific "Gazebo/Color" names
 >- You can find the list of available Gazebo colors in: http://wiki.ros.org/simulator_gazebo/Tutorials/ListOfMaterials
 ```xml
+  <gazebo reference="base_link">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+  ```
+> Dynamic friction coefficients:
+>
+> They have to be specified at the end of urdf file (zero values by default):
+```xml
   <gazebo reference="upper_left_wheel">
     <material>Gazebo/Grey</material>
     <mu1>0.0</mu1>
     <mu2>0.0</mu2>
   </gazebo>
-  ```
+```
 >Carefull-1:
 - If there is an error "libcurl: (51) SSL: no alternative certificate subject name matches target host name ‘api.ignitionfuel.org’" then follow instructions:
     - Open "~/.ignition/fuel/config.yaml" (to see the hidden files type ctrl+h)
@@ -478,9 +520,9 @@ Save this world as maze.world
 
 Now, spawn the rUBot mecanum robot in our generated world. You have to create a "nexus_world.launch" file:
 ``` shell
-roslaunch rubot_mecanum_description nexus_world.launch
+roslaunch rubot_mecanum_description rubot_world.launch
 ```
-![](./Images/1_nexus_mecanum3.png)
+![](./Images/1_rubot_world.png)
 
 ## 3. rUBot mecanum navigation control in the new world environment
 

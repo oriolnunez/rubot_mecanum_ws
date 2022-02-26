@@ -40,9 +40,9 @@
       </geometry>
     </collision>
     <inertial>
-      <origin rpy="0 0 0" xyz="-0.01103 0 0.002"/>
-      <mass value="2.844"/>
-      <inertia ixx="0.018819942" ixy="0" ixz="-0.000101519" iyy="0.057333716" iyz="0" izz="0.074201740"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="10"/>
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
     </inertial>
   </link>
 <!-- upper_left_wheel -->
@@ -155,14 +155,14 @@
   </link> -->
 <!-- 2D Camera as a mesh of actual PiCamera -->
   <joint name="joint_camera" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0.236 0.076 0.072"/>
     <parent link="base_link"/>
     <child link="camera"/>
     <axis xyz="0 1 0"/>
   </joint>
   <link name="camera">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="-0.236 -0.076 -0.072"/>
       <geometry>
         <mesh filename="package://rubot_mecanum_description/meshes/rubot/picam.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -183,7 +183,7 @@
   <!-- LIDAR base_scan -->
   <link name="base_scan">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="-0.111 -0.076 -0.124"/>
       <geometry>
         <mesh filename="package://rubot_mecanum_description/meshes/rubot/lidar.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -203,7 +203,7 @@
   </link>
   <joint name="scan_joint" type="fixed">
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0.111 0.076 0.124"/>
     <parent link="base_link"/>
     <child link="base_scan"/>
   </joint>
@@ -252,7 +252,7 @@
   <!-- Laser Distance Sensor YDLIDAR X4 controller-->
   <gazebo reference="base_scan">
     <sensor name="lds_lfcd_sensor" type="ray">
-      <pose>0 0 0 0 0 0</pose>
+      <pose>0.111 0.076 0.124 0 0 0</pose>
       <visualize>false</visualize>
       <update_rate>5</update_rate>
       <ray>
@@ -289,7 +289,6 @@
 <!-- Gazebo colors have to be specified here with predefined Gazebo colors -->
   <gazebo reference="base_footprint">
     <material>Gazebo/Yellow</material>
-    <gravity>true</gravity>
   </gazebo>
   <gazebo reference="base_link">
     <material>Gazebo/Yellow</material>
