@@ -357,15 +357,23 @@ For that it is important to:
 - Press ctrl+shift+p to access the control commands 
 - type ROS and select ROS: Preview URDF
 
-The main steps are:
-- Design the rubot 3D parts in FreeCAD following the instructions in "Documentation/files/Freecad"
-- Create the stl format part files for base_link, wheels, lidar and picam.
-- generate the rubot.urdf file 
-
 **Activity:**
 
 Design a proper model corresponding to the real rUBot_mecanum you will work with.
 ![](./Images/1_osoyoo.png)
+
+The main steps are:
+- Design the rubot 3D parts in FreeCAD following the instructions in "Documentation/files/Freecad"
+![](./Images/1_rubot_freecad.png)
+- Create the stl format part files for base_link, wheels, lidar and picam.
+- generate the rubot.urdf file 
+![](./Images/1_rubot_urdf.png)
+
+Test the robot model within rview and gazebo
+```shell
+roslaunch rubot_mecanum_description display.launch
+```
+![](./Images/1_rubot_rviz.png)
 
 
 ## **2. rUBot mecanum spawn in world environment**
@@ -379,6 +387,7 @@ We will create a new gazebo.launch file to spawn the robot in an empty world:
 roslaunch rubot_mecanum_description gazebo.launch
 roslaunch rubot_mecanum_description display.launch
 ```
+
 ```xml
 <launch>
   <include file="$(find gazebo_ros)/launch/empty_world.launch" />

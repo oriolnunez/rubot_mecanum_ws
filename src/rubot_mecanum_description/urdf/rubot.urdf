@@ -16,7 +16,10 @@
   <material name="light_grey">
     <color rgba="0.75 0.75 0.75 1.0"/>
   </material>
+
+<!-- base_footprint reference frame without inertia is needed -->
   <link name="base_footprint"/>
+<!-- base_link -->
   <joint name="base_link_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0.05"/>
     <parent link="base_footprint"/>
@@ -37,13 +40,12 @@
       </geometry>
     </collision>
     <inertial>
-      <!-- Inertia from CAD model, filled box assumption -->
       <origin rpy="0 0 0" xyz="-0.01103 0 0.002"/>
       <mass value="2.844"/>
       <inertia ixx="0.018819942" ixy="0" ixz="-0.000101519" iyy="0.057333716" iyz="0" izz="0.074201740"/>
     </inertial>
   </link>
-
+<!-- upper_left_wheel -->
   <joint name="upper_left_wheel_joint" type="continuous">
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <parent link="base_link"/>
@@ -54,7 +56,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://rubot_mecanum_description/meshes/rubot/wheel_left.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://rubot_mecanum_description/meshes/rubot/wheel_leftFront.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
@@ -67,12 +69,12 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.3844"/>
-      <!-- Inertia based on cylinder -->
       <inertia ixx="0.000324824" ixy="0" ixz="0" iyy="0.000480000" iyz="0" izz="0.000324824"/>
     </inertial>
   </link>
+<!-- lower_left_wheel -->
   <joint name="lower_left_wheel_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="0.046 0.181 -0.028"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <parent link="base_link"/>
     <child link="lower_left_wheel"/>
     <axis xyz="0 1 0"/>
@@ -81,7 +83,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://rubot_mecanum_description/meshes/rubot/wheel_left.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://rubot_mecanum_description/meshes/rubot/wheel_leftBack.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
@@ -94,12 +96,12 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.3844"/>
-      <!-- Inertia based on cylinder -->
       <inertia ixx="0.000324824" ixy="0" ixz="0" iyy="0.000480000" iyz="0" izz="0.000324824"/>
     </inertial>
   </link>
+<!-- upper_right_wheel -->
   <joint name="upper_right_wheel_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="0.201 -0.031 -0.028"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <parent link="base_link"/>
     <child link="upper_right_wheel"/>
     <axis xyz="0 1 0"/>
@@ -108,7 +110,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://rubot_mecanum_description/meshes/rubot/wheel_right.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://rubot_mecanum_description/meshes/rubot/wheel_rightFront.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
@@ -121,13 +123,13 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.3844"/>
-      <!-- Inertia based on cylinder -->
       <inertia ixx="0.000324824" ixy="0" ixz="0" iyy="0.000480000" iyz="0" izz="0.000324824"/>
     </inertial>
   </link>
+<!-- lower_right_wheel -->
   <joint name="lower_right_wheel_joint" type="continuous">
-    <origin rpy="0 0 0" xyz="0 0.042 0"/>
-    <parent link="lower_right_wheel_shaft"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_link"/>
     <child link="lower_right_wheel"/>
     <axis xyz="0 1 0"/>
   </joint>
@@ -135,7 +137,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://rubot_mecanum_description/meshes/nexus/mecanum_wheel_left.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://rubot_mecanum_description/meshes/rubot/wheel_rightBack.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
@@ -148,17 +150,21 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.3844"/>
-      <!-- Inertia based on cylinder -->
       <inertia ixx="0.000324824" ixy="0" ixz="0" iyy="0.000480000" iyz="0" izz="0.000324824"/>
     </inertial>
-  </link>
-
-  <!-- 2D Camera as a mesh of actual PiCamera -->
+  </link> -->
+<!-- 2D Camera as a mesh of actual PiCamera -->
+  <joint name="joint_camera" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="camera"/>
+    <axis xyz="0 1 0"/>
+  </joint>
   <link name="camera">
     <visual>
-      <origin rpy="0 1.570795 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://rubot_mecanum_description/meshes/rubot/picam.stl" scale="0.0025 0.0025 0.0025"/>
+        <mesh filename="package://rubot_mecanum_description/meshes/rubot/picam.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -174,19 +180,12 @@
       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
     </inertial>
   </link>
-  <!-- 2D Camera JOINT base_link -->
-  <joint name="joint_camera" type="fixed">
-    <axis xyz="0 1 0"/>
-    <origin rpy="0 0 0" xyz="0.24 0.076 0.072"/>
-    <parent link="base_link"/>
-    <child link="camera"/>
-  </joint>
   <!-- LIDAR base_scan -->
   <link name="base_scan">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://rubot_mecanum_description/meshes/rubot/lidar.stl" scale="0.0015 0.0015 0.0015"/>
+        <mesh filename="package://rubot_mecanum_description/meshes/rubot/lidar.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -202,7 +201,6 @@
       <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
     </inertial>
   </link>
-  <!-- LIDAR base_scan JOINT base_link -->
   <joint name="scan_joint" type="fixed">
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -288,8 +286,7 @@
       </plugin>
     </sensor>
   </gazebo>
-  <!-- All static links get collapsed down to base_link in Gazebo, so that's
-       the one to apply the colour to (in Gazebo 5+). -->
+<!-- Gazebo colors have to be specified here with predefined Gazebo colors -->
   <gazebo reference="base_footprint">
     <material>Gazebo/Yellow</material>
     <gravity>true</gravity>
@@ -303,52 +300,24 @@
   <gazebo reference="camera">
     <material>Gazebo/Green</material>
   </gazebo>
-  <gazebo reference="left_sensor">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="front_sensor">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="right_sensor">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="rear_sensor">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="upper_left_wheel_shaft">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="lower_left_wheel_shaft">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="upper_right_wheel_shaft">
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="lower_right_wheel_shaft">
-    <material>Gazebo/Black</material>
-  </gazebo>
   <gazebo reference="upper_left_wheel">
     <material>Gazebo/Grey</material>
     <mu1>0.0</mu1>
     <mu2>0.0</mu2>
   </gazebo>
-
   <gazebo reference="lower_left_wheel">
     <material>Gazebo/Grey</material>
     <mu1>0.0</mu1>
     <mu2>0.0</mu2>
   </gazebo>
-
   <gazebo reference="upper_right_wheel">
     <material>Gazebo/Grey</material>
     <mu1>0.0</mu1>
     <mu2>0.0</mu2>
   </gazebo>
-
   <gazebo reference="lower_right_wheel">
     <material>Gazebo/Grey</material>
     <mu1>0.0</mu1>
     <mu2>0.0</mu2>
   </gazebo>
-  
 </robot>
