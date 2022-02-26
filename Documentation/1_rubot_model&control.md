@@ -357,7 +357,10 @@ For that it is important to:
 - Press ctrl+shift+p to access the control commands 
 - type ROS and select ROS: Preview URDF
 
-
+The main steps are:
+- Design the rubot 3D parts in FreeCAD following the instructions in "Documentation/files/Freecad"
+- Create the stl format part files for base_link, wheels, lidar and picam.
+- generate the rubot.urdf file 
 
 **Activity:**
 
