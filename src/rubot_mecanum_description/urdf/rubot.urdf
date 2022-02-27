@@ -27,16 +27,16 @@
   </joint>
   <link name="base_link">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0.028"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://rubot_mecanum_description/meshes/rubot/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="yellow"/>
     </visual>
     <collision>
-      <origin xyz="0 0 0"/>
+      <origin xyz="0.1 0.1 0.1"/>
       <geometry>
-        <mesh filename="package://rubot_mecanum_description/meshes/rubot/base_link.stl" scale="0.001 0.001 0.001"/>
+        <box size="0.1 0.1 0.35"/>
       </geometry>
     </collision>
     <inertial>
@@ -155,7 +155,7 @@
   </link> -->
 <!-- 2D Camera as a mesh of actual PiCamera -->
   <joint name="joint_camera" type="fixed">
-    <origin rpy="0 0 0" xyz="0.236 0.076 0.1"/>
+    <origin rpy="0 0 0" xyz="0.236 0.076 0.072"/>
     <parent link="base_link"/>
     <child link="camera"/>
     <axis xyz="0 1 0"/>
@@ -203,7 +203,7 @@
   </link>
   <joint name="scan_joint" type="fixed">
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 0" xyz="0.111 0.076 0.152"/>
+    <origin rpy="0 0 0" xyz="0.111 0.076 0.124"/>
     <parent link="base_link"/>
     <child link="base_scan"/>
   </joint>
