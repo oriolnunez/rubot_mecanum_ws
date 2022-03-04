@@ -619,6 +619,7 @@ roslaunch rubot_control rubot_nav.launch
 ```
 
 #### **b) LIDAR test**
+
 In order to navigate autonomously and avoid obstacles, we will use a specific rpLIDAR sensor.
 To verify the LIDAR readings and angles we have generated the "rubot_lidar_test.py" python file:
 ```python
