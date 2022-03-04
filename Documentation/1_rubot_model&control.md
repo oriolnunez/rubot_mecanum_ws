@@ -259,7 +259,7 @@ A driver is needed to see the 720 laser distance points:
         <scan>
           <horizontal>
             <samples>720</samples>
-            <resolution>0.5</resolution>
+            <resolution>1</resolution>
             <min_angle>0.0</min_angle>
             <max_angle>6.28319</max_angle>
           </horizontal>
@@ -320,7 +320,7 @@ In this gazebo plugin, the kinematics of the robot configuration is defined:
 We use a specific "display.launch" launch file where we specify the robot model we want to open in rviz with a configuration specified in "urdf.rviz":
 ```xml
 <launch>
-  <param name="robot_description" textfile="$(find rubot_mecanum_description)/urdf/nexus.urdf" />
+  <param name="robot_description" textfile="$(find rubot_mecanum_description)/urdf/rubot.urdf" />
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />

@@ -221,6 +221,8 @@ git clone --single-branch --branch=noetic-devel https://github.com/ros-perceptio
 ```
 Some dependencies have to be added.
 
+**Instruccions Sergio!**
+
 Follow raspicam_node --> Build Instructions in: https://github.com/UbiquityRobotics/raspicam_node
 
 Then you are able to compile the workspace:
