@@ -1,9 +1,10 @@
 <launch>
   <arg name="world" default="square2wall.world"/> 
-  <arg name="model" default="nexus.urdf" />
-  <arg name="x_pos" default="0.0"/>
+  <arg name="model" default="rubot.urdf" />
+  <arg name="x_pos" default="0.5"/>
   <arg name="y_pos" default="0.0"/>
   <arg name="z_pos" default="0.0"/>
+  <arg name="yaw" default="1.0"/>
   <!-- spawn world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find rubot_mecanum_description)/worlds/$(arg world)"/>
@@ -11,7 +12,7 @@
   <!-- spawn nexus -->
   <param name="robot_description" textfile="$(find rubot_mecanum_description)/urdf/$(arg model)" />
   <node pkg="gazebo_ros" type="spawn_model" name="spawn_model"
-    args="-urdf -model nexus -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+    args="-urdf -model rubot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -Y $(arg yaw) -param robot_description" />
   <!-- send fake joint values -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     <param name="use_gui" value="False"/>
